@@ -39,7 +39,11 @@ class Api::V1::ProjectsController < ApplicationController
 
 	private
 	def set_project
-		@project = Project.find(params[:id])
+		begin
+			@project = Project.find(params[:id])
+		rescue ActiveRecord::RecordNotFound
+			render json: { message: "Project #{params[:id]} not found" }, status: :not_found
+		end
 	end
 
 	def project_params

@@ -39,7 +39,11 @@ class Api::V1::ExperiencesController < ApplicationController
 
 	private
 	def set_experience
-		@experience = Experience.find(params[:id])
+		begin
+			@experience = Experience.find(params[:id])
+		rescue ActiveRecord::RecordNotFound
+			render json: { message: "Experience #{params[:id]} not found" }, status: :not_found
+		end
 	end
 
 	def experience_params
