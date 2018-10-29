@@ -61,7 +61,6 @@ class ProjectsControllerTest < ActionDispatch::IntegrationTest
 
 	test "should not show project" do
 		get api_v1_project_url(-1), as: :json
-
 		assert_response :not_found
 	end
 
