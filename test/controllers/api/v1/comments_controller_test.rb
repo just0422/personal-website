@@ -6,11 +6,11 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
 		@comment_two = comments(:two)
 		@comment_four = comments(:four)
 
-		@experience = experiences(:one)
-		@experience_comments = [comments(:one), comments(:four)]
-
 		@project = projects(:one)
 		@project_comments = [comments(:one), comments(:two)]
+
+		@experience = experiences(:one)
+		@experience_comments = [comments(:one), comments(:four)]
 	end
 
 	def get_test(url, comments)
@@ -19,7 +19,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
 
 		assert_equal 2, resp.length
 		(0...resp.length).each do |i|
-			assert_equal resp[i]["id"], comments[i][:id]
+			assert comments.any?{ |comment| resp[i]["id"] == comment[:id] }
 		end
 
 		assert_response :success
@@ -55,6 +55,26 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
 		create_test("Project.find(#{@project[:id]}).comments.count", api_v1_project_comments_url(@project))
 	end
 
+	def create_fail_test(url)
+		assert_no_difference('Comment.count') do
+			post url, params: {
+				comment: {
+					something: "else"
+				}
+			}, as: :json
+		end
+
+		assert_response :unprocessable_entity
+	end
+
+	test "should not create comments" do
+		# Attempt to Create Experience Comment
+		create_fail_test(api_v1_experience_comments_url(@experience))
+
+		# Attempt to Create Project Comment
+		create_fail_test(api_v1_project_comments_url(@project))
+	end
+
 	def show_test(url)
 		get url, as: :json
 		resp = JSON.parse(response.body)
@@ -81,29 +101,26 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
 		assert_response :not_found
 	end
 	
-	def update_test(url)
+	def update_test(url, comment)
 		patch url, params:{
 			comment: {
-				content: "AVCD",
+				content: "#{comment[:content]}_1",
 				something: "else"
 			}
 		}, as: :json
 
 		resp = JSON.parse(response.body)
 		assert_nil resp["something"]
-		assert_not_equal @comment_one[:content], resp["content"]
+		assert_not_equal comment[:content], resp["content"]
 		assert_response :success
 	end
 
 	test "should update comment" do
 		# Update experience comment
-		update_test(api_v1_experience_comment_url(@experience, @comment_one))
-
-		# Reset comment
-		@comment_one[:content] = "MyText"
+		update_test(api_v1_experience_comment_url(@experience, @comment_one), @comment_one)
 
 		# Update project_comment
-		update_test(api_v1_project_comment_url(@project, @comment_one))
+		update_test(api_v1_project_comment_url(@project, @comment_one), @comment_one)
 	end
 	
 	def update_fail_test(url)
@@ -116,7 +133,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
 		assert_response :not_found
 	end
 
-	test "should not update project" do
+	test "should not update comment" do
 		# Experience update attempt should fail
 		update_fail_test(api_v1_experience_comment_url(@experience, -1))
 
@@ -145,7 +162,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
 	
 	def destroy_fail_test(url)
 		assert_no_difference('Comment.count') do
-			delete api_v1_project_url(-1), as: :json
+			delete url, as: :json
 		end
 
 		assert_response :not_found

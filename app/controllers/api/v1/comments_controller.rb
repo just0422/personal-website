@@ -5,8 +5,7 @@ class Api::V1::CommentsController < ApplicationController
 	# GET /projects/:project_id/comments
 	# GET /experiences/:experience_id/comments
 	def index
-		@comments = Comment.where("#{@parent_category}_id = #{@parent_id}")
-		render json: @comments
+		render json: @parent.comments
 	end
 
 	# GET /projects/:project_id/comments/:id
@@ -18,12 +17,14 @@ class Api::V1::CommentsController < ApplicationController
 	# POST /projects/:project_id/comments
 	# POST /experiences/:experience_id/comments
 	def create
-		@comment = Comment.new(comment_params)
+		#@comment = Comment.new(comment_params)
 
-		@parent = @parent_model.find(@parent_id)
-		@parent.comments << @comment
-		if not @parent.save
+		#@parent.comments << @comment
+		
+		@comment = @parent.comments.build(comment_params)
+		unless @parent.save
 			render json: @parent.errors, status: :unprocessable_entity
+			return
 		end
 
 		if @comment.save
@@ -46,7 +47,6 @@ class Api::V1::CommentsController < ApplicationController
 	# DELETE /comments/1
 	# DELETE /comments/1.json
 	def destroy
-		@parent = @parent_model.find(@parent_id)
 		@parent.comments.delete(@comment)
 
 		@comment.destroy
@@ -55,14 +55,14 @@ class Api::V1::CommentsController < ApplicationController
 	private
 	def pick_parent
 		if params.key?(:experience_id)
-			@parent_model = Experience
 			@parent_category = "experience"
-			@parent_id = params[:experience_id]
 		else
-			@parent_model = Project
 			@parent_category = "project"
-			@parent_id = params[:project_id]
 		end
+
+		@parent_model = @parent_category.capitalize.constantize
+		@parent_id = params["#{@parent_category}_id".to_sym]
+		@parent = @parent_model.find(@parent_id)
 	end
 
 	# Use callbacks to share common setup or constraints between actions.
