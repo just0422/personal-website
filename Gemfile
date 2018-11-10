@@ -18,6 +18,8 @@ gem 'uglifier', '>= 1.3.0'
 
 # Admin Gem
 gem 'rails_admin', '~> 1.3'
+gem "react_on_rails", "~> 11.1.4"
+gem "webpacker", "~> 3"
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
