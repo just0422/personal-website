@@ -18,7 +18,7 @@ gem 'uglifier', '>= 1.3.0'
 
 # Admin Gem
 gem 'rails_admin', '~> 1.3'
-gem "react_on_rails", "~> 11.1.4"
+gem "react_on_rails", "11.1.8"
 gem "webpacker", "~> 3"
 gem 'foreman'
 
