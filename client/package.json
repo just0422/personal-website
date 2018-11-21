@@ -1,0 +1,47 @@
+{
+  "name": "personal-website",
+  "license": "MIT",
+  "version": "1.0.0",
+  "engines": {
+    "node": "^7.8.0 || ^8.0.0 || ^9.2.0 || ^10.0.0",
+    "npm": "^4.4.4 || ^5.0.0",
+    "yarn": "^1.0.0"
+  },
+  "repository": {
+    "url": "https://github.com/just0422/personal-website",
+    "type": "git"
+  },
+  "dependencies": {
+    "@rails/webpacker": "3.5",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-es2015-modules-amd": "^6.24.1",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-runtime": "^6.26.0",
+    "bootstrap-loader": "^2.2.0",
+    "bootstrap-sass": "^3.3.7",
+    "es5-shim": "^4.5.9",
+    "expose-loader": "^0.7.4",
+    "imports-loader": "^0.7.1",
+    "jquery": "^3.2.1",
+    "jquery-ujs": "^1.2.2",
+    "prop-types": "^15.6.2",
+    "react": "^16.6.1",
+    "react-dom": "^16.6.3",
+    "react-on-rails": "11.1.8",
+    "resolve-url-loader": "^2.2.0",
+    "turbolinks": "^5.0.3",
+    "url-loader": "^0.6.2",
+    "webpack-merge": "^4.1.1"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "2.11.2"
+  },
+  "scripts": {
+    "build:dev:server": "NODE_ENV=development webpack -w --config webpack.server.rails.build.config.js",
+    "hot-assets": "NODE_ENV=development babel-node server-rails-hot.js"
+  }
+}
