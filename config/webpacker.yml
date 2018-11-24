@@ -1,9 +1,7 @@
 # Note: You must restart bin/webpack-dev-server for changes to take effect
 
 default: &default
-  source_path: client
-  source_entry_path: packs
-  public_output_path: packs
+  public_output_path: app
   cache_path: tmp/cache/webpacker
 
   # Additional paths webpack should lookup modules
@@ -30,14 +28,13 @@ default: &default
 
 development:
   <<: *default
-  compile: true
+  compile: false
 
   # Reference: https://webpack.js.org/configuration/dev-server/
   dev_server:
     https: false
     host: localhost
-    port: 3035
-    public: localhost:3035
+    port: 3001
     hmr: false
     # Inline should be set to true if using HMR
     inline: true
