@@ -10,8 +10,6 @@
 console.log('Hello World from Webpacker')
 
 import ReactOnRails from 'react-on-rails';
-import Search from '../components/Search';
 
 ReactOnRails.register({
-  Search
 });

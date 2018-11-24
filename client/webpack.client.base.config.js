@@ -31,7 +31,8 @@ module.exports = {
 
     // This will contain the app entry points defined by webpack.hot.config and webpack.rails.config
     'app-bundle': [
-      './packs/application',
+	  './app/application',
+      //'./packs/application',
     ],
   },
 
