@@ -14,16 +14,16 @@ export default class NavigationBar extends Component {
 					</Navbar.Header>
 					<Navbar.Collapse>
 						<Nav pullRight>
-							<NavItem eventKey={1} href="#">
+							<NavItem eventKey={1} href="/">
 								Resume
 							</NavItem>
-							<NavItem eventKey={2} href="#">
+							<NavItem eventKey={2} href="/projects">
 								Projects
 							</NavItem>
-							<NavItem eventKey={3} href="#">
+							<NavItem eventKey={3} href="/about">
 								About
 							</NavItem>
-							<NavItem eventKey={4} href="#">
+							<NavItem eventKey={4} href="/contact">
 								Contact
 							</NavItem>
 						</Nav>

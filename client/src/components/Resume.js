@@ -3,6 +3,7 @@ import { Grid, Row, Col, PageHeader } from 'react-bootstrap';
 
 import Skills from './Resume/Skills';
 import Education from './Resume/Education';
+import Experience from './Resume/Experience';
 
 export default class Resume extends Component {
 	render(){
@@ -23,6 +24,8 @@ export default class Resume extends Component {
 							<Skills />
 						</Col>
 					</Row>
+					<hr />
+					<Experience />
 				</Grid>
 			</div>
 		);

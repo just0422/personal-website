@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Row, Col } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 
 import './resume_components.css';
 
@@ -8,7 +8,9 @@ export default class Education extends Component {
 		return (
 			<div>
 				<h3 className="resume-subheader">Education</h3>
-				<strong className="section-element-header pull-left">Stony Brook University, New York</strong>
+				<div className="section-element-header">
+					<strong>Stony Brook University, New York</strong>
+				</div>
 				<Row>
 					<Col xs={6} className="section-element-details">M.S. Computer Science</Col>
 					<Col xs={6} className="section-element-dates">Aug. 2016 - Aug. 2018</Col>
