@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Row, Col } from 'react-bootstrap';
+import { PageHeader, Grid, Row, Col } from 'react-bootstrap';
 
 import './project_components.css';
 
@@ -7,7 +7,7 @@ export default class Projects extends Component {
 	render(){
 		return(
 			<div className="container">
-				<h1>Projects</h1>
+				<PageHeader>Projects</PageHeader>
 				<Grid>
 					<Row>
 						<Col xs={6}>

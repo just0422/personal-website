@@ -1,11 +1,33 @@
 import React, { Component } from 'react';
 import { Grid, Row, Col, PageHeader } from 'react-bootstrap';
+import axios from 'axios';
 
 import Skills from './Resume/Skills';
 import Education from './Resume/Education';
 import Experience from './Resume/Experience';
 
 export default class Resume extends Component {
+	constructor(props){
+		super(props);
+
+		this.state = {
+			skills: [],
+			experiences: []
+		}
+	}
+
+	componentDidMount(){
+		axios.all([
+			axios.get("/api/v1/skills"),
+			axios.get("/api/v1/experiences")
+		]).then(axios.spread((skillsResponse, experiencesResponse) => {
+				this.setState({
+					skills: skillsResponse.data,
+					experiences: experiencesResponse.data
+				})
+			}));
+	}
+
 	render(){
 		return(
 			<div className="container">
@@ -21,7 +43,7 @@ export default class Resume extends Component {
 							<Education />
 						</Col>
 						<Col xs={6}>
-							<Skills />
+							<Skills skills={this.state.skills}/>
 						</Col>
 					</Row>
 					<hr />
