@@ -1,9 +1,21 @@
 import React, { Component } from 'react';
 import { PageHeader, Grid, Row, Col } from 'react-bootstrap';
+import axios from 'axios';
 
 import './project_components.css';
 
 export default class Projects extends Component {
+	constructor(props){
+		super(props);
+
+		this.state = {
+			projects: []
+		}
+	}
+
+	componentDidMount(){
+	}
+
 	render(){
 		return(
 			<div className="container">

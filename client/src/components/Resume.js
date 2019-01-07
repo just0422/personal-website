@@ -34,7 +34,7 @@ export default class Resume extends Component {
 				<PageHeader>Justin Maldonado</PageHeader>
 				<Grid>
 					<Row>
-						<Col xs={4}><a href="https://github.com/just0422">https://github.com/just0422</a></Col>
+						<Col xs={4}><a href="https://github.com/just0422" target="_blank" rel="noopener noreferrer">https://github.com/just0422</a></Col>
 						<Col xs={4}><a href="mailto:justin.maldonado@stonybrook.edu">justin.maldonado@stonybrook.edu</a></Col>
 						<Col xs={4}>(347) 922-5075</Col>
 					</Row>
@@ -47,7 +47,12 @@ export default class Resume extends Component {
 						</Col>
 					</Row>
 					<hr />
-					<Experience />
+					<h3 className="resume-subheader">Experience</h3>
+					{
+						this.state.experiences.map( (job, i) => {
+							return (<Experience job={job} key={i}/>)
+						})
+					}
 				</Grid>
 			</div>
 		);
