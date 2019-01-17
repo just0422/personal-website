@@ -25,9 +25,6 @@ export default class Experience extends Component {
 				skills: skillsResponse.data,
 				comments: commentsResponse.data
 			})
-
-			console.log(skillsResponse.data);
-			console.log(commentsResponse.data);
 		}));
 	}
 
