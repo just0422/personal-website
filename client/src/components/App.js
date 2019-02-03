@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import NavigationBar from './NavigationBar';
 import Main from './Main';
 
-import '../stylesheets/App.css';
+import '../stylesheets/App.scss';
 
 
 class App extends Component {

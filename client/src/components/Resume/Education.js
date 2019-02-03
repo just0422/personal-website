@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'react-bootstrap';
 
-import './resume_components.css';
+import './resume_components.scss';
 
 export default class Education extends Component {
 	render() {

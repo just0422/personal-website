@@ -3,7 +3,7 @@ import { Grid, Row, Col } from 'react-bootstrap';
 import Moment from 'react-moment';
 import axios from 'axios';
 
-import './resume_components.css';
+import './resume_components.scss';
 
 export default class Experience extends Component {
 	constructor(props){

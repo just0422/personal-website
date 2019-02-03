@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import Project from './Projects/Project'
 
-import './Projects/project_components.css';
+import './Projects/project_components.scss';
 
 export default class Projects extends Component {
 	constructor(props){

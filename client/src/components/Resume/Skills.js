@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
 
-import './resume_components.css';
+import './resume_components.scss';
 
 export default class Skills extends Component {
 	render() {

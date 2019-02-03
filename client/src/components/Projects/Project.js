@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Row, Col } from 'react-bootstrap';
 import Moment from 'react-moment';
 
-import './project_components.css';
+import './project_components.scss';
 
 export default class Project extends Component {
 	constructor(props){

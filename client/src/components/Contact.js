@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Row, Col, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import { PageHeader } from 'react-bootstrap';
 
-import './contact_components.css'
+import './contact_components.scss'
 
 export default class Contact extends Component {
 	render(){
