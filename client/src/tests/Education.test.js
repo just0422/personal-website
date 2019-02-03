@@ -9,3 +9,10 @@ describe('Education', () => {
     expect(component).toMatchSnapshot();
   });
 });
+describe('Education', () => {
+  it('should render correctly even with a prop', () => {
+    const string = 'string';
+    const component = shallow(<Education something={string} />);
+    expect(component).toMatchSnapshot();
+  });
+});
