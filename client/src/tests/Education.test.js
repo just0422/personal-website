@@ -8,8 +8,6 @@ describe('Education', () => {
     const component = shallow(<Education />);
     expect(component).toMatchSnapshot();
   });
-});
-describe('Education', () => {
   it('should render correctly even with a prop', () => {
     const string = 'string';
     const component = shallow(<Education something={string} />);

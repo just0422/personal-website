@@ -15,24 +15,37 @@ export default class Experience extends Component {
     };
   }
 
+  static defaultProps = {
+    job: {
+      id: -1,
+      name: '',
+      title: '',
+      start: '',
+      end: '',
+    },
+  };
+
   componentDidMount() {
     let id = this.props.job.id;
-    axios
-      .all([
-        axios.get('/api/v1/experiences/' + id + '/skills'),
-        axios.get('/api/v1/experiences/' + id + '/comments'),
-      ])
-      .then(
-        axios.spread((skillsResponse, commentsResponse) => {
-          this.setState({
-            skills: skillsResponse.data,
-            comments: commentsResponse.data,
-          });
-        }),
-      );
+    if (id > 0) {
+      axios
+        .all([
+          axios.get('/api/v1/experiences/' + id + '/skills'),
+          axios.get('/api/v1/experiences/' + id + '/comments'),
+        ])
+        .then(
+          axios.spread((skillsResponse, commentsResponse) => {
+            this.setState({
+              skills: skillsResponse.data,
+              comments: commentsResponse.data,
+            });
+          }),
+        );
+    }
   }
 
   render() {
+    console.log(this.state.skills);
     let job = this.props.job;
     let skills = this.state.skills
       .map(skill => {

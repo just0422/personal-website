@@ -42,7 +42,8 @@ module.exports = env => {
       ],
       resolve: {
         alias: {
-          stylesheets: path.resolve('src/stylesheets'),
+					stylesheets: path.resolve('src/stylesheets'),
+					components: path.resolve('src/components'),
         },
       },
     },
