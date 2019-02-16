@@ -1,5 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Experience should handle comments error 1`] = `ShallowWrapper {}`;
+
+exports[`Experience should handle skills error 1`] = `ShallowWrapper {}`;
+
 exports[`Experience should render correctly with job prop 1`] = `ShallowWrapper {}`;
 
 exports[`Experience should render correctly with no props 1`] = `ShallowWrapper {}`;

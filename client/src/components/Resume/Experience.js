@@ -3,6 +3,8 @@ import {Grid, Row, Col} from 'react-bootstrap';
 import Moment from 'react-moment';
 import axios from 'axios';
 
+import ErrorModal from '../Error';
+
 import 'stylesheets/resume.scss';
 
 export default class Experience extends Component {
@@ -12,6 +14,7 @@ export default class Experience extends Component {
     this.state = {
       skills: [],
       comments: [],
+      error: null,
     };
   }
 
@@ -40,12 +43,16 @@ export default class Experience extends Component {
               comments: commentsResponse.data,
             });
           }),
-        );
+        )
+        .catch(err => {
+          this.setState({
+            error: err,
+          });
+        });
     }
   }
 
   render() {
-    console.log(this.state.skills);
     let job = this.props.job;
     let skills = this.state.skills
       .map(skill => {
@@ -54,32 +61,37 @@ export default class Experience extends Component {
       .join();
     let comments = this.state.comments.map((comment, i) => {
       return <li key={i}>{comment.content}</li>;
-    });
+		});
 
-    return (
-      <div>
-        <Grid>
-          <Row>
-            <Col xs={6}>
-              <div className="section-element-header">
-                <strong>{job.name}</strong>
-              </div>
-            </Col>
-            <Col xs={6} className="section-element-dates">
-              <Moment format={'MMM. YYYY'}>{job.start}</Moment> -{' '}
-              <Moment format={'MMM. YYYY'}>{job.end}</Moment>
-            </Col>
-            <Col xs={12} className="section-element-header">
-              <em>
-                {job.title} ({skills})
-              </em>
-            </Col>
-            <Col xs={12} className="section-element-comments">
-              <ul>{comments}</ul>
-            </Col>
-          </Row>
-        </Grid>
-      </div>
-    );
+    if (this.state.error) {
+		console.log("ErrorModal should render");
+      return <ErrorModal component="Experience" error={this.state.error} />;
+    } else {
+      return (
+        <div>
+          <Grid>
+            <Row>
+              <Col xs={6}>
+                <div className="section-element-header">
+                  <strong>{job.name}</strong>
+                </div>
+              </Col>
+              <Col xs={6} className="section-element-dates">
+                <Moment format={'MMM. YYYY'}>{job.start}</Moment> -{' '}
+                <Moment format={'MMM. YYYY'}>{job.end}</Moment>
+              </Col>
+              <Col xs={12} className="section-element-header">
+                <em>
+                  {job.title} ({skills})
+                </em>
+              </Col>
+              <Col xs={12} className="section-element-comments">
+                <ul>{comments}</ul>
+              </Col>
+            </Row>
+          </Grid>
+        </div>
+      );
+    }
   }
 }

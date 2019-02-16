@@ -42,8 +42,14 @@ module.exports = env => {
       ],
       resolve: {
         alias: {
-					stylesheets: path.resolve('src/stylesheets'),
+          stylesheets: path.resolve('src/stylesheets'),
 					components: path.resolve('src/components'),
+					api: path.resolve('src/api'),
+        },
+      },
+      devServer: {
+        proxy: {
+          '/api': 'http://localhost:3001',
         },
       },
     },

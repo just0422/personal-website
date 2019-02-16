@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {PageHeader, Grid} from 'react-bootstrap';
-import axios from 'axios';
 
 import Project from './Projects/Project';
+import api from 'api';
 
 import 'stylesheets/projects.scss';
 
@@ -15,8 +15,10 @@ export default class Projects extends Component {
     };
   }
 
-  componentDidMount() {
-    axios.get('/api/v1/projects').then(response => {
+	componentDidMount() {
+		console.log("Out here");
+		api.projects().getAll().then(response => {
+			console.log("In here");
       this.setState({
         projects: response.data,
       });
