@@ -1,5 +1,5 @@
-let start = new Date(2018, 1, 18);
-let end = new Date(2019, 3, 32);
+let start = String(new Date(2018, 1, 18));
+let end = String(new Date(2019, 3, 32));
 
 export const experience = { 
 	id: 1, 
