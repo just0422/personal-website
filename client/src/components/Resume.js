@@ -5,6 +5,7 @@ import axios from 'axios';
 import Skills from './Resume/Skills';
 import Education from './Resume/Education';
 import Experience from './Resume/Experience';
+import api from 'api';
 
 export default class Resume extends Component {
 	constructor(props){
@@ -18,8 +19,8 @@ export default class Resume extends Component {
 
 	componentDidMount(){
 		axios.all([
-			axios.get("/api/v1/skills"),
-			axios.get("/api/v1/experiences")
+			api.skills().getAll(),
+			api.experiences().getAll()
 		]).then(axios.spread((skillsResponse, experiencesResponse) => {
 				this.setState({
 					skills: skillsResponse.data,

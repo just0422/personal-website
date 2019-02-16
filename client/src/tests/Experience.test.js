@@ -6,7 +6,7 @@ import MockAdapter from 'axios-mock-adapter';
 import Experience from '../components/Resume/Experience';
 import ErrorModal from '../components/Error';
 
-import { job, skills, comments } from './data';
+import { experience, skills, comments } from './data';
 
 describe('Experience', () => {
 	const flushPromises = () => new Promise(resolve => setTimeout(resolve));
@@ -21,11 +21,11 @@ describe('Experience', () => {
     expect(component).toMatchSnapshot();
   });
 
-  it('should render correctly with job prop', () => {
+  it('should render correctly with experience prop', () => {
     mock.onGet('/api/v1/experiences/1/skills').reply(200, skills);
     mock.onGet('/api/v1/experiences/1/comments').reply(200, comments);
 
-    const component = shallow(<Experience job={job} />);
+    const component = shallow(<Experience job={experience} />);
     expect(component).toMatchSnapshot();
   });
 
@@ -33,7 +33,7 @@ describe('Experience', () => {
     mock.onGet('/api/v1/experiences/1/skills').reply(404, 'No skills available');
     mock.onGet('/api/v1/experiences/1/comments').reply(200, comments);
 
-    const component = shallow(<Experience job={job} />);
+    const component = shallow(<Experience job={experience} />);
     expect(component).toMatchSnapshot();
   });
 
@@ -41,7 +41,7 @@ describe('Experience', () => {
     mock.onGet('/api/v1/experiences/1/skills').reply(200, skills);
     mock.onGet('/api/v1/experiences/1/comments').reply(404, 'No comments available');
 
-    const component = shallow(<Experience job={job} />);
+    const component = shallow(<Experience job={experience} />);
     expect(component).toMatchSnapshot();
   });
 
@@ -49,7 +49,7 @@ describe('Experience', () => {
     mock.onGet('/api/v1/experiences/1/skills').reply(200, skills);
     mock.onGet('/api/v1/experiences/1/comments').reply(404, 'No comments available');
 
-		const component = mount(<Experience job={job} />);
+		const component = mount(<Experience job={experience} />);
 		await flushPromises();
 		component.update();
 		console.log("Checking");
