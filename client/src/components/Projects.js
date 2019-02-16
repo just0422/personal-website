@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {PageHeader, Grid} from 'react-bootstrap';
 
 import Project from './Projects/Project';
-import api from 'api';
+import api from 'APIUtils';
 
 import 'stylesheets/projects.scss';
 

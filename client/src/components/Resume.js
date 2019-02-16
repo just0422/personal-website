@@ -5,7 +5,7 @@ import axios from 'axios';
 import Skills from './Resume/Skills';
 import Education from './Resume/Education';
 import Experience from './Resume/Experience';
-import api from 'api';
+import api from 'APIUtils';
 
 export default class Resume extends Component {
 	constructor(props){

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 
-import api from '../api';
+import api from '../APIUtils';
 
 import { projects, experience, skills } from './data';
 

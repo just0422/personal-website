@@ -28,7 +28,15 @@ module.exports = env => {
             ],
           },
         ],
-      },
+			},
+			resolve: {
+				modules: [
+					path.resolve('src'),
+					path.resolve('src/components'),
+					path.resolve('src/stylesheets'),
+					path.resolve('node_modules'),
+				],
+			},
       plugins: [
         new HtmlWebpackPlugin({
           template: './public/index.html',
@@ -40,13 +48,6 @@ module.exports = env => {
         }),
         new CopyWebpackPlugin([{from: 'src/static'}]),
       ],
-      resolve: {
-        alias: {
-          stylesheets: path.resolve('src/stylesheets'),
-					components: path.resolve('src/components'),
-					api: path.resolve('src/api'),
-        },
-      },
       devServer: {
         proxy: {
           '/api': 'http://localhost:3001',

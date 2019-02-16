@@ -3,7 +3,7 @@ import axios from 'axios';
 import {Row, Col} from 'react-bootstrap';
 import Moment from 'react-moment';
 
-import api from 'api';
+import api from 'APIUtils';
 
 import 'stylesheets/projects.scss';
 

@@ -3,8 +3,8 @@ import {Grid, Row, Col} from 'react-bootstrap';
 import Moment from 'react-moment';
 import axios from 'axios';
 
-import api from 'api';
-import ErrorModal from '../Error';
+import api from 'APIUtils';
+import ErrorModal from 'Error';
 
 import 'stylesheets/resume.scss';
 
