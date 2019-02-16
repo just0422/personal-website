@@ -3,6 +3,7 @@ import {Grid, Row, Col} from 'react-bootstrap';
 import Moment from 'react-moment';
 import axios from 'axios';
 
+import api from 'api';
 import ErrorModal from '../Error';
 
 import 'stylesheets/resume.scss';
@@ -32,8 +33,8 @@ export default class Experience extends Component {
     let id = this.props.job.id;
     if (id > 0) {
       axios
-        .all([
-          axios.get('/api/v1/experiences/' + id + '/skills'),
+				.all([
+					api.experiences().getSkills(id),
           axios.get('/api/v1/experiences/' + id + '/comments'),
         ])
         .then(

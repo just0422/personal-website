@@ -3,6 +3,8 @@ import axios from 'axios';
 import {Row, Col} from 'react-bootstrap';
 import Moment from 'react-moment';
 
+import api from 'api';
+
 import 'stylesheets/projects.scss';
 
 export default class Project extends Component {
@@ -20,8 +22,8 @@ export default class Project extends Component {
     let id = this.props.project.id;
 
     axios
-      .all([
-        axios.get('/api/v1/projects/' + id + '/skills'),
+			.all([
+				api.projects().getSkills(id),
         axios.get('/api/v1/projects/' + id + '/comments'),
       ])
       .then(
