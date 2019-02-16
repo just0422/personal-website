@@ -34,6 +34,7 @@
     "@babel/core": "^7.0.0",
     "@babel/plugin-proposal-class-properties": "^7.3.0",
     "@babel/plugin-proposal-export-namespace-from": "^7.0.0",
+    "@babel/plugin-proposal-export-default-from": "^7.0.0",
     "@babel/plugin-proposal-throw-expressions": "^7.0.0",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/polyfill": "^7.0.0-beta.51",
@@ -64,19 +65,34 @@
   },
   "jest": {
     "clearMocks": true,
-    "collectCoverageFrom": ["src/**/*.{js,jsx,mjs}"],
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,mjs}"
+    ],
     "coverageDirectory": "coverage",
-    "moduleFileExtensions": ["js", "json", "jsx"],
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "jsx"
+    ],
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/config/file.mock.js",
       "\\.(css|scss)$": "<rootDir>/config/css.mock.js"
     },
-    "setupFiles": ["<rootDir>/config/enzyme.config.js"],
+    "setupFiles": [
+      "<rootDir>/config/enzyme.config.js"
+    ],
     "testEnvironment": "jsdom",
-    "testMatch": ["**/__tests__/**/*.js?(x)", "**/?(*.)+(spec|test).js?(x)"],
-    "testPathIgnorePatterns": ["\\\\node_modules\\\\"],
+    "testMatch": [
+      "**/__tests__/**/*.js?(x)",
+      "**/?(*.)+(spec|test).js?(x)"
+    ],
+    "testPathIgnorePatterns": [
+      "\\\\node_modules\\\\"
+    ],
     "testURL": "http://localhost",
-    "transformIgnorePatterns": ["<rootDir>/node_modules/"],
+    "transformIgnorePatterns": [
+      "<rootDir>/node_modules/"
+    ],
     "verbose": false
   }
 }

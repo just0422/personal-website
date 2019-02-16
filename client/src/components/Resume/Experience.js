@@ -35,7 +35,7 @@ export default class Experience extends Component {
       axios
 				.all([
 					api.experiences().getSkills(id),
-          axios.get('/api/v1/experiences/' + id + '/comments'),
+					api.experiences().getComments(id),
         ])
         .then(
           axios.spread((skillsResponse, commentsResponse) => {

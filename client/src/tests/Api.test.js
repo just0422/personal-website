@@ -2,10 +2,10 @@ import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 
 import api from '../APIUtils';
-import { projectsUrl, experiencesUrl, skillsUrl } from '../APIUtils';
-import { skillsPath } from '../APIUtils';
+import { projectsUrl, experiencesUrl, skillsUrl, commentsUrl } from '../APIUtils';
+import { skillsPath, commentsPath } from '../APIUtils';
 
-import { projects, experience, skills } from './data';
+import { projects, experience, skills, comments } from './data';
 
 let mock;
 beforeEach(() => {
@@ -26,7 +26,14 @@ describe('API Projects', () => {
 
 		let response = await api.projects().getSkills(id).then(response => response.data);
 		expect(response).toEqual(skills);
+	});
 
+	it('should get all comments associate with projects[0]', async () => {
+		let id = projects[0]['id'];
+		mock.onGet(`${projectsUrl}/${id}${commentsPath}`).reply(200, comments);
+
+		let response = await api.projects().getComments(id).then(response => response.data);
+		expect(response).toEqual(comments);
 	});
 });
 
@@ -45,6 +52,14 @@ describe('API Experiences', () => {
 		let response = await api.experiences().getSkills(id).then(response => response.data);
 		expect(response).toEqual(skills);
 	});
+
+	it('should get all comments associate with experiences[0]', async () => {
+		let id = experience['id'];
+		mock.onGet(`${experiencesUrl}/${id}${commentsPath}`).reply(200, comments);
+
+		let response = await api.experiences().getComments(id).then(response => response.data);
+		expect(response).toEqual(comments);
+	});
 });
 
 describe('API skills', () => {
@@ -55,3 +70,13 @@ describe('API skills', () => {
 		expect(response).toEqual(skills);
 	});
 });
+
+describe('API comments', () => {
+	it ('should get all comments', async () => {
+		mock.onGet(commentsUrl).reply(200, comments);
+
+		let response = await api.comments().getAll().then(response => response.data)
+		expect(response).toEqual(comments);
+	});
+});
+

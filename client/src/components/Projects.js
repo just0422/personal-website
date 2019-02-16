@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {PageHeader, Grid} from 'react-bootstrap';
 
-import Project from './Projects/Project';
+import Project from 'Projects/Project';
 import api from 'APIUtils';
 
 import 'stylesheets/projects.scss';
@@ -16,9 +16,7 @@ export default class Projects extends Component {
   }
 
 	componentDidMount() {
-		console.log("Out here");
 		api.projects().getAll().then(response => {
-			console.log("In here");
       this.setState({
         projects: response.data,
       });

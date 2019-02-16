@@ -24,7 +24,7 @@ export default class Project extends Component {
     axios
 			.all([
 				api.projects().getSkills(id),
-        axios.get('/api/v1/projects/' + id + '/comments'),
+				api.projects().getComments(id),
       ])
       .then(
         axios.spread((skillsResponse, commentsResponse) => {
