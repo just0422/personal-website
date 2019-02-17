@@ -4,7 +4,7 @@ import MockAdapter from 'axios-mock-adapter';
 import api from 'APIUtils';
 import { projectsUrl, experiencesUrl, skillsUrl, commentsUrl } from 'APIUtils';
 import { skillsPath, commentsPath, screenshotsPath } from 'APIUtils';
-import { projects, experience, skills, comments, screenshots } from './data';
+import { projects, experiences, skills, comments, screenshots } from './data';
 
 let mock;
 beforeEach(() => {
@@ -44,16 +44,16 @@ describe('API Projects', () => {
 	});
 });
 
-describe('API Experiences', () => {
+describe('API experiences', () => {
 	it ('should get all experiences', async () => {
-		mock.onGet(experiencesUrl).reply(200, experience);
+		mock.onGet(experiencesUrl).reply(200, experiences);
 
 		let response = await api.experiences().getAll().then(response => response.data);
-		expect(response).toEqual(experience);
+		expect(response).toEqual(experiences);
 	});
 
 	it('should get all skills association with experiences[0]', async () => {
-		let id = experience['id'];
+		let id = experiences[0]['id'];
 		mock.onGet(`${experiencesUrl}/${id}${skillsPath}`).reply(200, skills);
 
 		let response = await api.experiences().getSkills(id).then(response => response.data);
@@ -61,7 +61,7 @@ describe('API Experiences', () => {
 	});
 
 	it('should get all comments associate with experiences[0]', async () => {
-		let id = experience['id'];
+		let id = experiences[0]['id'];
 		mock.onGet(`${experiencesUrl}/${id}${commentsPath}`).reply(200, comments);
 
 		let response = await api.experiences().getComments(id).then(response => response.data);

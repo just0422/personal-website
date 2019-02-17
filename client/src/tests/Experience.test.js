@@ -5,7 +5,7 @@ import MockAdapter from 'axios-mock-adapter';
 
 import Experience from 'Resume/Experience';
 
-import { experience, skills, comments } from './data';
+import { experiences, skills, comments } from './data';
 import { experiencesUrl, skillsPath, commentsPath } from 'APIUtils';
 
 
@@ -20,7 +20,7 @@ describe('Experience', () => {
 	const commentsSucceed = () => mock.onGet(experienceCommentsUrl).reply(200, comments);
 
 	beforeAll(() => {
-		let id = experience['id'];
+		let id = experiences[0]['id'];
 		experienceSkillsUrl = `${experiencesUrl}/${id}${skillsPath}`;
 		experienceCommentsUrl = `${experiencesUrl}/${id}${commentsPath}`;
 	});
@@ -37,7 +37,7 @@ describe('Experience', () => {
 		skillsSucceed();
 		commentsSucceed();
 
-		const component = shallow(<Experience job={experience} />);
+		const component = shallow(<Experience job={experiences[0]} />);
 		await flushPromises();
     expect(component).toMatchSnapshot();
 		expect(component.state('error')).toBeNull();
@@ -47,7 +47,7 @@ describe('Experience', () => {
 		skillsFail();
 		commentsSucceed();
 
-		const component = shallow(<Experience job={experience} />);
+		const component = shallow(<Experience job={experiences[0]} />);
 		await flushPromises();
     expect(component).toMatchSnapshot();
 		expect(component.state('error')).toBeTruthy();
@@ -57,7 +57,7 @@ describe('Experience', () => {
 		skillsSucceed();
 		commentsFail();
 
-    const component = shallow(<Experience job={experience} />);
+    const component = shallow(<Experience job={experiences[0]} />);
 		await flushPromises();
     expect(component).toMatchSnapshot();
 		expect(component.state('error')).toBeTruthy();

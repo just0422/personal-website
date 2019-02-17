@@ -1,13 +1,9 @@
 let start = String(new Date(2018, 1, 18));
 let end = String(new Date(2019, 3, 32));
 
-export const experience = { 
-	id: 1, 
-	name: 'abcd',
-	title: 'def', 
-	start: start,
-	end: end
-};
+export const experiences = [
+	{ id: 1,  name: 'abcd', title: 'def', start: start, end: end }
+];
 
 export const skills = [
 	{ name: 'abc', years: '3' },
