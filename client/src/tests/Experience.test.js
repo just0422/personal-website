@@ -8,10 +8,16 @@ import Experience from 'Resume/Experience';
 import { experience, skills, comments } from './data';
 import { experiencesUrl, skillsPath, commentsPath } from 'APIUtils';
 
+
 describe('Experience', () => {
 	const flushPromises = () => new Promise(resolve => setTimeout(resolve));
-	let mock;
 	let experienceSkillsUrl, experienceCommentsUrl;
+	let mock;
+
+	function skillsFail() { mock.onGet(experienceSkillsUrl).reply(404, 'No skills available'); }
+	function skillsSucceed() { mock.onGet(experienceSkillsUrl).reply(200, skills); }
+  function commentsFail() { mock.onGet(experienceCommentsUrl).reply(404, 'No comments available'); }
+	function commentsSucceed() { mock.onGet(experienceCommentsUrl).reply(200, comments); }
 
 	beforeAll(() => {
 		let id = experience['id'];
@@ -27,8 +33,8 @@ describe('Experience', () => {
   });
 
   it('should render correctly with experience prop', async () => {
-		mock.onGet(experienceSkillsUrl).reply(200, skills);
-    mock.onGet(experienceCommentsUrl).reply(200, comments);
+		skillsSucceed();
+		commentsSucceed();
 
 		const component = shallow(<Experience job={experience} />);
 		await flushPromises();
@@ -36,30 +42,22 @@ describe('Experience', () => {
   });
 	
   it('should handle skills error', async () => {
-    mock.onGet(experienceSkillsUrl).reply(404, 'No skills available');
-    mock.onGet(experienceCommentsUrl).reply(200, comments);
+		skillsFail();
+		commentsSucceed();
 
 		const component = shallow(<Experience job={experience} />);
 		await flushPromises();
     expect(component).toMatchSnapshot();
+		expect(component.state('error')).toBeTruthy();
   });
 	
   it('should handle comments error', async () => {
-    mock.onGet(experienceSkillsUrl).reply(200, skills);
-    mock.onGet(experienceCommentsUrl).reply(404, 'No comments available');
+		skillsSucceed();
+		commentsFail();
 
     const component = shallow(<Experience job={experience} />);
 		await flushPromises();
     expect(component).toMatchSnapshot();
-  });
-	
-  it('should render Error', async () => {
-    mock.onGet(experienceSkillsUrl).reply(200, skills);
-    mock.onGet(experienceCommentsUrl).reply(404, 'No comments available');
-
-		const component = mount(<Experience job={experience} />);
-		component.update();
-		await flushPromises();
 		expect(component.state('error')).toBeTruthy();
-	});
+  });
 });

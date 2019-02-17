@@ -15,4 +15,7 @@ describe('Project', () => {
 		const component = shallow(<Project />);
 		expect(component).toMatchSnapshot();
 	});
+
+	it('should render correctly with project prop', () => {
+	});
 });

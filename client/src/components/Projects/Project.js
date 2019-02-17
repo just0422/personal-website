@@ -4,6 +4,7 @@ import {Row, Col} from 'react-bootstrap';
 import Moment from 'react-moment';
 
 import api from 'APIUtils';
+import ErrorModal from 'Error';
 
 import 'stylesheets/projects.scss';
 
@@ -43,53 +44,57 @@ export default class Project extends Component {
 		}
   }
 
-  render() {
-		let project = this.props.project;
-		let name = project ? project.name : "no-name";
-		let github_link = project ? project.github_link : "github.com";
-		let demo_link = project ? project.demo_link : "github.com";
-		let start = project ? project.start : new Date();
-		let end = project && project.end ? project.end : new Date();
+	render() {
+		if (this.state.error){
+			return <ErrorModal component="Project" error={this.state.error} />
+		} else {
+			let project = this.props.project;
+			let name = project ? project.name : "no-name";
+			let github_link = project ? project.github_link : "github.com";
+			let demo_link = project ? project.demo_link : "github.com";
+			let start = project ? project.start : new Date();
+			let end = project && project.end ? project.end : new Date();
 
-    let skills = this.state.skills.map(skill => skill.name).join();
-    let comments = this.state.comments.map((comment, i) => {
-      return <li key={i}>{comment.content}</li>;
-    });
-    let screenshots = this.state.screenshots.map((screenshot, i) => {
-      return <li key={i}>{screenshot.content}</li>;
-    });
-    return (
-      <div>
-        <Row>
-          <Col xs={6}>
-            <div className="section-element-header">
-              <strong>{name} - </strong>
-              <em>({skills})</em>
-            </div>
-          </Col>
-          <Col xs={6} className="project-right-column">
-            {github_link}
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={6} className="project-subleft-column">
-            <Moment format={'MMM. YYYY'}>{start}</Moment> -{' '}
-            <Moment format={'MMM. YYYY'}>{end}</Moment>
-          </Col>
-          <Col xs={6} className="project-right-column">
-            {demo_link}
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={12} className="project-subleft-column">
-            {comments}
-          </Col>
-          <Col xs={12} className="project-subleft-column">
-            {screenshots}
-          </Col>
-        </Row>
-        <hr />
-      </div>
-    );
-  }
+			let skills = this.state.skills.map(skill => skill.name).join();
+			let comments = this.state.comments.map((comment, i) => {
+				return <li key={i}>{comment.content}</li>;
+			});
+			let screenshots = this.state.screenshots.map((screenshot, i) => {
+				return <li key={i}>{screenshot.content}</li>;
+			});
+			return (
+				<div>
+					<Row>
+						<Col xs={6}>
+							<div className="section-element-header">
+								<strong>{name} - </strong>
+								<em>({skills})</em>
+							</div>
+						</Col>
+						<Col xs={6} className="project-right-column">
+							{github_link}
+						</Col>
+					</Row>
+					<Row>
+						<Col xs={6} className="project-subleft-column">
+							<Moment format={'MMM. YYYY'}>{start}</Moment> -{' '}
+							<Moment format={'MMM. YYYY'}>{end}</Moment>
+						</Col>
+						<Col xs={6} className="project-right-column">
+							{demo_link}
+						</Col>
+					</Row>
+					<Row>
+						<Col xs={12} className="project-subleft-column">
+							{comments}
+						</Col>
+						<Col xs={12} className="project-subleft-column">
+							{screenshots}
+						</Col>
+					</Row>
+					<hr />
+				</div>
+			);
+		}
+	}
 }
