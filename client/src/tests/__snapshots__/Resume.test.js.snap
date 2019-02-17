@@ -1,5 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Resume test should handle experiences error 1`] = `ReactWrapper {}`;
+
+exports[`Resume test should handle skills error 1`] = `ReactWrapper {}`;
+
+exports[`Resume test should mount correctly 1`] = `ReactWrapper {}`;
+
 exports[`Resume test should mount correctly with no props 1`] = `ReactWrapper {}`;
 
 exports[`Resume test should shallow render correctly 1`] = `ShallowWrapper {}`;
