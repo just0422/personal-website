@@ -3,8 +3,8 @@ import {shallow,mount} from 'enzyme';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 
-import Experience from '../components/Resume/Experience';
-import ErrorModal from '../components/Error';
+import Experience from 'Resume/Experience';
+import ErrorModal from 'Error';
 
 import { experience, skills, comments } from './data';
 
@@ -21,38 +21,40 @@ describe('Experience', () => {
     expect(component).toMatchSnapshot();
   });
 
-  it('should render correctly with experience prop', () => {
+  it('should render correctly with experience prop', async () => {
     mock.onGet('/api/v1/experiences/1/skills').reply(200, skills);
     mock.onGet('/api/v1/experiences/1/comments').reply(200, comments);
 
-    const component = shallow(<Experience job={experience} />);
+		const component = shallow(<Experience job={experience} />);
+		await flushPromises();
     expect(component).toMatchSnapshot();
   });
-
-  it('should handle skills error', () => {
+	
+  it('should handle skills error', async () => {
     mock.onGet('/api/v1/experiences/1/skills').reply(404, 'No skills available');
     mock.onGet('/api/v1/experiences/1/comments').reply(200, comments);
 
-    const component = shallow(<Experience job={experience} />);
+		const component = shallow(<Experience job={experience} />);
+		await flushPromises();
     expect(component).toMatchSnapshot();
   });
-
-  it('should handle comments error', () => {
+	
+  it('should handle comments error', async () => {
     mock.onGet('/api/v1/experiences/1/skills').reply(200, skills);
     mock.onGet('/api/v1/experiences/1/comments').reply(404, 'No comments available');
 
     const component = shallow(<Experience job={experience} />);
+		await flushPromises();
     expect(component).toMatchSnapshot();
   });
-
+	
   it('should render Error', async () => {
     mock.onGet('/api/v1/experiences/1/skills').reply(200, skills);
     mock.onGet('/api/v1/experiences/1/comments').reply(404, 'No comments available');
 
 		const component = mount(<Experience job={experience} />);
-		await flushPromises();
 		component.update();
-		console.log("Checking");
-		expect(component.find(<ErrorModal />).length).toBeGreaterThan(0);
-  });
+		await flushPromises();
+		expect(component.state('error')).toBeTruthy();
+	});
 });

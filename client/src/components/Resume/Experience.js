@@ -65,7 +65,6 @@ export default class Experience extends Component {
 		});
 
     if (this.state.error) {
-		console.log("ErrorModal should render");
       return <ErrorModal component="Experience" error={this.state.error} />;
     } else {
       return (
@@ -78,8 +77,8 @@ export default class Experience extends Component {
                 </div>
               </Col>
               <Col xs={6} className="section-element-dates">
-                <Moment format={'MMM. YYYY'}>{job.start}</Moment> -{' '}
-                <Moment format={'MMM. YYYY'}>{job.end}</Moment>
+                <Moment format={'MMM. YYYY'}>{new Date(job.start)}</Moment> -{' '}
+                <Moment format={'MMM. YYYY'}>{new Date(job.end)}</Moment>
               </Col>
               <Col xs={12} className="section-element-header">
                 <em>
