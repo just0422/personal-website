@@ -27,12 +27,14 @@ export default class Project extends Component {
 				.all([
 					api.projects().getSkills(id),
 					api.projects().getComments(id),
+					api.projects().getScreenshots(id)
 				])
 				.then(
-					axios.spread((skillsResponse, commentsResponse) => {
+					axios.spread((skillsResponse, commentsResponse, screenshotsResponse) => {
 						this.setState({
 							skills: skillsResponse.data,
 							comments: commentsResponse.data,
+							screenshots: screenshotsResponse.data
 						});
 					}),
 				)

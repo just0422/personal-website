@@ -3,8 +3,8 @@ import MockAdapter from 'axios-mock-adapter';
 
 import api from 'APIUtils';
 import { projectsUrl, experiencesUrl, skillsUrl, commentsUrl } from 'APIUtils';
-import { skillsPath, commentsPath } from 'APIUtils';
-import { projects, experience, skills, comments } from './data';
+import { skillsPath, commentsPath, screenshotsPath } from 'APIUtils';
+import { projects, experience, skills, comments, screenshots } from './data';
 
 let mock;
 beforeEach(() => {
@@ -33,6 +33,14 @@ describe('API Projects', () => {
 
 		let response = await api.projects().getComments(id).then(response => response.data);
 		expect(response).toEqual(comments);
+	});
+
+	it('should get all screenshots associate with projects[0]', async () => {
+		let id = projects[0]['id'];
+		mock.onGet(`${projectsUrl}/${id}${screenshotsPath}`).reply(200, screenshots);
+
+		let response = await api.projects().getScreenshots(id).then(response => response.data);
+		expect(response).toEqual(screenshots);
 	});
 });
 
@@ -78,4 +86,3 @@ describe('API comments', () => {
 		expect(response).toEqual(comments);
 	});
 });
-

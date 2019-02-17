@@ -5,6 +5,7 @@ export const projectsPath = '/projects';
 export const experiencesPath = '/experiences';
 export const skillsPath = '/skills';
 export const commentsPath = '/comments';
+export const screenshotsPath = '/screenshots';
 
 export const projectsUrl = apiPath + projectsPath;
 export const experiencesUrl = apiPath + experiencesPath;
@@ -16,7 +17,8 @@ export default {
 		return {
 			getAll: () => axios.get(projectsUrl),
 			getSkills: (id) => axios.get(`${projectsUrl}/${id}${skillsPath}`),
-			getComments: (id) => axios.get(`${projectsUrl}/${id}${commentsPath}`)
+			getComments: (id) => axios.get(`${projectsUrl}/${id}${commentsPath}`),
+			getScreenshots: (id) => axios.get(`${projectsUrl}/${id}${screenshotsPath}`)
 		}
 	},
 

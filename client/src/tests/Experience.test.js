@@ -10,14 +10,14 @@ import { experiencesUrl, skillsPath, commentsPath } from 'APIUtils';
 
 
 describe('Experience', () => {
-	const flushPromises = () => new Promise(resolve => setTimeout(resolve));
 	let experienceSkillsUrl, experienceCommentsUrl;
 	let mock;
 
-	function skillsFail() { mock.onGet(experienceSkillsUrl).reply(404, 'No skills available'); }
-	function skillsSucceed() { mock.onGet(experienceSkillsUrl).reply(200, skills); }
-  function commentsFail() { mock.onGet(experienceCommentsUrl).reply(404, 'No comments available'); }
-	function commentsSucceed() { mock.onGet(experienceCommentsUrl).reply(200, comments); }
+	const flushPromises = () => new Promise(resolve => setTimeout(resolve));
+	const skillsFail = () => mock.onGet(experienceSkillsUrl).reply(404, 'No skills available');
+	const skillsSucceed = () => mock.onGet(experienceSkillsUrl).reply(200, skills);
+	const commentsFail = () => mock.onGet(experienceCommentsUrl).reply(404, 'No comments available');
+	const commentsSucceed = () => mock.onGet(experienceCommentsUrl).reply(200, comments);
 
 	beforeAll(() => {
 		let id = experience['id'];
@@ -30,6 +30,7 @@ describe('Experience', () => {
   it('should render correctly with no props', () => {
     const component = shallow(<Experience />);
     expect(component).toMatchSnapshot();
+		expect(component.state('error')).toBeNull();
   });
 
   it('should render correctly with experience prop', async () => {
@@ -39,6 +40,7 @@ describe('Experience', () => {
 		const component = shallow(<Experience job={experience} />);
 		await flushPromises();
     expect(component).toMatchSnapshot();
+		expect(component.state('error')).toBeNull();
   });
 	
   it('should handle skills error', async () => {
