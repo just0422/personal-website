@@ -4,7 +4,6 @@ import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 
 import Experience from 'Resume/Experience';
-import ErrorModal from 'Error';
 
 import { experience, skills, comments } from './data';
 
@@ -12,9 +11,7 @@ describe('Experience', () => {
 	const flushPromises = () => new Promise(resolve => setTimeout(resolve));
 	let mock;
 
-  beforeEach(() => {
-    mock = new MockAdapter(axios);
-  });
+  beforeEach(() => mock = new MockAdapter(axios) );
 
   it('should render correctly with no props', () => {
     const component = shallow(<Experience />);

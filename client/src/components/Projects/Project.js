@@ -14,35 +14,44 @@ export default class Project extends Component {
     this.state = {
       skills: [],
       comments: [],
-      screenshots: [],
+			screenshots: [],
+			error: null,
     };
   }
 
   componentDidMount() {
-    let id = this.props.project.id;
-
-    axios
-			.all([
-				api.projects().getSkills(id),
-				api.projects().getComments(id),
-      ])
-      .then(
-        axios.spread((skillsResponse, commentsResponse) => {
-          this.setState({
-            skills: skillsResponse.data,
-            comments: commentsResponse.data,
-          });
-        }),
-      );
+    let id = this.props.project ? this.props.project.id : 0;
+		if (id > 0) {
+			axios
+				.all([
+					api.projects().getSkills(id),
+					api.projects().getComments(id),
+				])
+				.then(
+					axios.spread((skillsResponse, commentsResponse) => {
+						this.setState({
+							skills: skillsResponse.data,
+							comments: commentsResponse.data,
+						});
+					}),
+				)
+					.catch(err => {
+						this.setState({
+							error: err,
+						})
+					});
+		}
   }
 
   render() {
-    let project = this.props.project;
-    let skills = this.state.skills
-      .map(skill => {
-        return skill.name;
-      })
-      .join();
+		let project = this.props.project;
+		let name = project ? project.name : "no-name";
+		let github_link = project ? project.github_link : "github.com";
+		let demo_link = project ? project.demo_link : "github.com";
+		let start = project ? project.start : new Date();
+		let end = project && project.end ? project.end : new Date();
+
+    let skills = this.state.skills.map(skill => skill.name).join();
     let comments = this.state.comments.map((comment, i) => {
       return <li key={i}>{comment.content}</li>;
     });
@@ -54,21 +63,21 @@ export default class Project extends Component {
         <Row>
           <Col xs={6}>
             <div className="section-element-header">
-              <strong>{project.name} - </strong>
+              <strong>{name} - </strong>
               <em>({skills})</em>
             </div>
           </Col>
           <Col xs={6} className="project-right-column">
-            {project.github_link}
+            {github_link}
           </Col>
         </Row>
         <Row>
           <Col xs={6} className="project-subleft-column">
-            <Moment format={'MMM. YYYY'}>{project.start}</Moment> -{' '}
-            <Moment format={'MMM. YYYY'}>{project.end}</Moment>
+            <Moment format={'MMM. YYYY'}>{start}</Moment> -{' '}
+            <Moment format={'MMM. YYYY'}>{end}</Moment>
           </Col>
           <Col xs={6} className="project-right-column">
-            {project.demo_link}
+            {demo_link}
           </Col>
         </Row>
         <Row>
