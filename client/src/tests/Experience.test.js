@@ -6,10 +6,18 @@ import MockAdapter from 'axios-mock-adapter';
 import Experience from 'Resume/Experience';
 
 import { experience, skills, comments } from './data';
+import { experiencesUrl, skillsPath, commentsPath } from 'APIUtils';
 
 describe('Experience', () => {
 	const flushPromises = () => new Promise(resolve => setTimeout(resolve));
 	let mock;
+	let experienceSkillsUrl, experienceCommentsUrl;
+
+	beforeAll(() => {
+		let id = experience['id'];
+		experienceSkillsUrl = `${experiencesUrl}/${id}${skillsPath}`;
+		experienceCommentsUrl = `${experiencesUrl}/${id}${commentsPath}`;
+	});
 
   beforeEach(() => mock = new MockAdapter(axios) );
 
@@ -19,8 +27,8 @@ describe('Experience', () => {
   });
 
   it('should render correctly with experience prop', async () => {
-    mock.onGet('/api/v1/experiences/1/skills').reply(200, skills);
-    mock.onGet('/api/v1/experiences/1/comments').reply(200, comments);
+		mock.onGet(experienceSkillsUrl).reply(200, skills);
+    mock.onGet(experienceCommentsUrl).reply(200, comments);
 
 		const component = shallow(<Experience job={experience} />);
 		await flushPromises();
@@ -28,8 +36,8 @@ describe('Experience', () => {
   });
 	
   it('should handle skills error', async () => {
-    mock.onGet('/api/v1/experiences/1/skills').reply(404, 'No skills available');
-    mock.onGet('/api/v1/experiences/1/comments').reply(200, comments);
+    mock.onGet(experienceSkillsUrl).reply(404, 'No skills available');
+    mock.onGet(experienceCommentsUrl).reply(200, comments);
 
 		const component = shallow(<Experience job={experience} />);
 		await flushPromises();
@@ -37,8 +45,8 @@ describe('Experience', () => {
   });
 	
   it('should handle comments error', async () => {
-    mock.onGet('/api/v1/experiences/1/skills').reply(200, skills);
-    mock.onGet('/api/v1/experiences/1/comments').reply(404, 'No comments available');
+    mock.onGet(experienceSkillsUrl).reply(200, skills);
+    mock.onGet(experienceCommentsUrl).reply(404, 'No comments available');
 
     const component = shallow(<Experience job={experience} />);
 		await flushPromises();
@@ -46,8 +54,8 @@ describe('Experience', () => {
   });
 	
   it('should render Error', async () => {
-    mock.onGet('/api/v1/experiences/1/skills').reply(200, skills);
-    mock.onGet('/api/v1/experiences/1/comments').reply(404, 'No comments available');
+    mock.onGet(experienceSkillsUrl).reply(200, skills);
+    mock.onGet(experienceCommentsUrl).reply(404, 'No comments available');
 
 		const component = mount(<Experience job={experience} />);
 		component.update();

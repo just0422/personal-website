@@ -1,10 +1,9 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 
-import api from '../APIUtils';
-import { projectsUrl, experiencesUrl, skillsUrl, commentsUrl } from '../APIUtils';
-import { skillsPath, commentsPath } from '../APIUtils';
-
+import api from 'APIUtils';
+import { projectsUrl, experiencesUrl, skillsUrl, commentsUrl } from 'APIUtils';
+import { skillsPath, commentsPath } from 'APIUtils';
 import { projects, experience, skills, comments } from './data';
 
 let mock;
