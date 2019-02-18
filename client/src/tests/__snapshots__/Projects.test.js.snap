@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Projects test should handle failed projects GET 1`] = `ReactWrapper {}`;
+
+exports[`Projects test should mount correctly 1`] = `ReactWrapper {}`;
+
+exports[`Projects test should shallow render correctly 1`] = `ShallowWrapper {}`;
