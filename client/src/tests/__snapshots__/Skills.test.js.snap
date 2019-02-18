@@ -3,3 +3,7 @@
 exports[`Skill should render correctly with a skills prop 1`] = `ShallowWrapper {}`;
 
 exports[`Skill should render correctly with no props 1`] = `ShallowWrapper {}`;
+
+exports[`Skill tests should render correctly with a skills prop 1`] = `ShallowWrapper {}`;
+
+exports[`Skill tests should render correctly with no props 1`] = `ShallowWrapper {}`;
