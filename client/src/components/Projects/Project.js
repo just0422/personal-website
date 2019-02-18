@@ -54,8 +54,8 @@ export default class Project extends Component {
 			let name = project ? project.name : "no-name";
 			let github_link = project ? project.github_link : "github.com";
 			let demo_link = project ? project.demo_link : "github.com";
-			let start = project ? project.start : new Date();
-			let end = project && project.end ? project.end : new Date();
+			let start = project ? new Date(project.start) : new Date();
+			let end = project && project.end ? new Date(project.end) : new Date();
 
 			let skills = this.state.skills.map(skill => skill.name).join();
 			let comments = this.state.comments.map((comment, i) => {

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {PageHeader, Grid} from 'react-bootstrap';
 
 import Project from 'Projects/Project';
+import ErrorModal from 'Error';
 import api from 'APIUtils';
 
 import 'stylesheets/projects.scss';
@@ -11,7 +12,8 @@ export default class Projects extends Component {
     super(props);
 
     this.state = {
-      projects: [],
+			projects: [],
+			error: null
     };
   }
 
@@ -20,19 +22,27 @@ export default class Projects extends Component {
       this.setState({
         projects: response.data,
       });
-    });
+		}).catch(err => {
+			this.setState({
+				error: err,
+			})
+		});
   }
 
-  render() {
-    return (
-      <div className="container">
-        <PageHeader>Projects</PageHeader>
-        <Grid>
-          {this.state.projects.map((project, i) => {
-            return <Project project={project} key={i} />;
-          })}
-        </Grid>
-      </div>
-    );
+	render() {
+		if (this.state.error){
+			return <ErrorModal component="Projects" error={this.state.error} />
+		} else {
+			return (
+				<div className="container">
+					<PageHeader>Projects</PageHeader>
+					<Grid>
+						{this.state.projects.map((project, i) => {
+							return <Project project={project} key={i} />;
+						})}
+					</Grid>
+				</div>
+			);
+		}
   }
 }

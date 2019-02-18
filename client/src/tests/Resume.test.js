@@ -7,6 +7,7 @@ import Resume from 'Resume';
 import Education from 'Resume/Education';
 import Skills from 'Resume/Skills';
 import Experience from 'Resume/Experience';
+import ErrorModal from 'Error';
 import { skillsUrl, experiencesUrl } from 'APIUtils';
 import { skills, experiences } from './data';
 
@@ -37,8 +38,8 @@ describe('Resume test', () => {
 		experiencesSucceed();
 
 		const component = mount(<Resume />);
-		component.update();
 		await flushPromises();
+		component.update();
 
 		expect(component).toMatchSnapshot();
 		expect(component.state('error')).toBeNull();
@@ -55,9 +56,11 @@ describe('Resume test', () => {
 
 		const component = mount(<Resume />);
 		await flushPromises();
+		component.update();
 		
 		expect(component).toMatchSnapshot();
 		expect(component.state('error')).toBeTruthy();
+		expect(component.containsMatchingElement(<ErrorModal />)).toBe(true);	
 	});
 
 	it('should handle experiences error', async () => {
@@ -66,8 +69,10 @@ describe('Resume test', () => {
 
 		const component = mount(<Resume />);
 		await flushPromises();
+		component.update();
 		
 		expect(component).toMatchSnapshot();
 		expect(component.state('error')).toBeTruthy();
+		expect(component.containsMatchingElement(<ErrorModal />)).toBe(true);	
 	});
 });

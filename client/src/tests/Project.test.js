@@ -4,6 +4,7 @@ import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 
 import Project from 'Projects/Project';
+import ErrorModal from 'Error';
 
 import { projects, skills, comments, screenshots } from './data';
 import { projectsUrl, skillsPath, commentsPath, screenshotsPath } from 'APIUtils';
@@ -53,8 +54,11 @@ describe('Project', () => {
 
 		const component = shallow(<Project project={projects[0]} />);
 		await flushPromises();
+		component.update();
+
 		expect(component).toMatchSnapshot();
 		expect(component.state('error')).toBeTruthy();
+		expect(component.containsMatchingElement(<ErrorModal />)).toBe(true);
 	});
 
 	it('should handle comments error', async () => {
@@ -64,8 +68,11 @@ describe('Project', () => {
 
 		const component = shallow(<Project project={projects[0]} />);
 		await flushPromises();
+		component.update();
+
 		expect(component).toMatchSnapshot();
 		expect(component.state('error')).toBeTruthy();
+		expect(component.containsMatchingElement(<ErrorModal />)).toBe(true);
 	});
 
 	it('should handle screenshots error', async () => {
@@ -75,7 +82,10 @@ describe('Project', () => {
 
 		const component = shallow(<Project project={projects[0]} />);
 		await flushPromises();
+		component.update();
+
 		expect(component).toMatchSnapshot();
 		expect(component.state('error')).toBeTruthy();
+		expect(component.containsMatchingElement(<ErrorModal />)).toBe(true);
 	});
 });

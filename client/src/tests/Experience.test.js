@@ -4,6 +4,7 @@ import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 
 import Experience from 'Resume/Experience';
+import ErrorModal from 'Error';
 
 import { experiences, skills, comments } from './data';
 import { experiencesUrl, skillsPath, commentsPath } from 'APIUtils';
@@ -49,8 +50,11 @@ describe('Experience', () => {
 
 		const component = shallow(<Experience job={experiences[0]} />);
 		await flushPromises();
+		component.update();
+
     expect(component).toMatchSnapshot();
 		expect(component.state('error')).toBeTruthy();
+		expect(component.containsMatchingElement(<ErrorModal />)).toBe(true);
   });
 	
   it('should handle comments error', async () => {
@@ -59,7 +63,10 @@ describe('Experience', () => {
 
     const component = shallow(<Experience job={experiences[0]} />);
 		await flushPromises();
+		component.update();
+
     expect(component).toMatchSnapshot();
 		expect(component.state('error')).toBeTruthy();
+		expect(component.containsMatchingElement(<ErrorModal />)).toBe(true);
   });
 });
