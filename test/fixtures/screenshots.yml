@@ -8,3 +8,4 @@ one:
 two:
   title: MyString
   image_data: MyText
+  project: one

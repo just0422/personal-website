@@ -59,7 +59,7 @@ class Api::V1::ScreenshotsController < ApplicationController
 	# Use callbacks to share common setup or constraints between actions.
 	def set_screenshot
 		begin
-			@screenshot = screenshot.find(params[:id])
+			@screenshot = Screenshot.find(params[:id])
 		rescue ActiveRecord::RecordNotFound
 			render json: { message: "screenshot #{params[:id]} not found" }, status: :not_found
 		end

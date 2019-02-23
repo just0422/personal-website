@@ -27,11 +27,12 @@ class ScreenshotsControllerTest < ActionDispatch::IntegrationTest
 	end
 
 	def create_test(count, url)
-		assert_difference('screenshot.count') do
+		assert_difference('Screenshot.count') do
 			assert_difference(count) do
 				post url, params: {
 					screenshot: {
-						content: "abc"
+						title: "abc",
+						image_data: "abcd"
 					}
 				}, as: :json
 			end
@@ -46,7 +47,7 @@ class ScreenshotsControllerTest < ActionDispatch::IntegrationTest
 	end
 
 	def create_fail_test(url)
-		assert_no_difference('screenshot.count') do
+		assert_no_difference('Screenshot.count') do
 			post url, params: {
 				screenshot: {
 					something: "else"
@@ -84,14 +85,14 @@ class ScreenshotsControllerTest < ActionDispatch::IntegrationTest
 	def update_test(url, screenshot)
 		patch url, params:{
 			screenshot: {
-				content: "#{screenshot[:content]}_1",
+				title: "#{screenshot[:title]}_1",
 				something: "else"
 			}
 		}, as: :json
 
 		resp = JSON.parse(response.body)
 		assert_nil resp["something"]
-		assert_not_equal screenshot[:content], resp["content"]
+		assert_not_equal screenshot[:title], resp["title"]
 		assert_response :success
 	end
 
@@ -103,7 +104,7 @@ class ScreenshotsControllerTest < ActionDispatch::IntegrationTest
 	def update_fail_test(url)
 		patch url, params: {
 			screenshot: {
-				content: "ABCD"
+				title: "ABCD"
 			}
 		}, as: :json
 
@@ -116,7 +117,7 @@ class ScreenshotsControllerTest < ActionDispatch::IntegrationTest
 	end
 		
 	def destroy_test(count, url)
-		assert_difference('screenshot.count', -1) do
+		assert_difference('Screenshot.count', -1) do
 			assert_difference(count, -1) do
 				delete url, as: :json
 			end
@@ -131,7 +132,7 @@ class ScreenshotsControllerTest < ActionDispatch::IntegrationTest
 	end
 	
 	def destroy_fail_test(url)
-		assert_no_difference('screenshot.count') do
+		assert_no_difference('Screenshot.count') do
 			delete url, as: :json
 		end
 
