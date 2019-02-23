@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 			resources :projects do
 				resources :comments
 				resources :skills
+				resources :screenshots
 			end
 			resources :experiences do
 				resources :comments

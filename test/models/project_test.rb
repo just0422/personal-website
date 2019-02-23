@@ -35,4 +35,8 @@ class ProjectTest < ActiveSupport::TestCase
 	test '#skills' do
 		assert_equal 3, @project.skills.size
 	end
+
+	test '#screenshots' do
+		assert_equal 1, @project.screenshots.size
+	end
 end

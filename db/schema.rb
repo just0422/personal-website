@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_25_020158) do
+ActiveRecord::Schema.define(version: 2019_02_23_134138) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,15 @@ ActiveRecord::Schema.define(version: 2018_10_25_020158) do
     t.bigint "skill_id", null: false
   end
 
+  create_table "screenshots", force: :cascade do |t|
+    t.string "title"
+    t.text "image_data"
+    t.bigint "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_screenshots_on_project_id"
+  end
+
   create_table "skills", force: :cascade do |t|
     t.string "name"
     t.integer "years"
@@ -64,4 +73,5 @@ ActiveRecord::Schema.define(version: 2018_10_25_020158) do
 
   add_foreign_key "comments", "experiences"
   add_foreign_key "comments", "projects"
+  add_foreign_key "screenshots", "projects"
 end

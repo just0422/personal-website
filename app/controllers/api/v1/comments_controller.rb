@@ -17,10 +17,6 @@ class Api::V1::CommentsController < ApplicationController
 	# POST /projects/:project_id/comments
 	# POST /experiences/:experience_id/comments
 	def create
-		#@comment = Comment.new(comment_params)
-
-		#@parent.comments << @comment
-		
 		@comment = @parent.comments.build(comment_params)
 		unless @parent.save
 			render json: @parent.errors, status: :unprocessable_entity
@@ -44,8 +40,8 @@ class Api::V1::CommentsController < ApplicationController
 		end
 	end
 
-	# DELETE /comments/1
-	# DELETE /comments/1.json
+	# DELETE /projects/:project_id/comments/:id
+	# DELETE /experiences/:experience_id/comments/:id
 	def destroy
 		@parent.comments.delete(@comment)
 

@@ -12,6 +12,6 @@ class CommentTest < ActiveSupport::TestCase
 	test 'invalid without content' do
 		@comment.content = nil
 		refute @comment.valid?, 'Comment is valid without content'
-		assert_not_nil @comment.errors[:content], 'No validation error for comment'
+		assert_not_nil @comment.errors[:content]
 	end
 end
