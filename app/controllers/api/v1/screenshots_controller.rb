@@ -4,6 +4,10 @@ class Api::V1::ScreenshotsController < ApplicationController
 
 	# GET /projects/:project_id/screenshots
 	def index
+		for screenshot in @parent.screenshots do
+			screenshot[:image_data] = screenshot.image_url
+		end
+
 		render json: @parent.screenshots
 	end
 
@@ -45,12 +49,7 @@ class Api::V1::ScreenshotsController < ApplicationController
 
 	private
 	def pick_parent
-		if params.key?(:experience_id)
-			@parent_category = "experience"
-		else
-			@parent_category = "project"
-		end
-
+		@parent_category = "project"
 		@parent_model = @parent_category.capitalize.constantize
 		@parent_id = params["#{@parent_category}_id".to_sym]
 		@parent = @parent_model.find(@parent_id)
