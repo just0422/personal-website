@@ -13,6 +13,7 @@ class Api::V1::ScreenshotsController < ApplicationController
 
 	# GET /projects/:project_id/screenshots/:id
 	def show
+		@screenshot[:image_data] = @screenshot.image_url
 		render json: @screenshot
 	end
 
