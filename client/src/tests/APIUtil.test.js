@@ -2,7 +2,7 @@ import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 
 import api from 'APIUtils';
-import { projectsUrl, experiencesUrl, skillsUrl, commentsUrl } from 'APIUtils';
+import { projectsUrl, experiencesUrl, skillsUrl } from 'APIUtils';
 import { skillsPath, commentsPath, screenshotsPath } from 'APIUtils';
 import { projects, experiences, skills, comments, screenshots } from './data';
 
@@ -42,6 +42,16 @@ describe('API Projects', () => {
 		let response = await api.projects().getScreenshots(id).then(response => response.data);
 		expect(response).toEqual(screenshots);
 	});
+
+	it('should set a screenshot associated with projects[0]', async () => {
+		let id = projects[0]['id'];
+		let screenshot = screenshots[0];
+		mock.onPost(`${projectsUrl}/${id}${screenshotsPath}`).reply(201);
+
+		let response = await api.projects().createScreenshot(id, screenshot);
+		expect(response.status).toEqual(201);
+	});
+
 });
 
 describe('API experiences', () => {
