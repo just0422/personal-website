@@ -77,12 +77,3 @@ describe('API skills', () => {
 		expect(response).toEqual(skills);
 	});
 });
-
-describe('API comments', () => {
-	it ('should get all comments', async () => {
-		mock.onGet(commentsUrl).reply(200, comments);
-
-		let response = await api.comments().getAll().then(response => response.data)
-		expect(response).toEqual(comments);
-	});
-});

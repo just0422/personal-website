@@ -10,7 +10,6 @@ export const screenshotsPath = '/screenshots';
 export const projectsUrl = apiPath + projectsPath;
 export const experiencesUrl = apiPath + experiencesPath;
 export const skillsUrl = apiPath + skillsPath;
-export const commentsUrl = apiPath + commentsPath;
 
 export default {
 	projects() {
@@ -35,10 +34,4 @@ export default {
 			getAll: () => axios.get(skillsUrl)
 		}
 	},
-
-	comments() {
-		return {
-			getAll: () => axios.get(commentsUrl)
-		}
-	}
 }
