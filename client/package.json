@@ -8,12 +8,13 @@
     "babel-traverse": "^6.26.0",
     "express": "^4.16.4",
     "moment": "^2.24.0",
+    "object-to-formdata": "^1.6.4",
     "react": "^16.7.0",
     "react-bootstrap": "^0.32.4",
     "react-dom": "^16.7.0",
     "react-moment": "^0.8.4",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "^2.1.3",
+    "react-scripts": "^2.1.8",
     "reactstrap": "^7.1.0"
   },
   "scripts": {
@@ -78,11 +79,11 @@
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/config/file.mock.js",
       "\\.(css|scss)$": "<rootDir>/config/css.mock.js"
     },
-		"modulePaths": [
-			"src",
-			"src/components",
-			"src/stylesheets"
-		],
+    "modulePaths": [
+      "src",
+      "src/components",
+      "src/stylesheets"
+    ],
     "setupFiles": [
       "<rootDir>/config/enzyme.config.js"
     ],

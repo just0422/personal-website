@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+const fileHeader = { headers: { 'Content-Type': 'multipart/form-data' } }
+
 const apiPath = '/api/v1';
 export const projectsPath = '/projects';
 export const experiencesPath = '/experiences';
@@ -12,27 +14,27 @@ export const experiencesUrl = apiPath + experiencesPath;
 export const skillsUrl = apiPath + skillsPath;
 
 export default {
-	projects() {
-		return {
-			getAll: () => axios.get(projectsUrl),
-			getSkills: (id) => axios.get(`${projectsUrl}/${id}${skillsPath}`),
-			getComments: (id) => axios.get(`${projectsUrl}/${id}${commentsPath}`),
-			getScreenshots: (id) => axios.get(`${projectsUrl}/${id}${screenshotsPath}`),
-			createScreenshot: (id, screenshot) => axios.post(`${projectsUrl}/${id}${screenshotsPath}`)
-		}
-	},
+  projects() {
+    return {
+      getAll: () => axios.get(projectsUrl),
+      getSkills: id => axios.get(`${projectsUrl}/${id}${skillsPath}`),
+      getComments: id => axios.get(`${projectsUrl}/${id}${commentsPath}`),
+      getScreenshots: id => axios.get(`${projectsUrl}/${id}${screenshotsPath}`),
+      createScreenshot: (id, screenshot) => axios.post(`${projectsUrl}/${id}${screenshotsPath}`, screenshot, fileHeader),
+    };
+  },
 
-	experiences() {
-		return {
-			getAll: () => axios.get(experiencesUrl),
-			getSkills: (id) => axios.get(`${experiencesUrl}/${id}${skillsPath}`),
-			getComments: (id) => axios.get(`${experiencesUrl}/${id}${commentsPath}`)
-		}
-	},
+  experiences() {
+    return {
+      getAll: () => axios.get(experiencesUrl),
+      getSkills: id => axios.get(`${experiencesUrl}/${id}${skillsPath}`),
+      getComments: id => axios.get(`${experiencesUrl}/${id}${commentsPath}`),
+    };
+  },
 
-	skills () {
-		return {
-			getAll: () => axios.get(skillsUrl)
-		}
-	},
-}
+  skills() {
+    return {
+      getAll: () => axios.get(skillsUrl),
+    };
+  },
+};

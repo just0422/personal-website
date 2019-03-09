@@ -21,6 +21,7 @@ class Api::V1::ScreenshotsController < ApplicationController
 	def create
 		@screenshot = @parent.screenshots.build(screenshot_params)
 		unless @parent.save
+			Rails.logger.debug(@parent.errors.messages)
 			render json: @parent.errors, status: :unprocessable_entity
 			return
 		end
@@ -67,6 +68,7 @@ class Api::V1::ScreenshotsController < ApplicationController
 
 	# Never trust parameters from the scary internet, only allow the white list through.
 	def screenshot_params
+		Rails.logger.debug(params)
 		params.require(:screenshot).permit(:title, :image_data)
 	end
 end
