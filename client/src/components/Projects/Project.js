@@ -62,7 +62,7 @@ export default class Project extends Component {
 				return <li key={i}>{comment.content}</li>;
 			});
 			let screenshots = this.state.screenshots.map((screenshot, i) => {
-				return <li key={i}>{screenshot.content}</li>;
+				return <li key={i}><img src={screenshot.image_data} alt="broken"/></li>;
 			});
 			return (
 				<div>

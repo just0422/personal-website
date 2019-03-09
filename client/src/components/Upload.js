@@ -28,7 +28,7 @@ export default class Upload extends Component {
 		let screenshot = objectToFormData({
 			screenshot: {
 				title: this.state.screenshot.name,
-				image_data: this.state.screenshot,
+				image: this.state.screenshot,
 			}
 		});
 
@@ -118,7 +118,7 @@ export default class Upload extends Component {
               </Col>
             </Row>
 					</Form>
-					<img src={this.state.screenshotUrl}/>
+					<img src={this.state.screenshotUrl} alt="Poop"/>
         </div>
       );
     }

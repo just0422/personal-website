@@ -5,7 +5,8 @@ class Api::V1::ScreenshotsController < ApplicationController
 	# GET /projects/:project_id/screenshots
 	def index
 		for screenshot in @parent.screenshots do
-			screenshot[:image_data] = screenshot.image_url
+			screenshot[:image_data] = "http://localhost:3001" + screenshot.image_url
+			Rails.logger.debug(screenshot[:image_data])
 		end
 
 		render json: @parent.screenshots
@@ -13,7 +14,7 @@ class Api::V1::ScreenshotsController < ApplicationController
 
 	# GET /projects/:project_id/screenshots/:id
 	def show
-		@screenshot[:image_data] = @screenshot.image_url
+		@screenshot[:image_data] = "http://localhost:3001" + @screenshot.image_url
 		render json: @screenshot
 	end
 
@@ -57,7 +58,6 @@ class Api::V1::ScreenshotsController < ApplicationController
 		@parent = @parent_model.find(@parent_id)
 	end
 
-	# Use callbacks to share common setup or constraints between actions.
 	def set_screenshot
 		begin
 			@screenshot = Screenshot.find(params[:id])
@@ -69,6 +69,6 @@ class Api::V1::ScreenshotsController < ApplicationController
 	# Never trust parameters from the scary internet, only allow the white list through.
 	def screenshot_params
 		Rails.logger.debug(params)
-		params.require(:screenshot).permit(:title, :image_data)
+		params.require(:screenshot).permit(:title, :image)
 	end
 end
