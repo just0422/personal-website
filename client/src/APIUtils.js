@@ -19,6 +19,7 @@ export default {
       getAll: () => axios.get(projectsUrl),
       getSkills: id => axios.get(`${projectsUrl}/${id}${skillsPath}`),
       getComments: id => axios.get(`${projectsUrl}/${id}${commentsPath}`),
+			getScreenshot: (project_id, screenshot_id) => axios.get(`${projectsUrl}/${project_id}${screenshotsPath}/${screenshot_id}`),
       getScreenshots: id => axios.get(`${projectsUrl}/${id}${screenshotsPath}`),
       createScreenshot: (id, screenshot) => axios.post(`${projectsUrl}/${id}${screenshotsPath}`, screenshot, fileHeader),
     };
