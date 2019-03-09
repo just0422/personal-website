@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import {Row, Col} from 'react-bootstrap';
 import Moment from 'react-moment';
+import Slider from "react-slick";
 
 import api from 'APIUtils';
 import ErrorModal from 'Error';
@@ -61,8 +62,17 @@ export default class Project extends Component {
 			let comments = this.state.comments.map((comment, i) => {
 				return <li key={i}>{comment.content}</li>;
 			});
+			let settings = {
+				autoplay: true,
+				arrows: true,
+				centerMode: true,
+				dots: true,
+				infinite: true,
+				slidesToShow: Math.floor(window.innerWidth * 0.7 / 180),
+				slidesToScroll: 1,
+			}
 			let screenshots = this.state.screenshots.map((screenshot, i) => {
-				return <li key={i}><img src={screenshot.image_data} alt="broken"/></li>;
+				return <div key={i}><img src={screenshot.image_data} alt="broken"/></div>;
 			});
 			return (
 				<div>
@@ -91,7 +101,9 @@ export default class Project extends Component {
 							{comments}
 						</Col>
 						<Col xs={12} className="project-subleft-column">
-							{screenshots}
+							<Slider {...settings}>
+								{screenshots}
+							</Slider>
 						</Col>
 					</Row>
 					<hr />
