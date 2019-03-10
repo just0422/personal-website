@@ -5,30 +5,39 @@ export default class ErrorModal extends Component {
   constructor(props) {
     super(props);
 
+    this.handleRefresh = this.handleRefresh.bind(this);
     this.handleClose = this.handleClose.bind(this);
 
     this.state = {
-      show: false,
+      show: true,
     };
   }
 
-  handleClose() {
-    this.setState({show: false});
-  }
+  handleRefresh() {
+		location.reload(true);
+	}
 
-  render() {
+	handleClose() {
+		this.setState({ show: false })
+	}
+
+	render() {
+		let error = this.props.error.response;
     return (
       <Modal show={this.state.show} onHide={this.handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>{this.props.component}</Modal.Title>
+          <Modal.Title>{error.status} - Error with {this.props.component}</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-          <div>Error in {this.props.component} component</div>
-          <div>{this.props.error.response.data}</div>
+				<Modal.Body>
+					<h4>Hmm... This wasn't supposed to happen.</h4> 
+					<h4>Please refresh and try again</h4>
+					<hr />
+					<h4>Error Message:</h4>
+          <div>{error.statusText}</div>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={this.handleClose}>
-            Close
+					<Button variant="secondary" onClick={this.handleRefresh}>
+						Refresh
           </Button>
         </Modal.Footer>
       </Modal>
