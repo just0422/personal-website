@@ -3,7 +3,6 @@ import axios from 'axios';
 import {Row, Col} from 'react-bootstrap';
 import Moment from 'react-moment';
 import Slider from "react-slick";
-import { Lightbox } from 'react-modal-image';
 
 import api from 'APIUtils';
 import ErrorModal from 'Error';
@@ -14,20 +13,12 @@ export default class Project extends Component {
   constructor(props) {
 		super(props);
 
-		this.handleImageOpen = this.handleImageOpen.bind(this);
-
     this.state = {
       skills: [],
       comments: [],
 			screenshots: [],
 			error: null,
     };
-	}
-
-	handleImageOpen(id){
-		api.projects().getScreenshot(this.props.project.id, id).then((response) => {
-			console.log(response.data);
-		});
 	}
 
   componentDidMount() {
@@ -54,7 +45,7 @@ export default class Project extends Component {
 						})
 					});
 		}
-  }
+	}
 
 	render() {
 		if (this.state.error){
@@ -82,7 +73,7 @@ export default class Project extends Component {
 				slidesToScroll: 1,
 			}
 			let screenshots = this.state.screenshots.map((screenshot, i) => {
-				return <div key={i}><img src={screenshot.image_data} alt="broken" className="project-screenshot" onClick={() => this.handleImageOpen(screenshot.id)}/></div>;
+				return <div key={i}><img src={screenshot.image_data} alt="broken" className="project-screenshot" onClick={() => this.props.openLightbox(project.id, screenshot.id)}/></div>;
 			});
 			return (
 				<div>
