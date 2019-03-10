@@ -145,7 +145,7 @@ export default class Upload extends Component {
 						loading={this.state.loading}
 					/>
 					{ !this.state.loading && this.state.screenshotUrl &&
-							<img src={this.state.screenshotUrl} width="320" height="180"/>
+							<img src={this.state.screenshotUrl} alt="" width="320" height="180"/>
 					}
         </div>
       );
