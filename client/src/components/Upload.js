@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {PageHeader} from 'react-bootstrap';
 import {Button, Form, FormGroup, Label, Input, Row, Col} from 'reactstrap';
 import objectToFormData from 'object-to-formdata';
+import { PacmanLoader } from 'react-spinners';
 
 import api from 'APIUtils';
 import ErrorModal from 'Error';
@@ -12,18 +13,21 @@ export default class Upload extends Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChangescreenshot = this.handleChangescreenshot.bind(this);
-    this.handleChangeProject = this.handleChangeProject.bind(this);
+		this.handleChangeProject = this.handleChangeProject.bind(this);
     this.screenshotInput = React.createRef();
 
-    this.state = {
+		this.state = {
+			complete: false,
+			loading: false,
       projects: [],
 			project: '-1',
 			screenshot: null,
-			screenshotUrl: '',
+			screenshotUrl: null,
     };
   }
 
   handleSubmit(event) {
+		this.setState({ loading: true });
 		event.preventDefault();
 		let screenshot = objectToFormData({
 			screenshot: {
@@ -36,10 +40,10 @@ export default class Upload extends Component {
       .projects()
       .createScreenshot(this.state.project, screenshot)
       .then(response => {
-        console.log(response);
+				this.setState({ loading: false, screenshotUrl:null, complete: true });
       })
       .catch(err => {
-        this.setState({error: err});
+        this.setState({error: err, loading:false, screenshotUrl: null});
 			});
   }
 
@@ -72,7 +76,23 @@ export default class Upload extends Component {
 
   render() {
     if (this.state.error) {
-      return <ErrorModal component="Upload" error={this.state.error} />;
+			return <ErrorModal component="Upload" error={this.state.error} />;
+		} else if(this.state.complete) {
+			return(
+				<div className="container">
+					<PageHeader>Upload</PageHeader>
+					<p className="text-center">Image was successfully upload! Please select one of the options below:</p>
+
+					<Row>
+						<Col md={6}>
+							<a className="btn btn-primary" href="/projects">Go to Projects</a>
+						</Col>
+						<Col md={6}>
+							<a className="btn btn-primary" href="/upload">Upload Another</a>
+						</Col>
+					</Row>
+				</div>
+			);
     } else {
       return (
         <div className="container">
@@ -114,11 +134,19 @@ export default class Upload extends Component {
                 </FormGroup>
               </Col>
               <Col md={12}>
-                <Button type="submit">Submit</Button>
+                <Button type="submit" color="success" size="lg">Submit</Button>
               </Col>
             </Row>
 					</Form>
-					<img src={this.state.screenshotUrl} alt="Poop"/>
+					<PacmanLoader
+						sizeUnit={"px"}
+						size={50}
+						color={'#a00'}
+						loading={this.state.loading}
+					/>
+					{ !this.state.loading && this.state.screenshotUrl &&
+							<img src={this.state.screenshotUrl} width="320" height="180"/>
+					}
         </div>
       );
     }
