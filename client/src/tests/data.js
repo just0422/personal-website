@@ -20,5 +20,5 @@ export const projects = [
 ]
 
 export const screenshots = [
-	{ name: "abcd", img: "abcd" }
+	{ id: 1, name: "abcd", image_data: "https://picsum.photos/1280/720" }
 ]
