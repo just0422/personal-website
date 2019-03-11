@@ -17,7 +17,8 @@ export default class Upload extends Component {
     this.handleChangeProject = this.handleChangeProject.bind(this);
     this.screenshotInput = React.createRef();
 
-    this.state = {
+		this.state = {
+			error: null,
       complete: false,
       loading: false,
       projects: [],
@@ -35,6 +36,7 @@ export default class Upload extends Component {
 
 	handleSubmit(event) {
 		event.preventDefault();
+
 		if (!this.state.projectTouched){
 			this.setState({
 				projectTouched: true,
@@ -56,7 +58,7 @@ export default class Upload extends Component {
 					image: this.state.screenshot,
 				},
 			});
-
+			
 			api
 				.projects()
 				.createScreenshot(this.state.project, screenshot)
@@ -80,7 +82,6 @@ export default class Upload extends Component {
 	handleChangeScreenshot(event) {
 		let screenshot = event.target.files[0];
 		let acceptedFileTypes = ["image/jpg", "image/jpeg", "image/png"];
-		console.log(screenshot.type)
 
 		if (!acceptedFileTypes.includes(screenshot.type)){
 			this.setState({
@@ -152,7 +153,7 @@ export default class Upload extends Component {
       return (
         <div className="container">
           <PageHeader>Upload</PageHeader>
-          <Form onSubmit={this.handleSubmit}>
+          <Form onSubmit={this.handleSubmit} className="upload-form">
             <Row>
               <Col md={6}>
                 <FormGroup>
@@ -160,7 +161,8 @@ export default class Upload extends Component {
                   <Input
                     type="select"
                     name="project_id"
-                    id="projects"
+										id="projects"
+										className="projects-select"
                     defaultValue={this.state.project}
 										onChange={this.handleChangeProject}>
                     <option disabled value="-1">
@@ -185,7 +187,8 @@ export default class Upload extends Component {
                   <input
                     type="file"
                     name="screenshot_data"
-                    id="screenshotSelector"
+										id="screenshotSelector"
+										className="screenshot-file-select"
                     ref={this.screenshotInput}
                     onChange={this.handleChangeScreenshot}
                   />
@@ -195,7 +198,7 @@ export default class Upload extends Component {
                 </FormGroup>
               </Col>
               <Col md={12}>
-                <Button type="submit" color="success" size="lg">
+                <Button type="submit" color="success" size="lg" className="upload-submit-button">
                   Submit
                 </Button>
               </Col>

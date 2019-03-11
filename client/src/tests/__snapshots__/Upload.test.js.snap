@@ -1,3 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Upload test should correctly handle a image select 1`] = `ShallowWrapper {}`;
+
+exports[`Upload test should correctly handle a project select 1`] = `ShallowWrapper {}`;
+
+exports[`Upload test should correctly handle a too large image select 1`] = `ShallowWrapper {}`;
+
+exports[`Upload test should correctly handle an invalide filetype image select 1`] = `ShallowWrapper {}`;
+
+exports[`Upload test should handle failed projects GET 1`] = `ShallowWrapper {}`;
+
+exports[`Upload test should handle submit POST fail 1`] = `ReactWrapper {}`;
+
+exports[`Upload test should not submit if files haven't been touched 1`] = `ReactWrapper {}`;
+
+exports[`Upload test should not submit if projects haven't been touched 1`] = `ReactWrapper {}`;
+
 exports[`Upload test should render correctly 1`] = `ShallowWrapper {}`;
+
+exports[`Upload test should submit POST and succeed 1`] = `ReactWrapper {}`;
