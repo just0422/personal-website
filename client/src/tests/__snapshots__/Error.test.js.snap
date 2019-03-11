@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Error test should render correctly with no props 1`] = `ShallowWrapper {}`;
+
+exports[`Error test should render correctly without component 1`] = `ShallowWrapper {}`;
+
+exports[`Error test should render correctly without error 1`] = `ShallowWrapper {}`;

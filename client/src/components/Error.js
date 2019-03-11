@@ -14,7 +14,7 @@ export default class ErrorModal extends Component {
   }
 
   handleRefresh() {
-		location.reload(true);
+		window.location.reload(true);
 	}
 
 	handleClose() {
@@ -22,7 +22,15 @@ export default class ErrorModal extends Component {
 	}
 
 	render() {
-		let error = this.props.error.response;
+		let error = {
+			response: "",
+			status: "",
+			statusText: ""
+		}
+
+		if (this.props.error)
+			error = this.props.error.response;
+
     return (
       <Modal show={this.state.show} onHide={this.handleClose}>
         <Modal.Header closeButton>
@@ -36,7 +44,7 @@ export default class ErrorModal extends Component {
           <div>{error.statusText}</div>
         </Modal.Body>
         <Modal.Footer>
-					<Button variant="secondary" onClick={this.handleRefresh}>
+					<Button variant="secondary" className="refresh-button" onClick={this.handleRefresh}>
 						Refresh
           </Button>
         </Modal.Footer>
