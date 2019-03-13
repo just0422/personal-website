@@ -5,3 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+include Sprig::Helpers
+
+p "Destroying Experiences"
+Experience.destroy_all
+p "Destroying Projects"
+Project.destroy_all
+
+sprig_shared [Experience, Project]

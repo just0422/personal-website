@@ -22,12 +22,6 @@ class ProjectTest < ActiveSupport::TestCase
 		assert_not_nil @project.errors[:start], 'No validation error for start present'
 	end
 
-	test 'invalid without GitHub link' do
-		@project.github_link = nil
-		refute @project.valid?, 'Project is valid without a github link'
-		assert_not_nil @project.errors[:github_link], 'No validation error for github_link present'
-	end
-
 	test '#comments' do
 		assert_equal 2, @project.comments.size
 	end

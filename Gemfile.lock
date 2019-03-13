@@ -209,6 +209,7 @@ GEM
     shrine (2.16.0)
       content_disposition (~> 1.0)
       down (~> 4.1)
+    sprig (0.3.0)
     spring (2.0.2)
       activesupport (>= 4.2)
     spring-watcher-listen (2.0.1)
@@ -263,6 +264,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   selenium-webdriver
   shrine
+  sprig
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)
