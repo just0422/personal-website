@@ -8,7 +8,7 @@ export default class NavigationBar extends Component {
 				<Navbar inverse>
 					<Navbar.Header>
 						<Navbar.Brand>
-							<a href="#brand">React-Bootstrap</a>
+							<a href="/">Justin Maldonado</a>
 						</Navbar.Brand>
 						<Navbar.Toggle />
 					</Navbar.Header>
@@ -25,6 +25,9 @@ export default class NavigationBar extends Component {
 							</NavItem>
 							<NavItem eventKey={4} href="/contact">
 								Contact
+							</NavItem>
+							<NavItem eventKey={5} href="/upload">
+								Upload
 							</NavItem>
 						</Nav>
 					</Navbar.Collapse>

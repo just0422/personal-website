@@ -33,9 +33,9 @@ export default class Experience extends Component {
     let id = this.props.job.id;
     if (id > 0) {
       axios
-				.all([
-					api.experiences().getSkills(id),
-					api.experiences().getComments(id),
+        .all([
+          api.experiences().getSkills(id),
+          api.experiences().getComments(id),
         ])
         .then(
           axios.spread((skillsResponse, commentsResponse) => {
@@ -56,13 +56,11 @@ export default class Experience extends Component {
   render() {
     let job = this.props.job;
     let skills = this.state.skills
-      .map(skill => {
-        return skill.name;
-      })
-      .join();
+      .map(skill => skill.name)
+      .join(', ');
     let comments = this.state.comments.map((comment, i) => {
       return <li key={i}>{comment.content}</li>;
-		});
+    });
 
     if (this.state.error) {
       return <ErrorModal component="Experience" error={this.state.error} />;

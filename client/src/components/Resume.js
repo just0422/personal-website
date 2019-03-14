@@ -46,14 +46,14 @@ export default class Resume extends Component {
 					<Grid>
 						<Row>
 							<Col xs={4}><a href="https://github.com/just0422" target="_blank" rel="noopener noreferrer">https://github.com/just0422</a></Col>
-							<Col xs={4}><a href="mailto:justin.maldonado@stonybrook.edu">justin.maldonado@stonybrook.edu</a></Col>
+							<Col xs={4}><a href="mailto:just0422@gmail.com">just0422@gmail.com</a></Col>
 							<Col xs={4}>(347) 922-5075</Col>
 						</Row>
 						<Row>
-							<Col xs={6}>
+							<Col md={5} sm={12}>
 								<Education />
 							</Col>
-							<Col xs={6}>
+							<Col md={7} sm={12}>
 								<Skills skills={this.state.skills}/>
 							</Col>
 						</Row>

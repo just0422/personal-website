@@ -58,7 +58,7 @@ export default class Project extends Component {
 			let start = project ? new Date(project.start) : new Date();
 			let end = project && project.end ? new Date(project.end) : new Date();
 
-			let skills = this.state.skills.map(skill => skill.name).join();
+			let skills = this.state.skills.map(skill => skill.name).join(', ');
 			let comments = this.state.comments.map((comment, i) => {
 				return <li key={i}>{comment.content}</li>;
 			});
@@ -85,7 +85,7 @@ export default class Project extends Component {
 							</div>
 						</Col>
 						<Col xs={6} className="project-right-column">
-							{github_link}
+							<a href={github_link} target="_blank" rel="noopener noreferrer">{github_link}</a>
 						</Col>
 					</Row>
 					<Row>
