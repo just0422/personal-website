@@ -26,6 +26,11 @@
 				"<%= sprig_record(Skill, 13) %>",
 				"<%= sprig_record(Skill, 5) %>",
 				"<%= sprig_record(Skill, 7) %>"
+			],
+			"comments": [
+				"<%= sprig_record(Comment, 16) %>",
+				"<%= sprig_record(Comment, 17) %>",
+				"<%= sprig_record(Comment, 18) %>"
 			]
 		},
 		{
@@ -38,6 +43,12 @@
 				"<%= sprig_record(Skill, 17) %>",
 				"<%= sprig_record(Skill, 2) %>",
 				"<%= sprig_record(Skill, 1) %>"
+			],
+			"comments": [
+				"<%= sprig_record(Comment, 19) %>",
+				"<%= sprig_record(Comment, 20) %>",
+				"<%= sprig_record(Comment, 21) %>",
+				"<%= sprig_record(Comment, 22) %>"
 			]
 		}
 	]

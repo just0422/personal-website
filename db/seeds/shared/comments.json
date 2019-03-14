@@ -1,0 +1,92 @@
+{
+	"records": [
+		{
+			"sprig_id": 1,
+			"content": "Constructed a REST API to service all basic CRUD requests"
+		},
+		{
+			"sprig_id": 2,
+			"content": "Ensured application functionality through automated unit testing framework for models and views"
+		},
+		{
+			"sprig_id": 3,
+			"content": "Embraced MVT design pattern with class-based generic views"
+		},
+		{
+			"sprig_id": 4,
+			"content": "Utilized redux principles and framework to construct a single page front end react application that queried REST API for all necessary actions"
+		},
+		{
+			"sprig_id": 5,
+			"content": "Overrode standard django administration page layout with a custom template"
+		},
+		{
+			"sprig_id": 6,
+			"content": "Designed and implemented processor modeled after P6 design in order to support RISC-V Instruction set architecture"
+		},
+		{
+			"sprig_id": 7,
+			"content": "Developed a cache that interacted with RAM in order to reduce latency during program execution"
+		},
+		{
+			"sprig_id": 8,
+			"content": "Implemented an online webapp using the Google App Engine Environment"
+		},
+		{
+			"sprig_id": 9,
+			"content": "Employed java servlets to store & recall sava objects from Google Datastore"
+		},
+		{
+			"sprig_id": 10,
+			"content": "Integrated FabricJS library to allow a user to create custom data on an HTML canvas"
+		},
+		{
+			"sprig_id": 11,
+			"content": "Organized a cloud infrastructure using 36 private virtual machines"
+		},
+		{
+			"sprig_id": 12,
+			"content": "Distributed database to ensure minimal response time for heavy query load"
+		},
+		{
+			"sprig_id": 13,
+			"content": "Configured Nginx as public facing load balancer"
+		},
+		{
+			"sprig_id": 14,
+			"content": "Developed browser side PHP and Javascript user interface"
+		},
+		{
+			"sprig_id": 15,
+			"content": "Facilitated communication between frontend servers and application servers through RabbitMQ server"
+		},
+		{
+			"sprig_id": 16,
+			"content": "Developed proprietary software to create, read, update, or destroy data"
+		},
+		{
+			"sprig_id": 17,
+			"content": "Implemented MVC design pattern to interacte with the database and deliver a good user experience"
+		},
+		{
+			"sprig_id": 18,
+			"content": "Asynchronously queried server & updated views accordingly"
+		},
+		{
+			"sprig_id": 19,
+			"content": "Held 1-on-1 office hours to review course topics such as: architecture, assembly code, and basic operating system principles"
+		},
+		{
+			"sprig_id": 20,
+			"content": "Instructed weekly recitations of about 30 students and monthly review sessions of over 200 students"
+		},
+		{
+			"sprig_id": 21,
+			"content": "Developed plugins for & performed customizations on the MARS assembly simulator"
+		},
+		{
+			"sprig_id": 22,
+			"content": "Designed & implemented robust automated grading script for C programs in python, which include extensive input sanitizing & solution generation"
+		}
+	]
+}
