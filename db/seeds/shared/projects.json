@@ -7,7 +7,11 @@
 			"start": "2018-02-01 00:00:00",
 			"end": null,
 			"demo_link": "",
-			"github_link": "https://github.com/just0422/techarts"
+			"github_link": "https://github.com/just0422/techarts",
+			"skills": [
+				"<%= sprig_record(Skill, 9) %>",
+				"<%= sprig_record(Skill, 11) %>"
+			]
 		},
 		{
 			"sprig_id": 2,
@@ -16,7 +20,10 @@
 			"start": "2017-01-01 00:00:00",
 			"end": "2017-05-05 00:00:00",
 			"demo_link": null,
-			"github_link": "https://github.com/just0422/p6-processor"
+			"github_link": "https://github.com/just0422/p6-processor",
+			"skills": [
+				"<%= sprig_record(Skill, 18) %>"
+			]
 		},
 		{
 			"sprig_id": 3,
@@ -25,7 +32,12 @@
 			"start": "2016-03-01 00:00:00",
 			"end": "2016-05-31 00:00:00",
 			"demo_link": null,
-			"github_link": "https://github.com/just0422/Digital-Conceptions"
+			"github_link": "https://github.com/just0422/Digital-Conceptions",
+			"skills": [
+				"<%= sprig_record(Skill, 4) %>",
+				"<%= sprig_record(Skill, 5) %>",
+				"<%= sprig_record(Skill, 7) %>"
+			]
 		},
 		{
 			"sprig_id": 4,
@@ -34,7 +46,12 @@
 			"start": "2018-11-01 00:00:00",
 			"end": null,
 			"demo_link": "/",
-			"github_link": "https://github.com/just0422/personal-website"
+			"github_link": "https://github.com/just0422/personal-website",
+			"skills": [
+				"<%= sprig_record(Skill, 9) %>",
+				"<%= sprig_record(Skill, 13) %>",
+				"<%= sprig_record(Skill, 16) %>"
+			]
 		},
 		{
 			"sprig_id": 5,
@@ -43,7 +60,12 @@
 			"start": "2018-10-01 00:00:00",
 			"end": "2018-12-31 00:00:00",
 			"demo_link": null,
-			"github_link": null
+			"github_link": null,
+			"skills": [
+				"<%= sprig_record(Skill, 1) %>",
+				"<%= sprig_record(Skill, 19) %>",
+				"<%= sprig_record(Skill, 16) %>"
+			]
 		}
 	]
 }

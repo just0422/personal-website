@@ -11,5 +11,7 @@ p "Destroying Experiences"
 Experience.destroy_all
 p "Destroying Projects"
 Project.destroy_all
+p "Destroying Skills"
+Skill.destroy_all
 
-sprig_shared [Experience, Project]
+sprig_shared [Experience, Project, Skill]

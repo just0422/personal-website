@@ -1,0 +1,99 @@
+{
+	"records": [
+		{
+			"sprig_id": 1,
+			"name": "Python",
+			"years": "<%= Date.today.year - 2015 %>"
+		},
+		{
+			"sprig_id": 2,
+			"name": "C",
+			"years": "<%= Date.today.year - 2015 %>"
+		},
+		{
+			"sprig_id": 3,
+			"name": "C#",
+			"years": "<%= Date.today.year - 2018 %>"
+		},
+		{
+			"sprig_id": 4,
+			"name": "Java",
+			"years": "<%= Date.today.year - 2012 %>"
+		},
+		{
+			"sprig_id": 5,
+			"name": "Javascript",
+			"years": "<%= Date.today.year - 2016 %>"
+		},
+		{
+			"sprig_id": 6,
+			"name": "Ruby",
+			"years": "<%= Date.today.year - 2016 %>"
+		},
+		{
+			"sprig_id": 7,
+			"name": "HTML/CSS",
+			"years": "<%= Date.today.year - 2012 %>"
+		},
+		{
+			"sprig_id": 8,
+			"name": "MySQL",
+			"years": "<%= Date.today.year - 2018 %>"
+		},
+		{
+			"sprig_id": 9,
+			"name": "ReactJS",
+			"years": "<%= Date.today.year - 2018 %>"
+		},
+		{
+			"sprig_id": 10,
+			"name": "AngularJS",
+			"years": "<%= Date.today.year - 2018 %>"
+		},
+		{
+			"sprig_id": 11,
+			"name": "Django",
+			"years": "<%= Date.today.year - 2018 %>"
+		},
+		{
+			"sprig_id": 12,
+			"name": "NodeJs",
+			"years": "<%= Date.today.year - 2018 %>"
+		},
+		{
+			"sprig_id": 13,
+			"name": "Ruby On Rails",
+			"years": "<%= Date.today.year - 2017 %>"
+		},
+		{
+			"sprig_id": 14,
+			"name": "vim",
+			"years": "<%= Date.today.year - 2015 %>"
+		},
+		{
+			"sprig_id": 15,
+			"name": "git",
+			"years": "<%= Date.today.year - 2015 %>"
+		},
+		{
+			"sprig_id": 16,
+			"name": "Nginx",
+			"years": "<%= Date.today.year - 2017 %>"
+		},
+		{
+			"sprig_id": 17,
+			"name": "MIPS Assembly",
+			"years": "<%= Date.today.year - 2015 %>"
+		},
+		{
+			"sprig_id": 18,
+			"name": "SystemVerilog",
+			"years": "<%= Date.today.year - 2018 %>"
+		},
+		{
+			"sprig_id": 19,
+			"name": "RabbitMQ",
+			"years": "<%= Date.today.year - 2017 %>"
+		}
+	]
+}

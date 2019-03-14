@@ -5,21 +5,40 @@
 			"name": "Clever Devices",
 			"title": "Associate Software Developer",
 			"start": "2017-09-25 00:00:00",
-			"end": null
+			"end": null,
+			"skills": [
+				"<%= sprig_record(Skill, 3) %>",
+				"<%= sprig_record(Skill, 4) %>",
+				"<%= sprig_record(Skill, 7) %>",
+				"<%= sprig_record(Skill, 8) %>",
+				"<%= sprig_record(Skill, 10) %>",
+				"<%= sprig_record(Skill, 12) %>"
+			]
 		},
 		{
 			"sprig_id": 2,
 			"name": "DeltaLock, Inc",
 			"title": "Software Consultant",
 			"start": "2016-08-01 00:00:00",
-			"end": "2018-10-31 00:00:00"
+			"end": "2018-10-31 00:00:00",
+			"skills": [
+				"<%= sprig_record(Skill, 6) %>",
+				"<%= sprig_record(Skill, 13) %>",
+				"<%= sprig_record(Skill, 5) %>",
+				"<%= sprig_record(Skill, 7) %>"
+			]
 		},
 		{
 			"sprig_id": 3,
 			"name": "Stony Brook University",
 			"title": "Teaching Assistant - Systems Fundamentals I & II",
 			"start": "2015-08-01 00:00:00",
-			"end": "2017-12-31 00:00:00"
+			"end": "2017-12-31 00:00:00",
+			"skills": [
+				"<%= sprig_record(Skill, 17) %>",
+				"<%= sprig_record(Skill, 2) %>",
+				"<%= sprig_record(Skill, 1) %>"
+			]
 		}
 	]
 }
