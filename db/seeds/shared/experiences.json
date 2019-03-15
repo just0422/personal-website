@@ -13,6 +13,11 @@
 				"<%= sprig_record(Skill, 8) %>",
 				"<%= sprig_record(Skill, 10) %>",
 				"<%= sprig_record(Skill, 12) %>"
+			],
+			"comments": [
+				"<%= sprig_record(Comment, 27) %>",
+				"<%= sprig_record(Comment, 28) %>",
+				"<%= sprig_record(Comment, 29) %>"
 			]
 		},
 		{
