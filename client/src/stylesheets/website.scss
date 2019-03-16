@@ -1,0 +1,25 @@
+.website-reset-countdown{
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	box-shadow: inset 0 0 100px #FFF;
+	background-color: #999;
+	padding: 5px 10px;
+}
+
+.website-interactive-message{
+	position: absolute;
+	width: 20%;
+	right: 10px;
+	top: 60px;
+	color: rgba(10, 10, 10, 0.2);
+}
+
+.website-interactive-message:hover{
+	color: rgba(0, 0, 0, 1);
+	background-color: #FFF;
+}
+
+ul{
+  list-style-position: outside;
+}

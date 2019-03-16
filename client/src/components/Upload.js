@@ -219,6 +219,10 @@ export default class Upload extends Component {
               height="180"
             />
           )}
+          <div className="website-interactive-message">
+              This website is interactive. Any changes made will be reset every
+							15 minutes. Feel free to upload any images to the existing projects.
+						</div>
         </div>
       );
     }
