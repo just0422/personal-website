@@ -5,13 +5,13 @@ import {Lightbox} from 'react-modal-image';
 import Project from 'Projects/Project';
 import ErrorModal from 'Error';
 import api from 'APIUtils';
-
 import 'stylesheets/projects.scss';
 
 export default class Projects extends Component {
   constructor(props) {
     super(props);
-
+	
+		this.updateProject = this.updateProject.bind(this);
     this.handleLightboxOpen = this.handleLightboxOpen.bind(this);
     this.handleLightboxClose = this.handleLightboxClose.bind(this);
 
@@ -44,9 +44,19 @@ export default class Projects extends Component {
     this.setState({
       lightboxEnabled: false,
     });
-  }
+	}
 
-  componentDidMount() {
+	updateProject(project){
+		this.setState({
+			projects: this.state.projects.map((state_project, i) => {
+				if (project.id === state_project.id)
+					return project
+				return state_project
+			})
+		});
+	}
+
+	componentDidMount() {
     api
       .projects()
       .getAll()
@@ -82,8 +92,9 @@ export default class Projects extends Component {
               return (
                 <Project
                   project={project}
-                  key={i}
-                  openLightbox={this.handleLightboxOpen}
+									key={i}
+									openLightbox={this.handleLightboxOpen}
+									updateProject={this.updateProject}
                 />
               );
             })}

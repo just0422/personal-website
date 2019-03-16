@@ -19,10 +19,11 @@ export default {
       getAll: () => axios.get(projectsUrl),
       getSkills: id => axios.get(`${projectsUrl}/${id}${skillsPath}`),
       getComments: id => axios.get(`${projectsUrl}/${id}${commentsPath}`),
-			deleteComment: (project_id, comment_id) => axios.delete(`${projectsUrl}/${project_id}${commentsPath}/${comment_id}`),
 			getScreenshot: (project_id, screenshot_id) => axios.get(`${projectsUrl}/${project_id}${screenshotsPath}/${screenshot_id}`),
       getScreenshots: id => axios.get(`${projectsUrl}/${id}${screenshotsPath}`),
       createScreenshot: (id, screenshot) => axios.post(`${projectsUrl}/${id}${screenshotsPath}`, screenshot, fileHeader),
+      updateProject: (id, project) => axios.patch(`${projectsUrl}/${id}`, project),
+			deleteComment: (project_id, comment_id) => axios.delete(`${projectsUrl}/${project_id}${commentsPath}/${comment_id}`),
     };
   },
 

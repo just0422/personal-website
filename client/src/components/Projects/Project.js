@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import {Row, Col, Input, InputGroup, InputGroupAddon, Button} from 'reactstrap';
+import {Row, Col} from 'react-bootstrap';
+import {Input, InputGroup, InputGroupAddon, Button} from 'reactstrap';
 import Moment from 'react-moment';
 import Slider from 'react-slick';
 
@@ -21,7 +22,8 @@ export default class Project extends Component {
     this.state = {
       skills: [],
       comments: [],
-      screenshots: [],
+			screenshots: [],
+			nameValue: this.props.project.name,
 			error: null,
 			projectEditShowing: false,
 			projectLabelShowing: true,
@@ -56,13 +58,23 @@ export default class Project extends Component {
 	}
 
 	handleProjectUpdate(){
-		this.setState({
-			projectEditShowing: false,
-			projectLabelShowing: true,
-		})
+		let id = this.props.project.id;
+
+		api.projects().updateProject(id, { project: { name: this.state.nameValue } }).then(resp =>{
+			this.setState({
+				projectEditShowing: false,
+				projectLabelShowing: true,
+			})
+
+			this.props.updateProject(resp.data);
+		}).catch(err => {
+			this.setState({
+				error: err,
+			});
+		});
 	}
 
-  componentDidMount() {
+	componentDidMount() {
     let id = this.props.project ? this.props.project.id : 0;
     if (id > 0) {
       axios
@@ -141,11 +153,11 @@ export default class Project extends Component {
 								}
 								{ this.state.projectEditShowing &&
 								<div id={"project-" + project.id + "-edit"}>
-									<InputGroup>
+									<InputGroup className="project-edit">
 										<InputGroupAddon addonType="prepend">
 											<Button color="danger" onClick={this.handleProjectCancel}>Cancel</Button>
 										</InputGroupAddon>
-										<Input value={name}/>
+										<Input defaultValue={name} onChange={e => this.setState({ nameValue: e.target.value })}/>
 										<InputGroupAddon addonType="append">
 											<Button color="success" onClick={this.handleProjectUpdate}>Update</Button>
 										</InputGroupAddon>
