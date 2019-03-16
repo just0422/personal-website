@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {PageHeader, Grid} from 'react-bootstrap';
 import {Lightbox} from 'react-modal-image';
-import {Tooltip, Button} from 'reactstrap';
 
 import Project from 'Projects/Project';
 import ErrorModal from 'Error';
@@ -20,7 +19,8 @@ export default class Projects extends Component {
 
     this.state = {
       projects: [],
-      error: null,
+			error: null,
+			loading: false,
       lightboxEnabled: false,
       lightboxImageSrc: '',
       tooltipOpen: false,
@@ -84,7 +84,7 @@ export default class Projects extends Component {
   render() {
     if (this.state.error) {
       return <ErrorModal component="Projects" error={this.state.error} />;
-    } else {
+		} else {
       return (
         <div className="container">
           {this.state.lightboxEnabled && (

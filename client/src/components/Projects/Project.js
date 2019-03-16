@@ -4,6 +4,7 @@ import {Row, Col} from 'react-bootstrap';
 import {Input, InputGroup, InputGroupAddon, Button} from 'reactstrap';
 import Moment from 'react-moment';
 import Slider from 'react-slick';
+import {PacmanLoader} from 'react-spinners';
 
 import api from 'APIUtils';
 import ErrorModal from 'Error';
@@ -12,70 +13,83 @@ import 'stylesheets/projects.scss';
 
 export default class Project extends Component {
   constructor(props) {
-		super(props);
+    super(props);
 
-		this.deleteComment = this.deleteComment.bind(this);
-		this.showProjectEdit = this.showProjectEdit.bind(this);
-		this.handleProjectCancel = this.handleProjectCancel.bind(this);
-		this.handleProjectUpdate = this.handleProjectUpdate.bind(this);
+    this.deleteComment = this.deleteComment.bind(this);
+    this.showProjectEdit = this.showProjectEdit.bind(this);
+    this.handleProjectCancel = this.handleProjectCancel.bind(this);
+    this.handleProjectUpdate = this.handleProjectUpdate.bind(this);
 
     this.state = {
       skills: [],
       comments: [],
-			screenshots: [],
-			nameValue: this.props.project.name,
-			error: null,
-			projectEditShowing: false,
-			projectLabelShowing: true,
+      screenshots: [],
+      nameValue: this.props.project.name,
+      error: null,
+      loading: false,
+      projectEditShowing: false,
+      projectLabelShowing: true,
     };
-	}
+  }
 
-	deleteComment(project_id, comment_id, index) {
-		api.projects().deleteComment(project_id, comment_id).then(resp => {
-			this.setState({
-				comments: this.state.comments.filter((_, i) => i !== index)
-			});
-		})
-		.catch(err => {
-			this.setState({
-				error: err,
-			});
-		});
-	}
+  deleteComment(project_id, comment_id, index) {
+    this.setState({loading: true});
+    api
+      .projects()
+      .deleteComment(project_id, comment_id)
+      .then(resp => {
+        this.setState({
+          comments: this.state.comments.filter((_, i) => i !== index),
+          loading: false,
+        });
+      })
+      .catch(err => {
+        this.setState({
+          error: err,
+        });
+      });
+  }
 
-	showProjectEdit(){
-		this.setState({
-			projectEditShowing: true,
-			projectLabelShowing: false,
-		})
-	}
+  showProjectEdit() {
+    this.setState({
+      projectEditShowing: true,
+      projectLabelShowing: false,
+    });
+  }
 
-	handleProjectCancel(){
-		this.setState({
-			projectEditShowing: false,
-			projectLabelShowing: true,
-		})
-	}
+  handleProjectCancel() {
+    this.setState({
+      projectEditShowing: false,
+      projectLabelShowing: true,
+    });
+  }
 
-	handleProjectUpdate(){
-		let id = this.props.project.id;
+  handleProjectUpdate() {
+    let id = this.props.project.id;
+    this.setState({loading: true});
 
-		api.projects().updateProject(id, { project: { name: this.state.nameValue } }).then(resp =>{
-			this.setState({
-				projectEditShowing: false,
-				projectLabelShowing: true,
-			})
+    api
+      .projects()
+      .updateProject(id, {project: {name: this.state.nameValue}})
+      .then(resp => {
+        this.setState({
+          projectEditShowing: false,
+          projectLabelShowing: true,
+          loading: false,
+        });
 
-			this.props.updateProject(resp.data);
-		}).catch(err => {
-			this.setState({
-				error: err,
-			});
-		});
-	}
+        this.props.updateProject(resp.data);
+      })
+      .catch(err => {
+        this.setState({
+          error: err,
+        });
+      });
+  }
 
-	componentDidMount() {
+  componentDidMount() {
     let id = this.props.project ? this.props.project.id : 0;
+    this.setState({loading: true});
     if (id > 0) {
       axios
         .all([
@@ -90,6 +104,7 @@ export default class Project extends Component {
                 skills: skillsResponse.data,
                 comments: commentsResponse.data,
                 screenshots: screenshotsResponse.data,
+                loading: false,
               });
             },
           ),
@@ -103,11 +118,27 @@ export default class Project extends Component {
   }
 
   render() {
+    let project = this.props.project;
+    let name = project ? project.name : 'no-name';
     if (this.state.error) {
       return <ErrorModal component="Project" error={this.state.error} />;
+    } else if (this.state.loading) {
+      return (
+        <div>
+          <div className="section-element-header">
+            <strong>{name} - </strong>
+          </div>
+          <PacmanLoader
+            sizeUnit={'px'}
+            size={10}
+            color={'#a00'}
+            loading={this.state.loading}
+            className="justify-content-center"
+          />
+          <hr />
+        </div>
+      );
     } else {
-      let project = this.props.project;
-      let name = project ? project.name : 'no-name';
       let github_link = project ? project.github_link : 'github.com';
       let demo_link = project ? project.demo_link : 'github.com';
       let start = project ? new Date(project.start) : new Date();
@@ -115,7 +146,14 @@ export default class Project extends Component {
 
       let skills = this.state.skills.map(skill => skill.name).join(', ');
       let comments = this.state.comments.map((comment, i) => {
-				return <li key={i} id={"comment-" + project.id + "-" + comment.id} onClick={() => this.deleteComment(project.id, comment.id, i)}>{comment.content}</li>;
+        return (
+          <li
+            key={i}
+            id={'comment-' + project.id + '-' + comment.id}
+            onClick={() => this.deleteComment(project.id, comment.id, i)}>
+            {comment.content}
+          </li>
+        );
       });
 
       let settings = {
@@ -132,8 +170,8 @@ export default class Project extends Component {
           <div key={i}>
             <img
               src={screenshot.image_data}
-							alt="broken"
-							id={"project-screenshot-" + screenshot.id}
+              alt="broken"
+              id={'project-screenshot-' + screenshot.id}
               className="project-screenshot"
               onClick={() => this.props.openLightbox(project.id, screenshot.id)}
             />
@@ -144,27 +182,42 @@ export default class Project extends Component {
         <div>
           <Row>
             <Col xs={6}>
-							<div className="section-element-header">
-								{ this.state.projectLabelShowing &&
-								<div id={"project-" + project.id + "-label"} onClick={this.showProjectEdit}>
-									<strong>{name} - </strong>
-									<em>({skills})</em>
-								</div>
-								}
-								{ this.state.projectEditShowing &&
-								<div id={"project-" + project.id + "-edit"}>
-									<InputGroup className="project-edit">
-										<InputGroupAddon addonType="prepend">
-											<Button color="danger" onClick={this.handleProjectCancel}>Cancel</Button>
-										</InputGroupAddon>
-										<Input defaultValue={name} onChange={e => this.setState({ nameValue: e.target.value })}/>
-										<InputGroupAddon addonType="append">
-											<Button color="success" onClick={this.handleProjectUpdate}>Update</Button>
-										</InputGroupAddon>
-									</InputGroup>
-								</div>
-								}
-							</div>
+              <div className="section-element-header">
+                {this.state.projectLabelShowing && (
+                  <div
+                    id={'project-' + project.id + '-label'}
+                    onClick={this.showProjectEdit}>
+                    <strong>{name} - </strong>
+                    <em>({skills})</em>
+                  </div>
+                )}
+                {this.state.projectEditShowing && (
+                  <div id={'project-' + project.id + '-edit'}>
+                    <InputGroup className="project-edit">
+                      <InputGroupAddon addonType="prepend">
+                        <Button
+                          color="danger"
+                          onClick={this.handleProjectCancel}>
+                          Cancel
+                        </Button>
+                      </InputGroupAddon>
+                      <Input
+                        defaultValue={name}
+                        onChange={e =>
+                          this.setState({nameValue: e.target.value})
+                        }
+                      />
+                      <InputGroupAddon addonType="append">
+                        <Button
+                          color="success"
+                          onClick={this.handleProjectUpdate}>
+                          Update
+                        </Button>
+                      </InputGroupAddon>
+                    </InputGroup>
+                  </div>
+                )}
+              </div>
             </Col>
             <Col xs={6} className="project-right-column">
               <a href={github_link} target="_blank" rel="noopener noreferrer">
