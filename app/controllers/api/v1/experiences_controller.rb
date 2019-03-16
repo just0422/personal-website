@@ -3,7 +3,7 @@ class Api::V1::ExperiencesController < ApplicationController
 
 	# GET /experiences
 	def index
-		@experiences = Experience.all
+		@experiences = Experience.all.sort_by{ |experience| experience.rank }
 		render json: @experiences
 	end
 

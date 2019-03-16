@@ -8,6 +8,7 @@
 			"end": null,
 			"demo_link": "",
 			"github_link": "https://github.com/just0422/techarts",
+			"rank": 2,
 			"skills": [
 				"<%= sprig_record(Skill, 9) %>",
 				"<%= sprig_record(Skill, 11) %>"
@@ -28,6 +29,7 @@
 			"end": "2017-05-02 00:00:00",
 			"demo_link": null,
 			"github_link": "https://github.com/just0422/p6-processor",
+			"rank": 4,
 			"skills": [
 				"<%= sprig_record(Skill, 18) %>"
 			],
@@ -44,6 +46,7 @@
 			"end": "2016-05-31 00:00:00",
 			"demo_link": null,
 			"github_link": "https://github.com/just0422/Digital-Conceptions",
+			"rank": 5,
 			"skills": [
 				"<%= sprig_record(Skill, 4) %>",
 				"<%= sprig_record(Skill, 5) %>",
@@ -63,6 +66,7 @@
 			"end": null,
 			"demo_link": "/",
 			"github_link": "https://github.com/just0422/personal-website",
+			"rank": 1,
 			"skills": [
 				"<%= sprig_record(Skill, 9) %>",
 				"<%= sprig_record(Skill, 13) %>",
@@ -83,6 +87,7 @@
 			"end": "2018-12-31 00:00:00",
 			"demo_link": null,
 			"github_link": null,
+			"rank": 3,
 			"skills": [
 				"<%= sprig_record(Skill, 1) %>",
 				"<%= sprig_record(Skill, 19) %>",

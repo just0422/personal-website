@@ -3,7 +3,7 @@ class Api::V1::ProjectsController < ApplicationController
 
 	# GET /projects
 	def index
-		@projects = Project.all
+		@projects = Project.all.sort_by{ |project| project.rank }
 		render json: @projects
 	end
 
