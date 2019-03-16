@@ -35,6 +35,15 @@ describe('API Projects', () => {
 		expect(response).toEqual(comments);
 	});
 
+	it('should get delete the comment associate with projects[0]', async () => {
+		let project_id = projects[0]['id'];
+		let comment_id = comments[0]['id'];
+		mock.onDelete(`${projectsUrl}/${project_id}${commentsPath}/${comment_id}`).reply(200, comments);
+
+		let response = await api.projects().deleteComment(project_id, comment_id).then(response => response);
+		expect(response.status).toEqual(200);
+	});
+
 	it('should get all screenshots associate with projects[0]', async () => {
 		let id = projects[0]['id'];
 		mock.onGet(`${projectsUrl}/${id}${screenshotsPath}`).reply(200, screenshots);
@@ -44,11 +53,11 @@ describe('API Projects', () => {
 	});
 
 	it('should set a screenshot associated with projects[0]', async () => {
-		let id = projects[0]['id'];
+		let project_id = projects[0]['id'];
 		let screenshot = screenshots[0];
-		mock.onPost(`${projectsUrl}/${id}${screenshotsPath}`).reply(201);
+		mock.onPost(`${projectsUrl}/${project_id}${screenshotsPath}`).reply(201);
 
-		let response = await api.projects().createScreenshot(id, screenshot);
+		let response = await api.projects().createScreenshot(project_id, screenshot);
 		expect(response.status).toEqual(201);
 	});
 

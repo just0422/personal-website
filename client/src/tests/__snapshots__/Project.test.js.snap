@@ -2,6 +2,12 @@
 
 exports[`Project should handle comments error 1`] = `ShallowWrapper {}`;
 
+exports[`Project should handle delete comments 1`] = `ReactWrapper {}`;
+
+exports[`Project should handle delete comments fail 1`] = `ReactWrapper {}`;
+
+exports[`Project should handle screenshots click 1`] = `ShallowWrapper {}`;
+
 exports[`Project should handle screenshots error 1`] = `ShallowWrapper {}`;
 
 exports[`Project should handle skills error 1`] = `ShallowWrapper {}`;

@@ -11,7 +11,7 @@ export const skills = [
 ];
 
 export const comments = [
-	{ content: 'abc' }
+	{ id: 1, content: 'abc' }
 ];
 
 export const projects = [

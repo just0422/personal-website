@@ -11,15 +11,30 @@ import 'stylesheets/projects.scss';
 
 export default class Project extends Component {
   constructor(props) {
-    super(props);
+		super(props);
+
+		this.deleteComment = this.deleteComment.bind(this);
 
     this.state = {
       skills: [],
       comments: [],
       screenshots: [],
-      error: null,
+			error: null,
     };
-  }
+	}
+
+	deleteComment(project_id, comment_id, index) {
+		api.projects().deleteComment(project_id, comment_id).then(resp => {
+			this.setState({
+				comments: this.state.comments.filter((_, i) => i !== index)
+			});
+		})
+		.catch(err => {
+			this.setState({
+				error: err,
+			});
+		});
+	}
 
   componentDidMount() {
     let id = this.props.project ? this.props.project.id : 0;
@@ -62,7 +77,7 @@ export default class Project extends Component {
 
       let skills = this.state.skills.map(skill => skill.name).join(', ');
       let comments = this.state.comments.map((comment, i) => {
-        return <li key={i}>{comment.content}</li>;
+				return <li key={i} id={"comment-" + project.id + "-" + comment.id} onClick={() => this.deleteComment(project.id, comment.id, i)}>{comment.content}</li>;
       });
 
       let settings = {
@@ -79,7 +94,8 @@ export default class Project extends Component {
           <div key={i}>
             <img
               src={screenshot.image_data}
-              alt="broken"
+							alt="broken"
+							id={"project-screenshot-" + screenshot.id}
               className="project-screenshot"
               onClick={() => this.props.openLightbox(project.id, screenshot.id)}
             />
