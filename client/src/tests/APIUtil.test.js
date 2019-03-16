@@ -35,15 +35,6 @@ describe('API Projects', () => {
 		expect(response).toEqual(comments);
 	});
 
-	it('should get delete the comment associate with projects[0]', async () => {
-		let project_id = projects[0]['id'];
-		let comment_id = comments[0]['id'];
-		mock.onDelete(`${projectsUrl}/${project_id}${commentsPath}/${comment_id}`).reply(200, comments);
-
-		let response = await api.projects().deleteComment(project_id, comment_id).then(response => response);
-		expect(response.status).toEqual(200);
-	});
-
 	it('should get all screenshots associate with projects[0]', async () => {
 		let id = projects[0]['id'];
 		mock.onGet(`${projectsUrl}/${id}${screenshotsPath}`).reply(200, screenshots);
@@ -52,7 +43,7 @@ describe('API Projects', () => {
 		expect(response).toEqual(screenshots);
 	});
 
-	it('should set a screenshot associated with projects[0]', async () => {
+	it('should create a screenshot associated with projects[0]', async () => {
 		let project_id = projects[0]['id'];
 		let screenshot = screenshots[0];
 		mock.onPost(`${projectsUrl}/${project_id}${screenshotsPath}`).reply(201);
@@ -61,6 +52,22 @@ describe('API Projects', () => {
 		expect(response.status).toEqual(201);
 	});
 
+	it('should delete a comment associated with projects[0]', async () => {
+		let project_id = projects[0]['id'];
+		let comment_id = comments[0]['id'];
+		mock.onDelete(`${projectsUrl}/${project_id}${commentsPath}/${comment_id}`).reply(200);
+
+		let response = await api.projects().deleteComment(project_id, comment_id);
+		expect(response.status).toEqual(200);
+	});
+
+	it('should update projects[0]', async () => {
+		let project_id = projects[0]['id'];
+		mock.onPatch(`${projectsUrl}/${project_id}`).reply(200);
+
+		let response = await api.projects().updateProject(project_id, projects[0]);
+		expect(response.status).toEqual(200);
+	});
 });
 
 describe('API experiences', () => {
