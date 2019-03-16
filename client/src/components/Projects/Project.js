@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import {Row, Col} from 'react-bootstrap';
+import {Row, Col, Input, InputGroup, InputGroupAddon, Button} from 'reactstrap';
 import Moment from 'react-moment';
 import Slider from 'react-slick';
 
@@ -14,12 +14,17 @@ export default class Project extends Component {
 		super(props);
 
 		this.deleteComment = this.deleteComment.bind(this);
+		this.showProjectEdit = this.showProjectEdit.bind(this);
+		this.handleProjectCancel = this.handleProjectCancel.bind(this);
+		this.handleProjectUpdate = this.handleProjectUpdate.bind(this);
 
     this.state = {
       skills: [],
       comments: [],
       screenshots: [],
 			error: null,
+			projectEditShowing: false,
+			projectLabelShowing: true,
     };
 	}
 
@@ -34,6 +39,27 @@ export default class Project extends Component {
 				error: err,
 			});
 		});
+	}
+
+	showProjectEdit(){
+		this.setState({
+			projectEditShowing: true,
+			projectLabelShowing: false,
+		})
+	}
+
+	handleProjectCancel(){
+		this.setState({
+			projectEditShowing: false,
+			projectLabelShowing: true,
+		})
+	}
+
+	handleProjectUpdate(){
+		this.setState({
+			projectEditShowing: false,
+			projectLabelShowing: true,
+		})
 	}
 
   componentDidMount() {
@@ -106,10 +132,27 @@ export default class Project extends Component {
         <div>
           <Row>
             <Col xs={6}>
-              <div className="section-element-header">
-                <strong>{name} - </strong>
-                <em>({skills})</em>
-              </div>
+							<div className="section-element-header">
+								{ this.state.projectLabelShowing &&
+								<div id={"project-" + project.id + "-label"} onClick={this.showProjectEdit}>
+									<strong>{name} - </strong>
+									<em>({skills})</em>
+								</div>
+								}
+								{ this.state.projectEditShowing &&
+								<div id={"project-" + project.id + "-edit"}>
+									<InputGroup>
+										<InputGroupAddon addonType="prepend">
+											<Button color="danger" onClick={this.handleProjectCancel}>Cancel</Button>
+										</InputGroupAddon>
+										<Input value={name}/>
+										<InputGroupAddon addonType="append">
+											<Button color="success" onClick={this.handleProjectUpdate}>Update</Button>
+										</InputGroupAddon>
+									</InputGroup>
+								</div>
+								}
+							</div>
             </Col>
             <Col xs={6} className="project-right-column">
               <a href={github_link} target="_blank" rel="noopener noreferrer">

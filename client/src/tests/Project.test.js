@@ -131,6 +131,7 @@ describe('Project', () => {
 		comment = component.find(`#comment-${project_id}-${comment_id}`);
 
 		expect(component).toMatchSnapshot();
+		expect(JSON.stringify(commentsBeforeRequest)).toEqual(JSON.stringify(commentsAfterRequest));
 		expect(component.state('error')).toBeTruthy();
 		expect(component.containsMatchingElement(<ErrorModal />)).toBe(true);
 	});
