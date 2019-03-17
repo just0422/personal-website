@@ -15,5 +15,7 @@ p "Destroying Skills"
 Skill.destroy_all
 p "Destroying Comments"
 Comment.destroy_all
+p "Destroying Screenshots"
+Screenshot.destroy_all
 
 sprig_shared [Experience, Project, Skill, Comment]
