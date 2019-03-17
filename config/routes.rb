@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+	
+	get '/reset', to: 'application#reset'
+
 	namespace :api do
 		namespace :v1 do
 			resources :projects do

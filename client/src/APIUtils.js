@@ -12,6 +12,7 @@ export const screenshotsPath = '/screenshots';
 export const projectsUrl = apiPath + projectsPath;
 export const experiencesUrl = apiPath + experiencesPath;
 export const skillsUrl = apiPath + skillsPath;
+export const resetUrl = '/reset';
 
 export default {
   projects() {
@@ -39,5 +40,11 @@ export default {
     return {
       getAll: () => axios.get(skillsUrl),
     };
-  },
+	},
+
+	reset() {
+		return {
+			get: () => axios.get(resetUrl)
+		}
+	}
 };

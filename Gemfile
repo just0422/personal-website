@@ -17,6 +17,7 @@ gem 'jbuilder', '~> 2.5'				# Build JSON's (for API
 gem "shrine"										# Image uploading
 gem "image_processing"
 gem "mini_magick", ">= 4.3.5"
+gem "rest-client"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false

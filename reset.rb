@@ -2,7 +2,7 @@
 
 require 'json'
 require 'optparse'
-require 'rest_client'
+require 'rest-client'
 
 options = {}
 optparse = OptionParser.new do|opts|
@@ -37,8 +37,9 @@ projects = JSON.parse(RestClient.get(base_url))
 projects.each do |project|
 	if Dir.entries('screenshots').include? project["name"]
 		url = base_url + "/" + project["id"].to_s + '/screenshots'
-
+		
 		images = Dir['screenshots/' + project["name"] + '/*']
+		puts "Found " + images.length.to_s + " images in 'screenshots/" + project["name"] + "/*'"
 		images.each do |image|
 			image_data = {
 				'screenshot': {
