@@ -157,12 +157,10 @@ export default class Project extends Component {
       });
 
       let settings = {
-        autoplay: true,
         arrows: true,
-        centerMode: true,
         dots: true,
-        infinite: true,
-        slidesToShow: Math.floor((window.innerWidth * 0.7) / 180),
+        infinite: false,
+				slidesToShow: Math.floor((window.innerWidth * 0.7) / 180),
         slidesToScroll: 1,
       };
       let screenshots = this.state.screenshots.map((screenshot, i) => {

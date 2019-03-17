@@ -10,10 +10,29 @@
 
 .website-interactive-message{
 	position: absolute;
-	width: 20%;
 	right: 10px;
 	top: 60px;
 	color: rgba(10, 10, 10, 0.2);
+	background-color: rbga(255, 255, 255, 0);
+	z-index: 10;
+}
+
+@media only screen and (min-width: 1024px){
+	.website-interactive-message{
+		width: 20%;
+	}
+}
+
+@media only screen and (max-width: 1024px){
+	.website-interactive-message{
+		width: 50%;
+	}
+}
+
+@media only screen and (max-width: 600px){
+	.website-interactive-message{
+		width: 75%;
+	}
 }
 
 .website-interactive-message:hover{
