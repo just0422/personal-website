@@ -15,8 +15,8 @@ export const comments = [
 ];
 
 export const projects = [
-	{ id: 1, description: "a", start: start, end: end, demo_link: "abc", github_link: "def" },
-	{ id: 2, description: "b", start: start, end: end, demo_link: "ghi", github_link: "jkl" },
+	{ id: 1, name: 'A', description: "a", start: start, end: end, demo_link: "abc", github_link: "def" },
+	{ id: 2, name: 'B', description: "b", start: start, end: end, demo_link: "ghi", github_link: "jkl" },
 ]
 
 export const screenshots = [

@@ -1,5 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Project should allow editing of a project name 1`] = `ReactWrapper {}`;
+
+exports[`Project should disable the input field when cancel is clicked 1`] = `ReactWrapper {}`;
+
+exports[`Project should enable the input field when name is clicked 1`] = `ReactWrapper {}`;
+
 exports[`Project should handle comments error 1`] = `ShallowWrapper {}`;
 
 exports[`Project should handle delete comments 1`] = `ReactWrapper {}`;
@@ -11,6 +17,10 @@ exports[`Project should handle screenshots click 1`] = `ShallowWrapper {}`;
 exports[`Project should handle screenshots error 1`] = `ShallowWrapper {}`;
 
 exports[`Project should handle skills error 1`] = `ShallowWrapper {}`;
+
+exports[`Project should handle when a project PATCH fails 1`] = `ReactWrapper {}`;
+
+exports[`Project should handle when a project is PATCHed 1`] = `ReactWrapper {}`;
 
 exports[`Project should render correctly with no props 1`] = `ShallowWrapper {}`;
 

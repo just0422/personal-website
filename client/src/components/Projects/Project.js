@@ -195,20 +195,23 @@ export default class Project extends Component {
                   <div id={'project-' + id + '-edit'}>
                     <InputGroup className="project-edit">
                       <InputGroupAddon addonType="prepend">
-                        <Button
+												<Button
+													className="cancel-button"
                           color="danger"
                           onClick={this.handleProjectCancel}>
                           Cancel
                         </Button>
                       </InputGroupAddon>
-                      <Input
+											<Input
+												className={"project-edit-field"}
                         defaultValue={name}
                         onChange={e =>
                           this.setState({nameValue: e.target.value})
                         }
                       />
                       <InputGroupAddon addonType="append">
-                        <Button
+												<Button
+													className = "update-button"
                           color="success"
                           onClick={this.handleProjectUpdate}>
                           Update
