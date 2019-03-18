@@ -65,6 +65,8 @@ export default class Resume extends Component {
 							})
 						}
 					</Grid>
+					<br />
+					<br />
 				</div>
 			);
 		}

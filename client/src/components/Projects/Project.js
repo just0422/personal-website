@@ -24,7 +24,7 @@ export default class Project extends Component {
       skills: [],
       comments: [],
       screenshots: [],
-      nameValue: this.props.project.name,
+      nameValue: this.props.project ? this.props.project.name : 'no-name',
       error: null,
       loading: false,
       projectEditShowing: false,
@@ -119,7 +119,9 @@ export default class Project extends Component {
 
   render() {
     let project = this.props.project;
-    let name = project ? project.name : 'no-name';
+		let name = project ? project.name : 'no-name';
+		let id = project ? project.id : '-1';
+		
     if (this.state.error) {
       return <ErrorModal component="Project" error={this.state.error} />;
     } else if (this.state.loading) {
@@ -183,14 +185,14 @@ export default class Project extends Component {
               <div className="section-element-header">
                 {this.state.projectLabelShowing && (
                   <div
-                    id={'project-' + project.id + '-label'}
+                    id={'project-' + id + '-label'}
                     onClick={this.showProjectEdit}>
                     <strong>{name} - </strong>
                     <em>({skills})</em>
                   </div>
                 )}
                 {this.state.projectEditShowing && (
-                  <div id={'project-' + project.id + '-edit'}>
+                  <div id={'project-' + id + '-edit'}>
                     <InputGroup className="project-edit">
                       <InputGroupAddon addonType="prepend">
                         <Button
