@@ -12,7 +12,6 @@ export default class Projects extends Component {
   constructor(props) {
     super(props);
 
-    this.toggle = this.toggle.bind(this);
     this.updateProject = this.updateProject.bind(this);
     this.handleLightboxOpen = this.handleLightboxOpen.bind(this);
     this.handleLightboxClose = this.handleLightboxClose.bind(this);
@@ -23,14 +22,7 @@ export default class Projects extends Component {
 			loading: false,
       lightboxEnabled: false,
       lightboxImageSrc: '',
-      tooltipOpen: false,
     };
-  }
-
-  toggle() {
-    this.setState({
-      tooltipOpen: !this.state.tooltipOpen,
-    });
   }
 
   handleLightboxOpen(project_id, screenshot_id) {
