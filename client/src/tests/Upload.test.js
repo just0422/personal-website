@@ -6,12 +6,12 @@ import MockAdapter from 'axios-mock-adapter';
 import Upload from 'Upload';
 import ErrorModal from 'Error';
 
-import { projects, screenshots } from './data/';
+import { projects, screenshots } from './data';
 import { projectsUrl, screenshotsPath } from 'APIUtils';
 
 describe('Upload test', () => {
 	let projectScreenshotUrl;
-	let mock, mockEvent;
+	let mock;
 
 	const flushPromises = () => new Promise(resolve => setTimeout(resolve));
 	const projectsFail = () => mock.onGet(projectsUrl).reply(404, 'No skills available');
@@ -22,7 +22,6 @@ describe('Upload test', () => {
 	beforeAll(() => {
 		let id = projects[0]['id'];
 		projectScreenshotUrl = `${projectsUrl}/${id}${screenshotsPath}`;
-		mockEvent = { target: {} }
 	});
 
 	beforeEach(() => mock = new MockAdapter(axios) );

@@ -1,3 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Contact test should handle untouched email 1`] = `ReactWrapper {}`;
+
+exports[`Contact test should handle untouched first name 1`] = `ReactWrapper {}`;
+
+exports[`Contact test should handle untouched last name 1`] = `ReactWrapper {}`;
+
+exports[`Contact test should handle untouched message 1`] = `ReactWrapper {}`;
+
 exports[`Contact test should render correctly 1`] = `ShallowWrapper {}`;

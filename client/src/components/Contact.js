@@ -76,7 +76,7 @@ export default class Contact extends Component {
       this.setState({
         messageTouched: true,
         messageValid: false,
-        messageErrorMessage: 'Enter Message',
+        messageErrorMessage: 'Enter message',
       });
     } else if (
       this.state.firstNameValid &&
