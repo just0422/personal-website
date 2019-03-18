@@ -119,9 +119,9 @@ export default class Project extends Component {
 
   render() {
     let project = this.props.project;
-		let name = project ? project.name : 'no-name';
-		let id = project ? project.id : '-1';
-		
+    let name = project ? project.name : 'no-name';
+    let id = project ? project.id : '-1';
+
     if (this.state.error) {
       return <ErrorModal component="Project" error={this.state.error} />;
     } else if (this.state.loading) {
@@ -162,7 +162,7 @@ export default class Project extends Component {
         arrows: true,
         dots: true,
         infinite: false,
-				slidesToShow: Math.floor((window.innerWidth * 0.7) / 180),
+        slidesToShow: Math.floor((window.innerWidth * 0.7) / 180),
         slidesToScroll: 1,
       };
       let screenshots = this.state.screenshots.map((screenshot, i) => {
