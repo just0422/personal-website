@@ -2,7 +2,7 @@ import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 
 import api from 'APIUtils';
-import { projectsUrl, experiencesUrl, skillsUrl } from 'APIUtils';
+import { projectsUrl, experiencesUrl, skillsUrl, contactUrl, resetUrl } from 'APIUtils';
 import { skillsPath, commentsPath, screenshotsPath } from 'APIUtils';
 import { projects, experiences, skills, comments, screenshots } from './data';
 
@@ -103,3 +103,22 @@ describe('API skills', () => {
 		expect(response).toEqual(skills);
 	});
 });
+
+describe('API contact', () => {
+	it ('should create contact-me email', async () => {
+		mock.onPost(contactUrl).reply(200);
+
+		let response = await api.contact().emailContact()
+		expect(response.status).toEqual(200);
+	});
+});
+
+describe('API reset ', () => {
+	it ('should reset the data', async () => {
+		mock.onGet(resetUrl).reply(200);
+
+		let response = await api.reset().get()
+		expect(response.status).toEqual(200);
+	});
+});
+
