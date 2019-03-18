@@ -15,7 +15,7 @@ export default class NavigationBar extends Component {
     };
   }
 
-  resetTime(complete) {
+  resetTime() {
     const interval = 900000; // 15 min
     let time = Date.now();
     let remainder = time % interval;
@@ -26,7 +26,7 @@ export default class NavigationBar extends Component {
   }
 
   componentDidMount() {
-    this.resetTime(false);
+    this.resetTime();
   }
 
   render() {
@@ -64,7 +64,7 @@ export default class NavigationBar extends Component {
           in{' '}
           <Countdown
             date={this.state.countDownTo}
-            onComplete={() => this.resetTime(true)}
+            onComplete={() => this.resetTime()}
             precision={2}
             zeroPadDays={0}
           />
