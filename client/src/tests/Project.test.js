@@ -6,330 +6,353 @@ import MockAdapter from 'axios-mock-adapter';
 import Project from 'Projects/Project';
 import ErrorModal from 'Error';
 
-import { projects, skills, comments, screenshots } from './data';
-import { projectsUrl, skillsPath, commentsPath, screenshotsPath } from 'APIUtils';
+import {projects, skills, comments, screenshots} from './data';
+import {projectsUrl, skillsPath, commentsPath, screenshotsPath} from 'APIUtils';
 
 describe('Project', () => {
-	let projectSkillsUrl, projectCommentsUrl, projectCommentsDeleteUrl, projectScreenshotsUrl, projectUpdateUrl;
-	let mock;
+  let projectSkillsUrl,
+    projectCommentsUrl,
+    projectCommentsDeleteUrl,
+    projectScreenshotsUrl,
+    projectUpdateUrl;
+  let mock;
 
-	const flushPromises = () => new Promise(resolve => setTimeout(resolve));
-	// GET requests
-	const skillsFail = () => mock.onGet(projectSkillsUrl).reply(404, 'No skills available');
-	const skillsSucceed = () => mock.onGet(projectSkillsUrl).reply(200, skills);
-	const commentsFail = () => mock.onGet(projectCommentsUrl).reply(404, 'No comments available');
-	const commentsSucceed = () => mock.onGet(projectCommentsUrl).reply(200, comments);
-	const screenshotsFail = () => mock.onGet(projectScreenshotsUrl).reply(404, 'No screenshots available');
-	const screenshotsSucceed = () => mock.onGet(projectScreenshotsUrl).reply(200, screenshots);
-	// PATCH requests
-	const projectUpdateFail  = () => mock.onPatch(projectUpdateUrl).reply(500);
-	const projectUpdateSucceed = () => mock.onPatch(projectUpdateUrl).reply(200);
-	// DELETE requests 
-	const commentsDeleteFail = () => mock.onDelete(projectCommentsUrl).reply(404, 'Comment doesn\'t exist available');
-	const commentsDeleteSucceed = () => mock.onDelete(projectCommentsDeleteUrl).reply(200);
+  const flushPromises = () => new Promise(resolve => setTimeout(resolve));
+  // GET requests
+  const skillsFail = () =>
+    mock.onGet(projectSkillsUrl).reply(404, 'No skills available');
+  const skillsSucceed = () => mock.onGet(projectSkillsUrl).reply(200, skills);
+  const commentsFail = () =>
+    mock.onGet(projectCommentsUrl).reply(404, 'No comments available');
+  const commentsSucceed = () =>
+    mock.onGet(projectCommentsUrl).reply(200, comments);
+  const screenshotsFail = () =>
+    mock.onGet(projectScreenshotsUrl).reply(404, 'No screenshots available');
+  const screenshotsSucceed = () =>
+    mock.onGet(projectScreenshotsUrl).reply(200, screenshots);
+  // PATCH requests
+  const projectUpdateFail = () => mock.onPatch(projectUpdateUrl).reply(500);
+  const projectUpdateSucceed = () => mock.onPatch(projectUpdateUrl).reply(200);
+  // DELETE requests
+  const commentsDeleteFail = () =>
+    mock
+      .onDelete(projectCommentsUrl)
+      .reply(404, "Comment doesn't exist available");
+  const commentsDeleteSucceed = () =>
+    mock.onDelete(projectCommentsDeleteUrl).reply(200);
 
-	beforeAll(() => {
-		let project_id = projects[0]['id'];
-		let comment_id = projects[0]['id'];
-		projectSkillsUrl = `${projectsUrl}/${project_id}${skillsPath}`;
-		projectCommentsUrl = `${projectsUrl}/${project_id}${commentsPath}`;
-		projectCommentsDeleteUrl = `${projectsUrl}/${project_id}${commentsPath}/${comment_id}`;
-		projectScreenshotsUrl = `${projectsUrl}/${project_id}${screenshotsPath}`;
-		projectUpdateUrl = `${projectsUrl}/${project_id}`;
-	});
+  beforeAll(() => {
+    let project_id = projects[0]['id'];
+    let comment_id = projects[0]['id'];
+    projectSkillsUrl = `${projectsUrl}/${project_id}${skillsPath}`;
+    projectCommentsUrl = `${projectsUrl}/${project_id}${commentsPath}`;
+    projectCommentsDeleteUrl = `${projectsUrl}/${project_id}${commentsPath}/${comment_id}`;
+    projectScreenshotsUrl = `${projectsUrl}/${project_id}${screenshotsPath}`;
+    projectUpdateUrl = `${projectsUrl}/${project_id}`;
+  });
 
-	beforeEach(() => mock = new MockAdapter(axios) );
-	
-	////////////////////////////////////////////////////////////////
-	// Basic project
-	////////////////////////////////////////////////////////////////
-	it('should render correctly with no props', () => {
-		const component = shallow(<Project />);
-		expect(component).toMatchSnapshot();
-		expect(component.state('error')).toBeNull();
-	});
+  beforeEach(() => (mock = new MockAdapter(axios)));
 
-	it('should render correctly with project prop', async () => {
-		skillsSucceed();
-		commentsSucceed();
-		screenshotsSucceed();
+  ////////////////////////////////////////////////////////////////
+  // Basic project
+  ////////////////////////////////////////////////////////////////
+  it('should render correctly with no props', () => {
+    const component = shallow(<Project />);
+    expect(component).toMatchSnapshot();
+    expect(component.state('error')).toBeNull();
+  });
 
-		const component = shallow(<Project project={projects[0]} />);
-		await flushPromises();
-		expect(component).toMatchSnapshot();
-		expect(component.state('error')).toBeNull();
-	});
+  it('should render correctly with project prop', async () => {
+    skillsSucceed();
+    commentsSucceed();
+    screenshotsSucceed();
 
-	////////////////////////////////////////////////////////////////
-	// ComponentDidMount axios
-	////////////////////////////////////////////////////////////////
-	it('should handle skills error', async() => {
-		skillsFail();
-		commentsSucceed();
-		screenshotsSucceed();
+    const component = shallow(<Project project={projects[0]} />);
+    await flushPromises();
+    expect(component).toMatchSnapshot();
+    expect(component.state('error')).toBeNull();
+  });
 
-		const component = shallow(<Project project={projects[0]} />);
-		await flushPromises();
-		component.update();
+  ////////////////////////////////////////////////////////////////
+  // ComponentDidMount axios
+  ////////////////////////////////////////////////////////////////
+  it('should handle skills error', async () => {
+    skillsFail();
+    commentsSucceed();
+    screenshotsSucceed();
 
-		expect(component).toMatchSnapshot();
-		expect(component.state('error')).toBeTruthy();
-		expect(component.containsMatchingElement(<ErrorModal />)).toBe(true);
-	});
+    const component = shallow(<Project project={projects[0]} />);
+    await flushPromises();
+    component.update();
 
-	it('should handle comments error', async () => {
-		skillsSucceed();
-		commentsFail();
-		screenshotsSucceed();
+    expect(component).toMatchSnapshot();
+    expect(component.state('error')).toBeTruthy();
+    expect(component.containsMatchingElement(<ErrorModal />)).toBe(true);
+  });
 
-		const component = shallow(<Project project={projects[0]} />);
-		await flushPromises();
-		component.update();
+  it('should handle comments error', async () => {
+    skillsSucceed();
+    commentsFail();
+    screenshotsSucceed();
 
-		expect(component).toMatchSnapshot();
-		expect(component.state('error')).toBeTruthy();
-		expect(component.containsMatchingElement(<ErrorModal />)).toBe(true);
-	});
+    const component = shallow(<Project project={projects[0]} />);
+    await flushPromises();
+    component.update();
 
-	////////////////////////////////////////////////////////////////
-	// Project name editing
-	////////////////////////////////////////////////////////////////
-	it('should enable the input field when name is clicked', async () => {
-		skillsSucceed();
-		commentsSucceed();
-		screenshotsSucceed();
+    expect(component).toMatchSnapshot();
+    expect(component.state('error')).toBeTruthy();
+    expect(component.containsMatchingElement(<ErrorModal />)).toBe(true);
+  });
 
-		const component = mount(<Project project={projects[0]} />);
-		await flushPromises();
-		component.update();
+  ////////////////////////////////////////////////////////////////
+  // Project name editing
+  ////////////////////////////////////////////////////////////////
+  it('should enable the input field when name is clicked', async () => {
+    skillsSucceed();
+    commentsSucceed();
+    screenshotsSucceed();
 
-		let projectEditShowingBefore = component.state('projectEditShowing')
-		let projectLabelShowingBefore = component.state('projectLabelShowing')
+    const component = mount(<Project project={projects[0]} />);
+    await flushPromises();
+    component.update();
 
-		let projectName = component.find('#project-' + projects[0].id + '-label');
-		projectName.simulate('click');
+    let projectEditShowingBefore = component.state('projectEditShowing');
+    let projectLabelShowingBefore = component.state('projectLabelShowing');
 
-		let projectEditShowingAfter = component.state('projectEditShowing')
-		let projectLabelShowingAfter = component.state('projectLabelShowing')
+    let projectName = component.find('#project-' + projects[0].id + '-label');
+    projectName.simulate('click');
 
-		expect(component).toMatchSnapshot();
-		expect(projectEditShowingBefore).toBe(false);
-		expect(projectLabelShowingBefore).toBe(true);
-		expect(projectEditShowingAfter).toBe(true);
-		expect(projectLabelShowingAfter).toBe(false);
-	});
+    let projectEditShowingAfter = component.state('projectEditShowing');
+    let projectLabelShowingAfter = component.state('projectLabelShowing');
 
-	it('should disable the input field when cancel is clicked', async () => {
-		skillsSucceed();
-		commentsSucceed();
-		screenshotsSucceed();
+    expect(component).toMatchSnapshot();
+    expect(projectEditShowingBefore).toBe(false);
+    expect(projectLabelShowingBefore).toBe(true);
+    expect(projectEditShowingAfter).toBe(true);
+    expect(projectLabelShowingAfter).toBe(false);
+  });
 
-		const component = mount(<Project project={projects[0]} />);
-		await flushPromises();
-		component.update();
+  it('should disable the input field when cancel is clicked', async () => {
+    skillsSucceed();
+    commentsSucceed();
+    screenshotsSucceed();
 
-		component.setState({
-			projectEditShowing: true,
-			projectLabelShowing: false,
-		});
-		
-		let cancel = component.find('button.cancel-button');
-		cancel.simulate('click');
+    const component = mount(<Project project={projects[0]} />);
+    await flushPromises();
+    component.update();
 
-		let projectEditShowing = component.state('projectEditShowing')
-		let projectLabelShowing = component.state('projectLabelShowing')
+    component.setState({
+      projectEditShowing: true,
+      projectLabelShowing: false,
+    });
 
-		expect(component).toMatchSnapshot();
-		expect(projectEditShowing).toBe(false);
-		expect(projectLabelShowing).toBe(true);
-	});
+    let cancel = component.find('button.cancel-button');
+    cancel.simulate('click');
 
-	it('should allow editing of a project name', async () => {
-		skillsSucceed();
-		commentsSucceed();
-		screenshotsSucceed();
+    let projectEditShowing = component.state('projectEditShowing');
+    let projectLabelShowing = component.state('projectLabelShowing');
 
-		const component = mount(<Project project={projects[0]} />);
-		await flushPromises();
-		component.update();
+    expect(component).toMatchSnapshot();
+    expect(projectEditShowing).toBe(false);
+    expect(projectLabelShowing).toBe(true);
+  });
 
-		component.setState({
-			projectEditShowing: true,
-			projectLabelShowing: false,
-		});
-		
-		let nameValueOld = component.state('nameValue');
-		const editField = component.find('input')
-		editField.simulate('change', { target: { value: 'C' } } );
-		let nameValueNew = component.state('nameValue');
+  it('should allow editing of a project name', async () => {
+    skillsSucceed();
+    commentsSucceed();
+    screenshotsSucceed();
 
-		expect(component).toMatchSnapshot();
-		expect(nameValueOld).toEqual('A');
-		expect(nameValueNew).toEqual('C');
-	});
+    const component = mount(<Project project={projects[0]} />);
+    await flushPromises();
+    component.update();
 
-	it('should handle when a project is PATCHed', async () => {
-		skillsSucceed();
-		commentsSucceed();
-		screenshotsSucceed();
-		projectUpdateSucceed();
-		
-		const updateProject = jest.fn()
-		const component = mount(<Project project={projects[0]} updateProject={updateProject}/>);
-		await flushPromises();
-		component.update();
+    component.setState({
+      projectEditShowing: true,
+      projectLabelShowing: false,
+    });
 
-		component.setState({
-			projectEditShowing: true,
-			projectLabelShowing: false,
-		});
+    let nameValueOld = component.state('nameValue');
+    const editField = component.find('input');
+    editField.simulate('change', {target: {value: 'C'}});
+    let nameValueNew = component.state('nameValue');
 
-		const editField = component.find('input')
-		editField.simulate('change', { target: { value: 'C' } } );
-		const updateButton = component.find('button.update-button')
-		updateButton.simulate('click')
-		await flushPromises();
-		component.update();
+    expect(component).toMatchSnapshot();
+    expect(nameValueOld).toEqual('A');
+    expect(nameValueNew).toEqual('C');
+  });
 
-		let projectEditShowing = component.state('projectEditShowing')
-		let projectLabelShowing = component.state('projectLabelShowing')
+  it('should handle when a project is PATCHed', async () => {
+    skillsSucceed();
+    commentsSucceed();
+    screenshotsSucceed();
+    projectUpdateSucceed();
 
-		expect(component).toMatchSnapshot();
-		expect(projectEditShowing).toBe(false);
-		expect(projectLabelShowing).toBe(true);
-	});
+    const updateProject = jest.fn();
+    const component = mount(
+      <Project project={projects[0]} updateProject={updateProject} />,
+    );
+    await flushPromises();
+    component.update();
 
+    component.setState({
+      projectEditShowing: true,
+      projectLabelShowing: false,
+    });
 
-	it('should handle when a project PATCH fails', async () => {
-		skillsSucceed();
-		commentsSucceed();
-		screenshotsSucceed();
-		projectUpdateFail();
+    const editField = component.find('input');
+    editField.simulate('change', {target: {value: 'C'}});
+    const updateButton = component.find('button.update-button');
+    updateButton.simulate('click');
+    await flushPromises();
+    component.update();
 
-		const updateProject = jest.fn()
-		const component = mount(<Project project={projects[0]} updateProject={updateProject}/>);
-		await flushPromises();
-		component.update();
+    let projectEditShowing = component.state('projectEditShowing');
+    let projectLabelShowing = component.state('projectLabelShowing');
 
-		component.setState({
-			projectEditShowing: true,
-			projectLabelShowing: false,
-		});
+    expect(component).toMatchSnapshot();
+    expect(projectEditShowing).toBe(false);
+    expect(projectLabelShowing).toBe(true);
+  });
 
-		let projectEditShowingBefore = component.state('projectEditShowing')
-		let projectLabelShowingBefore = component.state('projectLabelShowing')
+  it('should handle when a project PATCH fails', async () => {
+    skillsSucceed();
+    commentsSucceed();
+    screenshotsSucceed();
+    projectUpdateFail();
 
-		const editField = component.find('input')
-		editField.simulate('change', { target: { value: 'C' } } );
-		const updateButton = component.find('button.update-button')
-		updateButton.simulate('click')
-		await flushPromises();
-		component.update();
+    const updateProject = jest.fn();
+    const component = mount(
+      <Project project={projects[0]} updateProject={updateProject} />,
+    );
+    await flushPromises();
+    component.update();
 
-		let projectEditShowingAfter = component.state('projectEditShowing')
-		let projectLabelShowingAfter = component.state('projectLabelShowing')
+    component.setState({
+      projectEditShowing: true,
+      projectLabelShowing: false,
+    });
 
-		expect(component).toMatchSnapshot();
-		expect(projectEditShowingBefore).toBe(true);
-		expect(projectLabelShowingBefore).toBe(false);
-		expect(projectEditShowingBefore).toEqual(projectEditShowingAfter);
-		expect(projectLabelShowingBefore).toEqual(projectLabelShowingAfter);
-		expect(component.state('error')).toBeTruthy();
-		expect(component.containsMatchingElement(<ErrorModal />)).toBe(true);
-	});
+    let projectEditShowingBefore = component.state('projectEditShowing');
+    let projectLabelShowingBefore = component.state('projectLabelShowing');
 
-	////////////////////////////////////////////////////////////////
-	// Deleting Comments
-	////////////////////////////////////////////////////////////////
-	it('should handle delete comments', async () => {
-		skillsSucceed();
-		commentsSucceed();
-		screenshotsSucceed();
-		commentsDeleteSucceed();
+    const editField = component.find('input');
+    editField.simulate('change', {target: {value: 'C'}});
+    const updateButton = component.find('button.update-button');
+    updateButton.simulate('click');
+    await flushPromises();
+    component.update();
 
-		const project_id = projects[0].id;
-		const comment_id = comments[0].id;
+    let projectEditShowingAfter = component.state('projectEditShowing');
+    let projectLabelShowingAfter = component.state('projectLabelShowing');
 
-		const component = mount(<Project project={projects[0]} />);
-		await flushPromises();
-		component.update();
+    expect(component).toMatchSnapshot();
+    expect(projectEditShowingBefore).toBe(true);
+    expect(projectLabelShowingBefore).toBe(false);
+    expect(projectEditShowingBefore).toEqual(projectEditShowingAfter);
+    expect(projectLabelShowingBefore).toEqual(projectLabelShowingAfter);
+    expect(component.state('error')).toBeTruthy();
+    expect(component.containsMatchingElement(<ErrorModal />)).toBe(true);
+  });
 
-		let commentsBeforeRequest = component.state('comments');
-		let comment = component.find(`#comment-${project_id}-${comment_id}`);
+  ////////////////////////////////////////////////////////////////
+  // Deleting Comments
+  ////////////////////////////////////////////////////////////////
+  it('should handle delete comments', async () => {
+    skillsSucceed();
+    commentsSucceed();
+    screenshotsSucceed();
+    commentsDeleteSucceed();
 
-		comment.simulate('click');
-		await flushPromises();
-		component.update();
+    const project_id = projects[0].id;
+    const comment_id = comments[0].id;
 
-		let commentsAfterRequest = component.state('comments');
-		comment = component.find(`#comment-${project_id}-${comment_id}`);
+    const component = mount(<Project project={projects[0]} />);
+    await flushPromises();
+    component.update();
 
-		expect(component).toMatchSnapshot();
-		expect(JSON.stringify(commentsBeforeRequest)).not.toEqual(JSON.stringify(commentsAfterRequest));
-		expect(comment).toEqual({});
-	});
+    let commentsBeforeRequest = component.state('comments');
+    let comment = component.find(`#comment-${project_id}-${comment_id}`);
 
-	it('should handle delete comments fail', async () => {
-		skillsSucceed();
-		commentsSucceed();
-		screenshotsSucceed();
-		commentsDeleteFail();
+    comment.simulate('click');
+    await flushPromises();
+    component.update();
 
-		const project_id = projects[0].id;
-		const comment_id = comments[0].id;
+    let commentsAfterRequest = component.state('comments');
+    comment = component.find(`#comment-${project_id}-${comment_id}`);
 
-		const component = mount(<Project project={projects[0]} />);
-		await flushPromises();
-		component.update();
+    expect(component).toMatchSnapshot();
+    expect(JSON.stringify(commentsBeforeRequest)).not.toEqual(
+      JSON.stringify(commentsAfterRequest),
+    );
+    expect(comment).toEqual({});
+  });
 
-		let commentsBeforeRequest = component.state('comments');
-		let comment = component.find(`#comment-${project_id}-${comment_id}`);
+  it('should handle delete comments fail', async () => {
+    skillsSucceed();
+    commentsSucceed();
+    screenshotsSucceed();
+    commentsDeleteFail();
 
-		comment.simulate('click');
-		await flushPromises();
-		component.update();
+    const project_id = projects[0].id;
+    const comment_id = comments[0].id;
 
-		let commentsAfterRequest = component.state('comments');
-		comment = component.find(`#comment-${project_id}-${comment_id}`);
+    const component = mount(<Project project={projects[0]} />);
+    await flushPromises();
+    component.update();
 
-		expect(component).toMatchSnapshot();
-		expect(JSON.stringify(commentsBeforeRequest)).toEqual(JSON.stringify(commentsAfterRequest));
-		expect(component.state('error')).toBeTruthy();
-		expect(component.containsMatchingElement(<ErrorModal />)).toBe(true);
-	});
+    let commentsBeforeRequest = component.state('comments');
+    let comment = component.find(`#comment-${project_id}-${comment_id}`);
 
-	////////////////////////////////////////////////////////////////
-	// Screenshot GETs
-	////////////////////////////////////////////////////////////////
-	it('should handle screenshots click', async () => {
-		skillsSucceed();
-		commentsSucceed();
-		screenshotsSucceed();
+    comment.simulate('click');
+    await flushPromises();
+    component.update();
 
-		const openLightbox = jest.fn();
-		const component = shallow(<Project project={projects[0]} openLightbox={openLightbox} />);
-		await flushPromises();
-		component.update();
+    let commentsAfterRequest = component.state('comments');
+    comment = component.find(`#comment-${project_id}-${comment_id}`);
 
-		const screenshot = component.find("#project-screenshot-" + screenshots[0].id);
-		screenshot.simulate('click');
+    expect(component).toMatchSnapshot();
+    expect(JSON.stringify(commentsBeforeRequest)).toEqual(
+      JSON.stringify(commentsAfterRequest),
+    );
+    expect(component.state('error')).toBeTruthy();
+    expect(component.containsMatchingElement(<ErrorModal />)).toBe(true);
+  });
 
-		expect(component).toMatchSnapshot();
-		expect(openLightbox).toHaveBeenCalled();
-	});
+  ////////////////////////////////////////////////////////////////
+  // Screenshot GETs
+  ////////////////////////////////////////////////////////////////
+  it('should handle screenshots click', async () => {
+    skillsSucceed();
+    commentsSucceed();
+    screenshotsSucceed();
 
-	it('should handle screenshots error', async () => {
-		skillsSucceed();
-		commentsSucceed();
-		screenshotsFail();
+    const openLightbox = jest.fn();
+    const component = shallow(
+      <Project project={projects[0]} openLightbox={openLightbox} />,
+    );
+    await flushPromises();
+    component.update();
 
-		const component = shallow(<Project project={projects[0]} />);
-		await flushPromises();
-		component.update();
+    const screenshot = component.find(
+      '#project-screenshot-' + screenshots[0].id,
+    );
+    screenshot.simulate('click');
 
-		expect(component).toMatchSnapshot();
-		expect(component.state('error')).toBeTruthy();
-		expect(component.containsMatchingElement(<ErrorModal />)).toBe(true);
-	});
+    expect(component).toMatchSnapshot();
+    expect(openLightbox).toHaveBeenCalled();
+  });
 
+  it('should handle screenshots error', async () => {
+    skillsSucceed();
+    commentsSucceed();
+    screenshotsFail();
+
+    const component = shallow(<Project project={projects[0]} />);
+    await flushPromises();
+    component.update();
+
+    expect(component).toMatchSnapshot();
+    expect(component.state('error')).toBeTruthy();
+    expect(component.containsMatchingElement(<ErrorModal />)).toBe(true);
+  });
 });
