@@ -177,7 +177,7 @@ export default class Upload extends Component {
                     })}
 									</Input>
 									{ !this.state.projectValid && this.state.projectTouched &&
-											<FormFeedback className="text-danger">Error: {this.state.projectErrorMessage}</FormFeedback>
+											<FormFeedback className="text-danger">{this.state.projectErrorMessage}</FormFeedback>
 									}
                 </FormGroup>
               </Col>
@@ -193,7 +193,7 @@ export default class Upload extends Component {
                     onChange={this.handleChangeScreenshot}
                   />
 									{ !this.state.screenshotValid && this.state.screenshotTouched &&
-											<FormFeedback className="text-danger">Error: {this.state.screenshotErrorMessage}</FormFeedback>
+											<FormFeedback className="text-danger">{this.state.screenshotErrorMessage}</FormFeedback>
 									}
                 </FormGroup>
               </Col>

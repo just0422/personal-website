@@ -8,10 +8,12 @@ export const experiencesPath = '/experiences';
 export const skillsPath = '/skills';
 export const commentsPath = '/comments';
 export const screenshotsPath = '/screenshots';
+export const contactPath = '/contact'
 
 export const projectsUrl = apiPath + projectsPath;
 export const experiencesUrl = apiPath + experiencesPath;
 export const skillsUrl = apiPath + skillsPath;
+export const contactUrl = apiPath + contactPath;
 export const resetUrl = '/reset';
 
 export default {
@@ -40,6 +42,12 @@ export default {
     return {
       getAll: () => axios.get(skillsUrl),
     };
+	},
+
+	contact() {
+		return {
+			emailContact: (contact) => axios.post(contactUrl, contact),
+		}
 	},
 
 	reset() {
