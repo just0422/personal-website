@@ -162,7 +162,6 @@ describe('Upload test', () => {
 		form.simulate('submit');
 		expect(component.state('loading')).toBe(true);
 		expect(component.state('complete')).toBe(false);
-		expect(component.containsMatchingElement(<img alt="" />)).toBe(false);
 	});
 
 	it('should submit POST and succeed', async () => {

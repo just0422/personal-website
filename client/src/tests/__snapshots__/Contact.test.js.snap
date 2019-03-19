@@ -1,5 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Contact test should handle changed first name 1`] = `ReactWrapper {}`;
+
+exports[`Contact test should handle changed invalid email 1`] = `ReactWrapper {}`;
+
+exports[`Contact test should handle changed last name 1`] = `ReactWrapper {}`;
+
+exports[`Contact test should handle changed message 1`] = `ReactWrapper {}`;
+
+exports[`Contact test should handle changed valid email 1`] = `ReactWrapper {}`;
+
+exports[`Contact test should handle submit POST fail 1`] = `ReactWrapper {}`;
+
 exports[`Contact test should handle untouched email 1`] = `ReactWrapper {}`;
 
 exports[`Contact test should handle untouched first name 1`] = `ReactWrapper {}`;
@@ -9,3 +21,7 @@ exports[`Contact test should handle untouched last name 1`] = `ReactWrapper {}`;
 exports[`Contact test should handle untouched message 1`] = `ReactWrapper {}`;
 
 exports[`Contact test should render correctly 1`] = `ShallowWrapper {}`;
+
+exports[`Contact test should submit POST 1`] = `ReactWrapper {}`;
+
+exports[`Contact test should submit POST and suceed 1`] = `ReactWrapper {}`;

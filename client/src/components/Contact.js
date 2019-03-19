@@ -70,7 +70,7 @@ export default class Contact extends Component {
       this.setState({
         emailTouched: true,
         emailValid: false,
-        emailErrorMessage: 'Enter valid email',
+        emailErrorMessage: 'Enter valid email address',
       });
     } else if (!this.state.messageTouched) {
       this.setState({
@@ -136,8 +136,8 @@ export default class Contact extends Component {
       this.setState({
         email: '',
         emailValid: false,
-				emailTouched: true,
-				emailErrorMessage: "Please enter a valid email address"
+        emailTouched: true,
+        emailErrorMessage: 'Enter valid email address',
       });
     }
   }
