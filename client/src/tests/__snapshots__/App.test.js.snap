@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App test should handle reset click 1`] = `ShallowWrapper {}`;
+
+exports[`App test should handle reset submit and fail 1`] = `ShallowWrapper {}`;
+
+exports[`App test should handle reset submit and succeed 1`] = `ShallowWrapper {}`;
+
+exports[`App test should render correctly 1`] = `ShallowWrapper {}`;
