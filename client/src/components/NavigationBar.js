@@ -1,34 +1,9 @@
 import React, {Component} from 'react';
-import {Navbar, NavItem, Nav, Button} from 'react-bootstrap';
-import Countdown from 'react-countdown-now';
+import {Navbar, NavItem, Nav} from 'react-bootstrap';
 
 import 'stylesheets/website.scss';
 
 export default class NavigationBar extends Component {
-  constructor(props) {
-    super(props);
-
-    this.resetTime = this.resetTime.bind(this);
-
-    this.state = {
-      countDownTo: 0,
-    };
-  }
-
-  resetTime() {
-    const interval = 900000; // 15 min
-    let time = Date.now();
-    let remainder = time % interval;
-
-    this.setState({
-      countDownTo: time + interval - remainder,
-    });
-  }
-
-  componentDidMount() {
-    this.resetTime();
-  }
-
   render() {
     return (
       <div>
@@ -59,16 +34,6 @@ export default class NavigationBar extends Component {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-        <div className="website-reset-countdown">
-          <Button onClick={this.props.handleLoading}>Reset Now</Button> Reseting
-          in{' '}
-          <Countdown
-            date={this.state.countDownTo}
-            onComplete={() => this.resetTime()}
-            precision={2}
-            zeroPadDays={0}
-          />
-        </div>
       </div>
     );
   }
