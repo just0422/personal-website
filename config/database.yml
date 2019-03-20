@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: personal-website_production
-  username: personal-website
-  password: <%= ENV['PERSONAL-WEBSITE_DATABASE_PASSWORD'] %>
+  username: website
+  password: <%= ENV['PERSONAL_WEBSITE_DATABASE_PASSWORD'] %>
