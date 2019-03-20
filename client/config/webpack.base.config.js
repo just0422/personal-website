@@ -14,7 +14,7 @@ module.exports = env => {
         rules: [
           {
             test: /\.js$/,
-            exclude: /node_modules/,
+            exclude: [/node_modules/, /tests/],
             use: {
               loader: 'babel-loader',
             },
@@ -28,19 +28,19 @@ module.exports = env => {
             ],
           },
         ],
-			},
-			resolve: {
-				modules: [
-					path.resolve('src'),
-					path.resolve('src/components'),
-					path.resolve('src/stylesheets'),
-					path.resolve('node_modules'),
-				],
-			},
+      },
+      resolve: {
+        modules: [
+          path.resolve('src'),
+          path.resolve('src/components'),
+          path.resolve('src/stylesheets'),
+          path.resolve('node_modules'),
+        ],
+      },
       plugins: [
         new HtmlWebpackPlugin({
           template: './public/index.html',
-          filename: './index.html',
+          filename: "./index.html"
         }),
         new webpack.DefinePlugin({
           'process.env.VERSION': JSON.stringify(env.VERSION),
@@ -50,8 +50,8 @@ module.exports = env => {
       ],
       devServer: {
         proxy: {
-          '/api': 'http://localhost:3001',
-          '/reset': 'http://localhost:3001',
+          '/api': 'http://api.justin-maldonado.com',
+          '/reset': 'http://justin-maldonado.com',
         },
       },
     },
