@@ -21,10 +21,13 @@ export default class Resume extends Component {
 	}
 
 	componentDidMount(){
+    console.log("starting")
 		axios.all([
 			api.skills().getAll(),
 			api.experiences().getAll()
 		]).then(axios.spread((skillsResponse, experiencesResponse) => {
+        console.log(skillsResponse);
+        console.log(experiencesResponse);
 				this.setState({
 					skills: skillsResponse.data,
 					experiences: experiencesResponse.data

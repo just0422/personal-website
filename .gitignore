@@ -29,3 +29,7 @@
 
 # Vim temp files
 *.swp
+
+shared
+config
+client/webpack.*

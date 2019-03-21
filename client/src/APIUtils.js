@@ -2,7 +2,8 @@ import axios from 'axios';
 
 const fileHeader = { headers: { 'Content-Type': 'multipart/form-data' } }
 
-const apiPath = '/api/v1';
+const proxyurl = "https://cors-anywhere.herokuapp.com/";
+const apiPath = proxyurl + 'http://api.justin-maldonado.com/api/v1';
 export const projectsPath = '/projects';
 export const experiencesPath = '/experiences';
 export const skillsPath = '/skills';
