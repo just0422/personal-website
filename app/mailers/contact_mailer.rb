@@ -5,7 +5,7 @@ class ContactMailer < ApplicationMailer
 		@email = params[:email]
 		@message = params[:message]
 		
-		mail(to: "just0422@gmail.com", from: "notification@justinmaldonado.com", subject: "Message from " + @first_name + " " + @last_name) do |format|
+		mail(to: "just0422@gmail.com", from: "website@justin-maldonado.com", subject: "Message from " + @first_name + " " + @last_name) do |format|
 			format.text
 		end
 	end
