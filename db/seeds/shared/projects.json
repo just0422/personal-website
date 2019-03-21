@@ -1,14 +1,14 @@
 {
 	"records": [
 		{
-			"sprig_id":1,
+			"sprig_id": 1,
 			"name": "Christ Tabernacle Tech Arts Checklist",
 			"description": "A web application inteneded to provide a system of tracking protocol adherance",
 			"start": "2018-02-02 00:00:00",
 			"end": null,
 			"demo_link": "",
 			"github_link": "https://github.com/just0422/techarts",
-			"rank": 2,
+			"rank": 3,
 			"skills": [
 				"<%= sprig_record(Skill, 9) %>",
 				"<%= sprig_record(Skill, 11) %>"
@@ -29,7 +29,7 @@
 			"end": "2017-05-02 00:00:00",
 			"demo_link": null,
 			"github_link": "https://github.com/just0422/p6-processor",
-			"rank": 4,
+			"rank": 5,
 			"skills": [
 				"<%= sprig_record(Skill, 18) %>"
 			],
@@ -46,7 +46,7 @@
 			"end": "2016-05-31 00:00:00",
 			"demo_link": null,
 			"github_link": "https://github.com/just0422/Digital-Conceptions",
-			"rank": 5,
+			"rank": 6,
 			"skills": [
 				"<%= sprig_record(Skill, 4) %>",
 				"<%= sprig_record(Skill, 5) %>",
@@ -64,7 +64,7 @@
 			"description": "An interactive version of my resume",
 			"start": "2018-11-02 00:00:00",
 			"end": null,
-			"demo_link": "/",
+			"demo_link": "http://wwww.justin-maldonado.com",
 			"github_link": "https://github.com/just0422/personal-website",
 			"rank": 1,
 			"skills": [
@@ -87,7 +87,7 @@
 			"end": "2018-12-31 00:00:00",
 			"demo_link": null,
 			"github_link": null,
-			"rank": 3,
+			"rank": 4,
 			"skills": [
 				"<%= sprig_record(Skill, 1) %>",
 				"<%= sprig_record(Skill, 19) %>",
@@ -100,6 +100,27 @@
 				"<%= sprig_record(Comment, 14) %>",
 				"<%= sprig_record(Comment, 15) %>"
 			]
-		}
+		},
+    {
+      "sprig_id": 6,
+      "name": "Keying Software",
+      "description": "Keying software intended for DeltaLock, inc.",
+      "start": "2016-08-02 00:00:00",
+			"end": "2018-10-31 00:00:00",
+			"demo_link": "http://delta.justin-maldonado.com",
+      "github_link": "https://github.com/just0422/DeltaLock",
+			"rank": 2,
+			"skills": [
+				"<%= sprig_record(Skill, 6) %>",
+				"<%= sprig_record(Skill, 13) %>",
+				"<%= sprig_record(Skill, 5) %>",
+				"<%= sprig_record(Skill, 7) %>"
+			],
+			"comments": [
+				"<%= sprig_record(Comment, 16) %>",
+				"<%= sprig_record(Comment, 17) %>",
+				"<%= sprig_record(Comment, 18) %>"
+			]
+    }
 	]
 }

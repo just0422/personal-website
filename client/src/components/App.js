@@ -16,10 +16,13 @@ class App extends Component {
 
     this.handleLoading = this.handleLoading.bind(this);
     this.resetTime = this.resetTime.bind(this);
+    this.resetMessage = this.resetMessage.bind(this);
 
     this.state = {
       countDownTo: -1,
       loading: false,
+      resetText: 'Resetting in ',
+      timeToReset: false
     };
   }
 
@@ -38,6 +41,13 @@ class App extends Component {
           error: err,
         });
       });
+  }
+
+  resetMessage() {
+    this.setState({
+      timeToReset: true,
+      resetText: 'Website data is resetting. Please refresh soon!'
+    })
   }
 
   resetTime() {
@@ -75,13 +85,15 @@ class App extends Component {
             <Button id="reset-button" onClick={this.handleLoading}>
               Reset Now
             </Button>{' '}
-            Reseting in{' '}
-            <Countdown
-              date={this.state.countDownTo}
-              onComplete={() => this.resetTime()}
-              precision={2}
-              zeroPadDays={0}
-            />
+            {this.state.resetText}
+            {!this.state.timeToReset &&
+              <Countdown
+                date={this.state.countDownTo}
+                onComplete={this.resetMessage}
+                precision={2}
+                zeroPadDays={0}
+              />
+            }
           </div>
         </div>
       );

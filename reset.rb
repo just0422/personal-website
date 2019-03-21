@@ -6,7 +6,7 @@ require 'open3'
 require 'mail'
 
 environment = "production"
-host = "localhost"
+host = "api.justin-maldonado.com"
 
 Mail.defaults do
   delivery_method :smtp, { 
@@ -104,6 +104,8 @@ begin
 
   stdout, stderr, status = Open3.capture3(seed_database)
   throw :exitWithError if not status.success?
+  puts "Successfully seeded database"
+
 rescue Exception => e
   puts "Error: Sending Email"
   out = "------------------------------------------------------------------\n"

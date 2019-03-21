@@ -18,6 +18,7 @@ gem "shrine"										# Image uploading
 gem "image_processing"
 gem "mini_magick", ">= 4.3.5"
 gem "rest-client"
+gem 'mailgun-ruby', '~>1.1.6'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
