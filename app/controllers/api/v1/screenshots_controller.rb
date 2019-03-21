@@ -5,7 +5,7 @@ class Api::V1::ScreenshotsController < ApplicationController
 	# GET /projects/:project_id/screenshots
 	def index
 		for screenshot in @parent.screenshots do
-			screenshot[:image_data] = "http://localhost:3001" + screenshot.image_url(:thumb)
+			screenshot[:image_data] = "http://api.justin-maldonado.com" + screenshot.image_url(:thumb)
 		end
 
 		render json: @parent.screenshots
@@ -13,7 +13,7 @@ class Api::V1::ScreenshotsController < ApplicationController
 
 	# GET /projects/:project_id/screenshots/:id
 	def show
-		@screenshot[:image_data] = "http://localhost:3001" + @screenshot.image_url(:original)
+		@screenshot[:image_data] = "http://api.justin-maldonado.com" + @screenshot.image_url(:original)
 		render json: @screenshot
 	end
 
