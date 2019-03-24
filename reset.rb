@@ -127,7 +127,7 @@ rescue Exception => e
   Mail.deliver do
     to "just0422@gmail.com"
     from "website@justin-maldonado.com"
-    subject "Personal Website Error - Finished with status (" + status.exitstatus.to_s + ")"
+    subject "Delta Error - Finished with status (" + status.exitstatus.to_s + ")"
     body out + err
   end
 else
@@ -135,3 +135,52 @@ else
 end
 
 puts "\n\n\n"
+
+begin
+  puts "Entering Techarts"
+  puts "------------------"
+  Dir.chdir "/home/website/techarts"
+
+  # Enter environment
+  puts "Running command: 'source /home/website/techarts/techartsenv/bin/activate'"
+  activate_env = "source /home/website/techarts/techartsenv/bin/activate"
+
+  stdout, stderr, status = Open3.capture3(seed_database)
+  throw :exitWithError if not status.success?
+  puts "Successfully entered environment"
+
+  # Seed DB
+  seed_database = "/home/website/techarts/techartsenv/bin/python3 manage.py loaddata /home/website/techarts/seeds.json"
+  puts "Running command: 'python3 manage.py loaddata'"
+
+  stdout, stderr, status = Open3.capture3(seed_database)
+  throw :exitWithError if not status.success?
+  puts "Successfully seeded database"
+
+rescue Exception => e
+  puts "Error: Sending Email"
+  out = "------------------------------------------------------------------\n"
+  out +="|                            STDOUT                              |\n"
+  out +="------------------------------------------------------------------\n"
+  out += stdout
+
+  out +="\n\n==================================================================\n\n"
+
+  err = "------------------------------------------------------------------\n"
+  err +="|                            STDERR                              |\n"
+  err +="------------------------------------------------------------------\n"
+  err += stderr
+  err +="------------------------------------------------------------------\n"
+  err += e.message
+  err +="------------------------------------------------------------------\n"
+  err += e.backtrace.inspect
+
+  Mail.deliver do
+    to "just0422@gmail.com"
+    from "website@justin-maldonado.com"
+    subject "Delta Error - Finished with status (" + status.exitstatus.to_s + ")"
+    body out + err
+  end
+else
+  puts "Tech Arts Checklist Complete"
+end
