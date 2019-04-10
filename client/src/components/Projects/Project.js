@@ -234,7 +234,7 @@ export default class Project extends Component {
               <Moment format={'MMM. YYYY'}>{end}</Moment>
             </Col>
             <Col xs={6} className="project-right-column">
-              Demo: <a href={demo_link} target="_blank" rel="noopener noreferrer">
+            { demo_link ? 'Demo: ' : '' }<a href={demo_link} target="_blank" rel="noopener noreferrer">
                 {demo_link}
               </a>
             </Col>
