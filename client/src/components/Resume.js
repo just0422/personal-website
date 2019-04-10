@@ -65,9 +65,9 @@ export default class Resume extends Component {
 					<PageHeader>Justin Maldonado</PageHeader>
 					<Grid>
 						<Row>
-							<Col xs={4}><a href="https://github.com/just0422" target="_blank" rel="noopener noreferrer">https://github.com/just0422</a></Col>
-							<Col xs={4}><a href="mailto:just0422@gmail.com">just0422@gmail.com</a></Col>
-							<Col xs={4}>(347) 922-5075</Col>
+							<Col md={4}><a href="https://github.com/just0422" target="_blank" rel="noopener noreferrer">https://github.com/just0422</a></Col>
+							<Col md={4}><a href="mailto:just0422@gmail.com">just0422@gmail.com</a></Col>
+							<Col md={4}>(347) 922-5075</Col>
 						</Row>
 						<Row>
 							<Col md={5} sm={12}>
