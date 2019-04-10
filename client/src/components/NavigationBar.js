@@ -22,9 +22,6 @@ export default class NavigationBar extends Component {
               <NavItem eventKey={2} href="/projects">
                 Projects
               </NavItem>
-              <NavItem eventKey={3} href="/about">
-                About
-              </NavItem>
               <NavItem eventKey={4} href="/contact">
                 Contact
               </NavItem>
