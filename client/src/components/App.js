@@ -82,10 +82,12 @@ class App extends Component {
           <NavigationBar />
           <Main />
           <div className="website-reset-countdown">
-            <Button id="reset-button" onClick={this.handleLoading}>
-              Reset Now
-            </Button>{' '}
-            {this.state.resetText}
+            {!this.state.timeToReset &&
+              <Button id="reset-button" onClick={this.handleLoading}>
+                Reset Now
+              </Button>
+            }
+            {' ' + this.state.resetText}
             {!this.state.timeToReset &&
               <Countdown
                 date={this.state.countDownTo}

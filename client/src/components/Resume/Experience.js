@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Grid, Row, Col} from 'react-bootstrap';
 import Moment from 'react-moment';
 import axios from 'axios';
+import {PacmanLoader} from 'react-spinners';
 
 import api from 'APIUtils';
 import ErrorModal from 'Error';
@@ -16,6 +17,7 @@ export default class Experience extends Component {
       skills: [],
       comments: [],
       error: null,
+      loading: false
     };
   }
 
@@ -32,6 +34,7 @@ export default class Experience extends Component {
   componentDidMount() {
     let id = this.props.job.id;
     if (id > 0) {
+      this.setState({loading: true});
       axios
         .all([
           api.experiences().getSkills(id),
@@ -40,6 +43,7 @@ export default class Experience extends Component {
         .then(
           axios.spread((skillsResponse, commentsResponse) => {
             this.setState({
+              loading: false,
               skills: skillsResponse.data,
               comments: commentsResponse.data,
             });
@@ -47,6 +51,7 @@ export default class Experience extends Component {
         )
         .catch(err => {
           this.setState({
+            loading: false,
             error: err,
           });
         });
@@ -62,8 +67,22 @@ export default class Experience extends Component {
       return <li key={i}>{comment.content}</li>;
     });
 
+    if (!job.end){
+      job.end = new Date()
+    }
+
     if (this.state.error) {
       return <ErrorModal component="Experience" error={this.state.error} />;
+    } else if (this.state.loading) {
+      return (
+        <PacmanLoader
+          sizeUnit={'px'}
+          size={10}
+          color={'#a00'}
+          loading={this.state.loading}
+          className="justify-content-center"
+        />
+      );
     } else {
       return (
         <div>

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {PageHeader, Grid} from 'react-bootstrap';
 import {Lightbox} from 'react-modal-image';
+import {PacmanLoader} from 'react-spinners';
 
 import Project from 'Projects/Project';
 import ErrorModal from 'Error';
@@ -26,11 +27,13 @@ export default class Projects extends Component {
   }
 
   handleLightboxOpen(project_id, screenshot_id) {
+    this.setState({ loading: true });
     api
       .projects()
       .getScreenshot(project_id, screenshot_id)
       .then(response => {
         this.setState({
+          loading: false,
           lightboxEnabled: true,
           lightboxImageSrc: response.data['image_data'],
         });
@@ -38,6 +41,7 @@ export default class Projects extends Component {
       .catch(err => {
         this.setState({
           error: err,
+          loading: false,
         });
       });
   }
@@ -58,16 +62,19 @@ export default class Projects extends Component {
   }
 
   componentDidMount() {
+    this.setState({ loading: true });
     api
       .projects()
       .getAll()
       .then(response => {
         this.setState({
+          loading: false,
           projects: response.data,
         });
       })
       .catch(err => {
         this.setState({
+          loading: false,
           error: err,
         });
       });
@@ -76,6 +83,19 @@ export default class Projects extends Component {
   render() {
     if (this.state.error) {
       return <ErrorModal component="Projects" error={this.state.error} />;
+    } else if (this.state.loading) {
+      return (
+        <div className="container">
+          <PageHeader>Projects</PageHeader>
+          <PacmanLoader
+            sizeUnit={'px'}
+            size={150}
+            color={'#a00'}
+            loading={this.state.loading}
+            className="justify-content-center"
+          />
+        </div>
+        );
 		} else {
       return (
         <div className="container">

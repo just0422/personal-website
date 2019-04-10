@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Grid, Row, Col, PageHeader } from 'react-bootstrap';
 import axios from 'axios';
+import {PacmanLoader} from 'react-spinners';
 
 import Skills from 'Resume/Skills';
 import Education from 'Resume/Education';
@@ -16,12 +17,13 @@ export default class Resume extends Component {
 		this.state = {
 			skills: [],
 			experiences: [],
-			error: null
+			error: null,
+      loading: false,
 		}
 	}
 
 	componentDidMount(){
-    console.log("starting")
+    this.setState({loading: true});
 		axios.all([
 			api.skills().getAll(),
 			api.experiences().getAll()
@@ -29,11 +31,13 @@ export default class Resume extends Component {
         console.log(skillsResponse);
         console.log(experiencesResponse);
 				this.setState({
+          loading: false,
 					skills: skillsResponse.data,
 					experiences: experiencesResponse.data
 				})
 		})).catch(err => {
 			this.setState({
+        loading: false,
 				error: err,
 			})
 		});
@@ -42,6 +46,19 @@ export default class Resume extends Component {
 	render(){
 		if (this.state.error) {
 			return <ErrorModal component="Resume" error={this.state.error} />
+    } else if (this.state.loading) {
+      return (
+        <div className="container">
+          <PageHeader>Justin Maldonado</PageHeader>
+          <PacmanLoader
+            sizeUnit={'px'}
+            size={150}
+            color={'#a00'}
+            loading={this.state.loading}
+            className="justify-content-center"
+          />
+        </div>
+      );
 		} else {
 			return(
 				<div className="container">

@@ -38,7 +38,7 @@ export default class ErrorModal extends Component {
         </Modal.Header>
 				<Modal.Body>
 					<h4>Hmm... This wasn't supposed to happen.</h4> 
-					<h4>Please refresh and try again</h4>
+					<h4>Please refresh and try again. If it keeps happening, Justin will be notified and attend to it shortly.</h4>
 					<hr />
 					<h4>Error Message:</h4>
           <div>{error.statusText}</div>
