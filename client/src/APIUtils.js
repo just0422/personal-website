@@ -15,7 +15,7 @@ export const projectsUrl = apiPath + projectsPath;
 export const experiencesUrl = apiPath + experiencesPath;
 export const skillsUrl = apiPath + skillsPath;
 export const contactUrl = apiPath + contactPath;
-export const resetUrl = '/reset';
+export const resetUrl = proxyurl + 'http://api.justin-maldonado.com/reset';
 
 export default {
   projects() {
