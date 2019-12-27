@@ -171,7 +171,7 @@ export default class Project extends Component {
             <img
               src={screenshot.image_data}
               alt="broken"
-              id={'project-screenshot-' + screenshot.id}
+              id={'project-' + id + 'screenshot-' + screenshot.id}
               className="project-screenshot"
               onClick={() => this.props.openLightbox(project.id, screenshot.id)}
             />
@@ -243,9 +243,9 @@ export default class Project extends Component {
             <Col xs={12} className="project-subleft-column">
               {comments}
             </Col>
-            <Col xs={12} className="project-subleft-column">
+            { screenshots.length > 0 && (<Col xs={12} className="project-subleft-column project-screenshots-container">
               <Slider {...settings}>{screenshots}</Slider>
-            </Col>
+            </Col> )}
           </Row>
           <hr />
         </div>

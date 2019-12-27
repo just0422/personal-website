@@ -69,12 +69,17 @@ class App extends Component {
       return <ErrorModal component="Reset" error={this.state.error} />;
     } else if (this.state.loading) {
       return (
-        <PacmanLoader
-          sizeUnit={'px'}
-          size={150}
-          color={'#a00'}
-          loading={this.state.loading}
-        />
+        <div>
+          <h1>Website is resetting...</h1>
+          <h3>Please hold. This takes about 15 seconds.</h3>
+
+          <PacmanLoader
+            sizeUnit={'px'}
+            size={150}
+            color={'#a00'}
+            loading={this.state.loading}
+          />
+        </div>
       );
     } else {
       return (

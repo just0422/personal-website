@@ -75,13 +75,18 @@ export default class Experience extends Component {
       return <ErrorModal component="Experience" error={this.state.error} />;
     } else if (this.state.loading) {
       return (
-        <PacmanLoader
-          sizeUnit={'px'}
-          size={10}
-          color={'#a00'}
-          loading={this.state.loading}
-          className="justify-content-center"
-        />
+        <div>
+          <div className="section-element-header">
+            <strong>{job.name}</strong>
+          </div>
+          <PacmanLoader
+            sizeUnit={'px'}
+            size={10}
+            color={'#a00'}
+            loading={this.state.loading}
+            className="justify-content-center"
+          />
+        </div>
       );
     } else {
       return (

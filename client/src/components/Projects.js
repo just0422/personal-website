@@ -86,7 +86,7 @@ export default class Projects extends Component {
     } else if (this.state.loading) {
       return (
         <div className="container">
-          <PageHeader>Projects</PageHeader>
+          <PageHeader>Projects (loading... please hold)</PageHeader>
           <PacmanLoader
             sizeUnit={'px'}
             size={150}

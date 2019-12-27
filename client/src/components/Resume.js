@@ -49,7 +49,7 @@ export default class Resume extends Component {
     } else if (this.state.loading) {
       return (
         <div className="container">
-          <PageHeader>Justin Maldonado</PageHeader>
+          <PageHeader>Justin Maldonado (loading... please hold)</PageHeader>
           <PacmanLoader
             sizeUnit={'px'}
             size={150}

@@ -14,7 +14,7 @@ Mail.defaults do
     :port => 587, 
     :domain => "sandboxc650c29850bf4bc5801a651b4f5f5f1c.mailgun.org",
     :user_name => "postmaster@sandboxc650c29850bf4bc5801a651b4f5f5f1c.mailgun.org",
-    :password => "b90b739bc5a2252625392fa4b4aebfab-985b58f4-94f3d2e3",
+    :password => "fNh4wHPy8*gx9#67BfToBXGe#uD!lWQF",
     :authentication => 'plain',
     :enable_starttls_auto => true
   }

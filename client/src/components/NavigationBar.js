@@ -20,7 +20,7 @@ export default class NavigationBar extends Component {
                 Resume
               </NavItem>
               <NavItem eventKey={2} href="/projects">
-                Projects
+                Projects & Demos
               </NavItem>
               <NavItem eventKey={4} href="/contact">
                 Contact
