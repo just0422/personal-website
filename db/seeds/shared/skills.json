@@ -94,6 +94,11 @@
 			"sprig_id": 19,
 			"name": "RabbitMQ",
 			"years": "<%= Date.today.year - 2017 %>"
+		},
+		{
+			"sprig_id": 20,
+			"name": "Redux",
+			"years": "<%= Date.today.year - 2018 %>"
 		}
 	]
 }

@@ -6,9 +6,9 @@
 			"description": "A web application inteneded to provide a system of tracking protocol adherance",
 			"start": "2018-02-02 00:00:00",
 			"end": null,
-			"demo_link": "http://techapp.justin-maldonado.com"",
+			"demo_link": "http://techapp.justin-maldonado.com",
 			"github_link": "https://github.com/just0422/techarts",
-			"rank": 3,
+			"rank": 4,
 			"skills": [
 				"<%= sprig_record(Skill, 9) %>",
 				"<%= sprig_record(Skill, 11) %>"
@@ -18,7 +18,8 @@
 				"<%= sprig_record(Comment, 2) %>",
 				"<%= sprig_record(Comment, 3) %>",
 				"<%= sprig_record(Comment, 4) %>",
-				"<%= sprig_record(Comment, 5) %>"
+				"<%= sprig_record(Comment, 5) %>",
+				"<%= sprig_record(Comment, 20) %>"
 			]
 		},
 		{
@@ -29,7 +30,7 @@
 			"end": "2017-05-02 00:00:00",
 			"demo_link": null,
 			"github_link": "https://github.com/just0422/p6-processor",
-			"rank": 5,
+			"rank": 6,
 			"skills": [
 				"<%= sprig_record(Skill, 18) %>"
 			],
@@ -46,7 +47,7 @@
 			"end": "2016-05-31 00:00:00",
 			"demo_link": null,
 			"github_link": "https://github.com/just0422/Digital-Conceptions",
-			"rank": 6,
+			"rank": 7,
 			"skills": [
 				"<%= sprig_record(Skill, 4) %>",
 				"<%= sprig_record(Skill, 5) %>",
@@ -87,7 +88,7 @@
 			"end": "2018-12-31 00:00:00",
 			"demo_link": null,
 			"github_link": null,
-			"rank": 4,
+			"rank": 5,
 			"skills": [
 				"<%= sprig_record(Skill, 1) %>",
 				"<%= sprig_record(Skill, 19) %>",
@@ -109,7 +110,7 @@
 			"end": "2018-10-31 00:00:00",
 			"demo_link": "http://delta.justin-maldonado.com",
       "github_link": "https://github.com/just0422/DeltaLock",
-			"rank": 2,
+			"rank": 3,
 			"skills": [
 				"<%= sprig_record(Skill, 6) %>",
 				"<%= sprig_record(Skill, 13) %>",
@@ -121,6 +122,22 @@
 				"<%= sprig_record(Comment, 17) %>",
 				"<%= sprig_record(Comment, 18) %>"
 			]
+    },
+    {
+      "sprig_id": 7,
+      "name": "Planning Center - F1 Transfer Script",
+      "description": "A script to migrate data from Planning Center to FellowshipOne",
+      "start": "2019-12-01 00:00:00",
+      "end": null,
+      "demo_link": null,
+      "github_link": null,
+      "rank": 2,
+      "skills": [
+        "<%= spring_record(Skill, 1) %>"
+      ],
+      "comments": [
+        "<%= sprig_record(Comment, 30) %>
+      ]
     }
 	]
 }
