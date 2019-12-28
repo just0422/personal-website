@@ -28,8 +28,6 @@ export default class Resume extends Component {
 			api.skills().getAll(),
 			api.experiences().getAll()
 		]).then(axios.spread((skillsResponse, experiencesResponse) => {
-        console.log(skillsResponse);
-        console.log(experiencesResponse);
 				this.setState({
           loading: false,
 					skills: skillsResponse.data,
