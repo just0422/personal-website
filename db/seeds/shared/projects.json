@@ -5,7 +5,7 @@
 			"name": "Christ Tabernacle Tech Arts Checklist",
 			"description": "A web application inteneded to provide a system of tracking protocol adherance",
 			"start": "2018-02-02 00:00:00",
-			"end": null,
+			"end": "2019-03-01 00:00:00",
 			"demo_link": "http://techapp.justin-maldonado.com",
 			"github_link": "https://github.com/just0422/techarts",
 			"rank": 4,
@@ -133,10 +133,10 @@
       "github_link": null,
       "rank": 2,
       "skills": [
-        "<%= spring_record(Skill, 1) %>"
+        "<%= sprig_record(Skill, 1) %>"
       ],
       "comments": [
-        "<%= sprig_record(Comment, 30) %>
+        "<%= sprig_record(Comment, 30) %>"
       ]
     }
 	]
