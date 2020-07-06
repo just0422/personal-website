@@ -47,6 +47,6 @@ class Api::V1::ProjectsController < ApplicationController
 	end
 
 	def project_params
-		params.require(:project).permit(:name, :description, :start, :end, :demo_link, :github_link)
+		params.require(:project).permit(:name, :description, :start, :end, :live_link, :demo_link, :github_link)
 	end
 end

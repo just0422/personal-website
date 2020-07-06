@@ -141,10 +141,17 @@ export default class Project extends Component {
         </div>
       );
     } else {
-      let github_link = project ? project.github_link : 'github.com';
-      let demo_link = project ? project.demo_link : 'github.com';
+      let github_link = project ? project.github_link : null;
+      let demo_link = project ? project.demo_link : null;
+      let live_link = project ? project.live_link : null;
       let start = project ? new Date(project.start) : new Date();
       let end = project && project.end ? new Date(project.end) : new Date();
+      
+      let external_link = '';
+      if(demo_link)
+        external_link = demo_link;
+      if(live_link)
+        external_link = live_link;
 
       let skills = this.state.skills.map(skill => skill.name).join(', ');
       let comments = this.state.comments.map((comment, i) => {
@@ -234,8 +241,8 @@ export default class Project extends Component {
               <Moment format={'MMM. YYYY'}>{end}</Moment>
             </Col>
             <Col xs={6} className="project-right-column">
-            { demo_link ? 'Demo: ' : '' }<a href={demo_link} target="_blank" rel="noopener noreferrer">
-                {demo_link}
+            { demo_link ? 'Demo: ' : '' }{ live_link ? 'Live Application: ' : '' }<a href={external_link} target="_blank" rel="noopener noreferrer">
+                {external_link}
               </a>
             </Col>
           </Row>

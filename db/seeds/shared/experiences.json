@@ -3,9 +3,9 @@
 		{
 			"sprig_id": 1,
 			"name": "Clever Devices",
-			"title": "Associate Software Developer",
+			"title": "Software Engineer",
 			"start": "2017-09-25 00:00:00",
-			"end": null,
+			"end": "2020-04-12 00:00:00",
 			"rank": 1,
 			"skills": [
 				"<%= sprig_record(Skill, 3) %>",
@@ -18,7 +18,10 @@
 			"comments": [
 				"<%= sprig_record(Comment, 27) %>",
 				"<%= sprig_record(Comment, 28) %>",
-				"<%= sprig_record(Comment, 29) %>"
+				"<%= sprig_record(Comment, 29) %>",
+				"<%= sprig_record(Comment, 31) %>",
+				"<%= sprig_record(Comment, 32) %>",
+				"<%= sprig_record(Comment, 33) %>"
 			]
 		},
 		{
@@ -36,27 +39,7 @@
 			],
 			"comments": [
 				"<%= sprig_record(Comment, 16) %>",
-				"<%= sprig_record(Comment, 17) %>",
-				"<%= sprig_record(Comment, 18) %>"
-			]
-		},
-		{
-			"sprig_id": 3,
-			"name": "Stony Brook University",
-			"title": "Teaching Assistant - Systems Fundamentals I & II",
-			"start": "2015-08-01 00:00:00",
-			"end": "2017-12-31 00:00:00",
-			"rank": 3,
-			"skills": [
-				"<%= sprig_record(Skill, 17) %>",
-				"<%= sprig_record(Skill, 2) %>",
-				"<%= sprig_record(Skill, 1) %>"
-			],
-			"comments": [
-				"<%= sprig_record(Comment, 19) %>",
-				"<%= sprig_record(Comment, 20) %>",
-				"<%= sprig_record(Comment, 21) %>",
-				"<%= sprig_record(Comment, 22) %>"
+				"<%= sprig_record(Comment, 17) %>"
 			]
 		}
 	]

@@ -67,6 +67,13 @@ export default class Resume extends Component {
 							<Col md={4}><a href="mailto:just0422@gmail.com">just0422@gmail.com</a></Col>
 							<Col md={4}>(347) 922-5075</Col>
 						</Row>
+						<h3 className="resume-subheader">Experience</h3>
+						{
+							this.state.experiences.map( (job, i) => {
+								return (<Experience job={job} key={i}/>)
+							})
+						}
+						<hr />
 						<Row>
 							<Col md={5} sm={12}>
 								<Education />
@@ -75,13 +82,6 @@ export default class Resume extends Component {
 								<Skills skills={this.state.skills}/>
 							</Col>
 						</Row>
-						<hr />
-						<h3 className="resume-subheader">Experience</h3>
-						{
-							this.state.experiences.map( (job, i) => {
-								return (<Experience job={job} key={i}/>)
-							})
-						}
 					</Grid>
 					<br />
 					<br />

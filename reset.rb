@@ -3,22 +3,10 @@
 require 'json'
 require 'rest-client'
 require 'open3'
-require 'mail'
+require 'net/smtp'
 
 environment = "production"
 host = "api.justin-maldonado.com"
-
-Mail.defaults do
-  delivery_method :smtp, { 
-    :address => "smtp.mailgun.org", 
-    :port => 587, 
-    :domain => "sandboxc650c29850bf4bc5801a651b4f5f5f1c.mailgun.org",
-    :user_name => "postmaster@sandboxc650c29850bf4bc5801a651b4f5f5f1c.mailgun.org",
-    :password => "fNh4wHPy8*gx9#67BfToBXGe#uD!lWQF",
-    :authentication => 'plain',
-    :enable_starttls_auto => true
-  }
-end
 
 begin 
   puts "Entering Personal Website"
@@ -65,7 +53,7 @@ begin
     end
   end
 rescue Exception => e
-  puts "Error: Sending Email"
+  puts "Error: Sending Website Email"
   out = "------------------------------------------------------------------\n"
   out +="|                            STDOUT                              |\n"
   out +="------------------------------------------------------------------\n"
@@ -82,12 +70,21 @@ rescue Exception => e
   err +="------------------------------------------------------------------\n"
   err += e.backtrace.inspect
 
-  Mail.deliver do
-    to "just0422@gmail.com"
-    from "website@justin-maldonado.com"
-    subject "Personal Website Error - Finished with status (" + status.exitstatus.to_s + ")"
-    body out + err
-  end
+  message = <<END_MESSAGE
+From: Justin Maldonado <just0422@gmail.com>
+To: Justin Maldonado <just0422@hotmail.com>
+Subject: Personal Website Error - Finished with status (#{status.exitstatus.to_s})
+
+#{out}
+#{err}
+END_MESSAGE
+
+  smtp = Net::SMTP.new 'smtp.gmail.com', 587
+  smtp.enable_starttls
+
+  smtp.start("smtp.gmail.com", "just0422@gmail.com", "mscovsqwbobxkvbe", :plain) 
+  smtp.send_message message, "just0422@gmail.com", "just0422@gmail.com"
+  smtp.finish()
 else
   puts "Personal Website Complete"
 end
@@ -107,7 +104,7 @@ begin
   puts "Successfully seeded database"
 
 rescue Exception => e
-  puts "Error: Sending Email"
+  puts "Error: Sending Delta Email"
   out = "------------------------------------------------------------------\n"
   out +="|                            STDOUT                              |\n"
   out +="------------------------------------------------------------------\n"
@@ -124,12 +121,19 @@ rescue Exception => e
   err +="------------------------------------------------------------------\n"
   err += e.backtrace.inspect
 
-  Mail.deliver do
-    to "just0422@gmail.com"
-    from "website@justin-maldonado.com"
-    subject "Delta Error - Finished with status (" + status.exitstatus.to_s + ")"
-    body out + err
-  end
+  message  = "From: Justin Maldonado <just0422@gmail.com>\n"
+  message += "To: Justin Maldonado <just0422@gmail.com>\n"
+  message += "MIME-Version: 1.0\n"
+  message += "Content-type: text/html\n"
+  message += "Subject: Delta Error - Finished with status (" + status.exitstatus.to_s + ")\n\n"
+  message += out + err
+
+  smtp = Net::SMTP.new 'smtp.gmail.com', 587
+  smtp.enable_starttls
+
+  smtp.start("smtp.gmail.com", "just0422@gmail.com", "mscovsqwbobxkvbe", :plain) 
+  smtp.send_message message, "just0422@gmail.com", "just0422@gmail.com"
+  smtp.finish()
 else
   puts "DeltaLock Complete"
 end
@@ -158,7 +162,7 @@ begin
   puts "Successfully seeded database"
 
 rescue Exception => e
-  puts "Error: Sending Email"
+  puts "Error: Sending Tech Arts Email"
   out = "------------------------------------------------------------------\n"
   out +="|                            STDOUT                              |\n"
   out +="------------------------------------------------------------------\n"
@@ -175,12 +179,19 @@ rescue Exception => e
   err +="------------------------------------------------------------------\n"
   err += e.backtrace.inspect
 
-  Mail.deliver do
-    to "just0422@gmail.com"
-    from "website@justin-maldonado.com"
-    subject "Delta Error - Finished with status (" + status.exitstatus.to_s + ")"
-    body out + err
-  end
+  message  = "From: Justin Maldonado <just0422@gmail.com>\n"
+  message += "To: Justin Maldonado <just0422@gmail.com>\n"
+  message += "MIME-Version: 1.0\n"
+  message += "Content-type: text/html\n"
+  message += "Subject: Tech Arts Error - Finished with status (" + status.exitstatus.to_s + ")\n\n"
+  message += out + err
+
+  smtp = Net::SMTP.new 'smtp.gmail.com', 587
+  smtp.enable_starttls
+
+  smtp.start("smtp.gmail.com", "just0422@gmail.com", "mscovsqwbobxkvbe", :plain) 
+  smtp.send_message message, "just0422@gmail.com", "just0422@gmail.com"
+  smtp.finish()
 else
   puts "Tech Arts Checklist Complete"
 end

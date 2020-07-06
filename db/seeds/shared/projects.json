@@ -2,13 +2,14 @@
 	"records": [
 		{
 			"sprig_id": 1,
-			"name": "Christ Tabernacle Tech Arts Checklist",
+			"name": "Dynamic Single Page Web Application",
 			"description": "A web application inteneded to provide a system of tracking protocol adherance",
 			"start": "2018-02-02 00:00:00",
 			"end": "2019-03-01 00:00:00",
 			"demo_link": "http://techapp.justin-maldonado.com",
 			"github_link": "https://github.com/just0422/techarts",
-			"rank": 4,
+			"live_link": null,
+			"rank": 5,
 			"skills": [
 				"<%= sprig_record(Skill, 9) %>",
 				"<%= sprig_record(Skill, 11) %>"
@@ -18,56 +19,19 @@
 				"<%= sprig_record(Comment, 2) %>",
 				"<%= sprig_record(Comment, 3) %>",
 				"<%= sprig_record(Comment, 4) %>",
-				"<%= sprig_record(Comment, 5) %>",
-				"<%= sprig_record(Comment, 20) %>"
-			]
-		},
-		{
-			"sprig_id": 2,
-			"name": "Super scalar out-of-order processor",
-			"description": "Grad school architecture project",
-			"start": "2017-01-02 00:00:00",
-			"end": "2017-05-02 00:00:00",
-			"demo_link": null,
-			"github_link": "https://github.com/just0422/p6-processor",
-			"rank": 6,
-			"skills": [
-				"<%= sprig_record(Skill, 18) %>"
-			],
-			"comments": [
-				"<%= sprig_record(Comment, 6) %>",
-				"<%= sprig_record(Comment, 7) %>"
-			]
-		},
-		{
-			"sprig_id": 3,
-			"name": "Digital Conceptions",
-			"description": "Undergrad senior project comic book website",
-			"start": "2016-03-02 00:00:00",
-			"end": "2016-05-31 00:00:00",
-			"demo_link": null,
-			"github_link": "https://github.com/just0422/Digital-Conceptions",
-			"rank": 7,
-			"skills": [
-				"<%= sprig_record(Skill, 4) %>",
-				"<%= sprig_record(Skill, 5) %>",
-				"<%= sprig_record(Skill, 7) %>"
-			],
-			"comments": [
-				"<%= sprig_record(Comment, 8) %>",
-				"<%= sprig_record(Comment, 9) %>",
-				"<%= sprig_record(Comment, 10) %>"
+				"<%= sprig_record(Comment, 5) %>"
 			]
 		},
 		{
 			"sprig_id": 4,
-			"name": "This website",
+			"name": "Personal website",
 			"description": "An interactive version of my resume",
 			"start": "2018-11-02 00:00:00",
 			"end": null,
-			"demo_link": "http://wwww.justin-maldonado.com",
+			"demo_link": null,
+			"live_link": "http://wwww.justin-maldonado.com",
 			"github_link": "https://github.com/just0422/personal-website",
-			"rank": 1,
+			"rank": 2,
 			"skills": [
 				"<%= sprig_record(Skill, 9) %>",
 				"<%= sprig_record(Skill, 13) %>",
@@ -76,8 +40,7 @@
 			"comments": [
 				"<%= sprig_record(Comment, 23) %>",
 				"<%= sprig_record(Comment, 24) %>",
-				"<%= sprig_record(Comment, 25) %>",
-				"<%= sprig_record(Comment, 26) %>"
+				"<%= sprig_record(Comment, 25) %>"
 			]
 		},
 		{
@@ -87,8 +50,9 @@
 			"start": "2018-10-02 00:00:00",
 			"end": "2018-12-31 00:00:00",
 			"demo_link": null,
+			"live_link": null,
 			"github_link": null,
-			"rank": 5,
+			"rank": 6,
 			"skills": [
 				"<%= sprig_record(Skill, 1) %>",
 				"<%= sprig_record(Skill, 19) %>",
@@ -96,7 +60,6 @@
 			],
 			"comments": [
 				"<%= sprig_record(Comment, 11) %>",
-				"<%= sprig_record(Comment, 12) %>",
 				"<%= sprig_record(Comment, 13) %>",
 				"<%= sprig_record(Comment, 14) %>",
 				"<%= sprig_record(Comment, 15) %>"
@@ -110,7 +73,8 @@
 			"end": "2018-10-31 00:00:00",
 			"demo_link": "http://delta.justin-maldonado.com",
       "github_link": "https://github.com/just0422/DeltaLock",
-			"rank": 3,
+			"live_link": null,
+			"rank": 7,
 			"skills": [
 				"<%= sprig_record(Skill, 6) %>",
 				"<%= sprig_record(Skill, 13) %>",
@@ -119,8 +83,7 @@
 			],
 			"comments": [
 				"<%= sprig_record(Comment, 16) %>",
-				"<%= sprig_record(Comment, 17) %>",
-				"<%= sprig_record(Comment, 18) %>"
+				"<%= sprig_record(Comment, 17) %>"
 			]
     },
     {
@@ -131,12 +94,59 @@
       "end": null,
       "demo_link": null,
       "github_link": null,
-      "rank": 2,
+			"live_link": null,
+      "rank": 4,
       "skills": [
         "<%= sprig_record(Skill, 1) %>"
       ],
       "comments": [
-        "<%= sprig_record(Comment, 30) %>"
+        "<%= sprig_record(Comment, 30) %>",
+        "<%= sprig_record(Comment, 34) %>"
+      ]
+    },
+    {
+      "sprig_id": 8,
+      "name": "The Name App",
+      "description": "An application that lets users determine if their desired name is available over a variety of domains and social media platforms",
+      "start": "2020-04-01 00:00:00",
+      "end": null,
+			"demo_link": null,
+      "live_link": "http://thenameapp.com/",
+      "github_link": null,
+      "rank": 1,
+      "skills": [
+        "<%= sprig_record(Skill, 9) %>",
+        "<%= sprig_record(Skill, 1) %>",
+        "<%= sprig_record(Skill, 19) %>",
+        "<%= sprig_record(Skill, 16) %>"
+      ],
+      "comments": [
+        "<%= sprig_record(Comment, 35) %>",
+        "<%= sprig_record(Comment, 36) %>"
+      ]
+    },
+    {
+      "sprig_id": 9,
+      "name": "DISC and Spiritual Gift Assessment Web Application",
+      "description": "A web application for personality assessments relevant to volunteering at SSaints Church",
+      "start": "2020-04-01 00:00:00",
+      "end": "2020-06-01 00:00:00",
+			"demo_link": null,
+      "live_link": "http://206.189.177.49/disc",
+      "github_link": null,
+      "rank": 3,
+      "skills": [
+        "<%= sprig_record(Skill, 1) %>",
+        "<%= sprig_record(Skill, 9) %>",
+        "<%= sprig_record(Skill, 19) %>",
+        "<%= sprig_record(Skill, 16) %>"
+      ],
+      "comments": [
+        "<%= sprig_record(Comment, 37) %>",
+        "<%= sprig_record(Comment, 38) %>",
+        "<%= sprig_record(Comment, 39) %>",
+        "<%= sprig_record(Comment, 40) %>",
+        "<%= sprig_record(Comment, 41) %>"
       ]
     }
 	]
