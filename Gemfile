@@ -9,7 +9,7 @@ gem 'puma', '~> 3.11'						# puma app server
 gem 'sass-rails', '~> 5.0'			# Scss for stylesheets
 gem 'uglifier', '>= 1.3.0'			# compresses javascript
 
-gem 'rails_admin', '~> 1.3'			# admin
+gem 'rails_admin', '~> 1.4'			# admin
 
 gem 'turbolinks', '~> 5'				# turbolinks 
 gem 'jbuilder', '~> 2.5'				# Build JSON's (for API
