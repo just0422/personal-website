@@ -5,7 +5,7 @@ ruby '2.3.1'
 
 gem 'rails', '~> 5.2.1'					# rails bundle
 gem 'pg', '>= 0.18', '< 2.0'		# postgresql
-gem 'puma', '~> 3.11'						# puma app server
+gem 'puma', '~> 4.3'						 # puma app server
 gem 'sass-rails', '~> 5.0'			# Scss for stylesheets
 gem 'uglifier', '>= 1.3.0'			# compresses javascript
 
